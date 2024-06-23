@@ -3,6 +3,7 @@ package net.atilist.harderthanwolves.events.init;
 import net.atilist.harderthanwolves.utils.RecipeRemover;
 import net.kozibrodka.wolves.recipe.CauldronCraftingManager;
 import net.kozibrodka.wolves.recipe.CrucibleCraftingManager;
+import net.kozibrodka.wolves.recipe.MillingRecipeRegistry;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -39,6 +40,7 @@ public class RecipeListener {
         }
         addCrucibleRecipes();
         addCauldronRecipes();
+        addMillingRecipes();
     }
 
     private static void removeVanillaRecipes() {
@@ -56,6 +58,7 @@ public class RecipeListener {
 
     private static void addMetallurgyRecipes() {
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawDiamondIngot), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(Item.IRON_INGOT));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.chiseledObsidian), new ItemStack(BlockListener.smoothObsidian), new ItemStack(Item.DIAMOND), new ItemStack(Item.GOLD_INGOT));
     }
 
     private static void addToolAndArmourRecipes() {
@@ -91,6 +94,10 @@ public class RecipeListener {
         addCauldronRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[] {
                 new ItemStack(ItemListener.rawDiamondIngot, 1), new ItemStack(Item.GUNPOWDER)
         });
+    }
+
+    private static void addMillingRecipes() {
+        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(BlockListener.smoothObsidian, 1));
     }
 
     public static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {

@@ -12,6 +12,8 @@ item.@.coolitem.name=Cool Item
 
 tile.@.test.name=Example Block
 tile.@.test2.name=Example Block With Model
+tile.@.smooth_obsidian.name=Smooth Obsidian
+tile.@.chiseled_obsidian.name=Chiseled Obsidian
 
 key.@.test=Give Boned Achievement
 key.@.test2=Give Apple Achievement
