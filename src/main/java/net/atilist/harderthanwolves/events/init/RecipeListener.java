@@ -30,7 +30,7 @@ public class RecipeListener {
         Identifier type = event.recipeId;
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPED.type()) {
             removeVanillaRecipes();
-            CraftingRegistry.addShapedRecipe(new ItemStack(ItemListener.coolItem, 1), "XXX", "X X", "X X", 'X', Block.DIRT);
+            CraftingRegistry.addShapedRecipe(new ItemStack(Item.BED, 1), "XXX", "YYY", "Z Z", 'X', net.kozibrodka.wolves.events.ItemListener.hempCloth, 'Y', new ItemStack(Block.WOOL, 1, -1), 'Z', net.kozibrodka.wolves.events.BlockListener.moulding);
             addToolAndArmourRecipes();
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
@@ -54,6 +54,8 @@ public class RecipeListener {
         RecipeRemover.removeRecipe(Item.DIAMOND_CHESTPLATE);
         RecipeRemover.removeRecipe(Item.DIAMOND_LEGGINGS);
         RecipeRemover.removeRecipe(Item.DIAMOND_BOOTS);
+
+        RecipeRemover.removeRecipe(Item.BED);
     }
 
     private static void addMetallurgyRecipes() {
@@ -64,9 +66,10 @@ public class RecipeListener {
     private static void addToolAndArmourRecipes() {
         // Tools
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_PICKAXE, 1), "###", " X ", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "## ", "#X ", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "## ", " X ", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), " ##", " X ", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "##", "#X", " X", '#', ItemListener.diamondIngot, 'X', Item.STICK);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "##", "X#", "X ", '#', ItemListener.diamondIngot, 'X', Item.STICK);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "##", " X", " X", '#', ItemListener.diamondIngot, 'X', Item.STICK);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "##", "X ", "X ", '#', ItemListener.diamondIngot, 'X', Item.STICK);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_SHOVEL, 1), "#", "X", "X", '#', ItemListener.diamondIngot, 'X', Item.STICK);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_SWORD, 1), "#", "#", "X", '#', ItemListener.diamondIngot, 'X', Item.STICK);
 
