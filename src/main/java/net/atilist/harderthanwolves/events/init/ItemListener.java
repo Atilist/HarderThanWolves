@@ -1,5 +1,6 @@
-package net.glasslauncher.example.events.init;
+package net.atilist.harderthanwolves.events.init;
 
+import net.atilist.harderthanwolves.item.LazyItemTemplate;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.Item;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
@@ -12,6 +13,8 @@ import net.modificationstation.stationapi.api.util.Null;
 public class ItemListener {
 
     public static Item coolItem;
+    public static LazyItemTemplate rawDiamondIngot;
+    public static LazyItemTemplate diamondIngot;
 
     @Entrypoint.Namespace
     public static final Namespace NAMESPACE = Null.get();
@@ -19,5 +22,7 @@ public class ItemListener {
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
         coolItem = new TemplateItem(Identifier.of(NAMESPACE, "coolitem")).setTranslationKey(NAMESPACE, "coolitem");
+        diamondIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "diamond_ingot"));
+        rawDiamondIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "raw_diamond_ingot"));
     }
 }

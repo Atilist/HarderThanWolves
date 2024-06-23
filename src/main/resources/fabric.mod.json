@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "id": "examplemod",
+  "id": "harderthanwolves",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Harder Than Wolves",
+  "description": "Adds multiple changes to the game to make it more difficult",
   "authors": [
-    "Me!"
+    "Atilist"
   ],
   "contact": {
     "homepage": "https://glass-launcher.net/",
@@ -14,28 +14,28 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/examplemod/icon.png",
+  "icon": "assets/harderthanwolves/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "stationapi:event_bus": [
-      "net.glasslauncher.example.events.init.AchievementListener",
-      "net.glasslauncher.example.events.init.BlockListener",
-      "net.glasslauncher.example.events.init.ItemListener",
-      "net.glasslauncher.example.events.init.PlayerHandlerListener",
-      "net.glasslauncher.example.events.init.RecipeListener"
+      "net.atilist.harderthanwolves.events.init.AchievementListener",
+      "net.atilist.harderthanwolves.events.init.BlockListener",
+      "net.atilist.harderthanwolves.events.init.ItemListener",
+      "net.atilist.harderthanwolves.events.init.PlayerHandlerListener",
+      "net.atilist.harderthanwolves.events.init.RecipeListener"
     ],
     "stationapi:event_bus_client": [
-      "net.glasslauncher.example.events.init.KeyBindingListener",
-      "net.glasslauncher.example.events.init.TextureListener",
-      "net.glasslauncher.example.events.ingame.KeyPressedListener"
+      "net.atilist.harderthanwolves.events.init.KeyBindingListener",
+      "net.atilist.harderthanwolves.events.init.TextureListener",
+      "net.atilist.harderthanwolves.events.ingame.KeyPressedListener"
     ],
     "stationapi:event_bus_server": [
-      "net.glasslauncher.example.events.init.ServerInitListener"
+      "net.atilist.harderthanwolves.events.init.ServerInitListener"
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "harderthanwolves.mixins.json"
   ],
 
   "depends": {

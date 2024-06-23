@@ -1,6 +1,6 @@
-package net.glasslauncher.example.events.init;
+package net.atilist.harderthanwolves.events.init;
 
-import net.glasslauncher.example.custom.ExampleAchievementPage;
+import net.atilist.harderthanwolves.custom.ExampleAchievementPage;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.achievement.Achievement;
 import net.minecraft.item.Item;

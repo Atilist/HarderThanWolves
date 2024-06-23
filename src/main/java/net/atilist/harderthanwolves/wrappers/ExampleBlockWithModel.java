@@ -1,4 +1,4 @@
-package net.glasslauncher.example.wrappers;
+package net.atilist.harderthanwolves.wrappers;
 
 import net.minecraft.block.Material;
 import net.modificationstation.stationapi.api.template.block.TemplateBlock;

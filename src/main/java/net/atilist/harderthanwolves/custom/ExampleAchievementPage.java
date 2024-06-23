@@ -1,4 +1,4 @@
-package net.glasslauncher.example.custom;
+package net.atilist.harderthanwolves.custom;
 
 import net.minecraft.block.Block;
 import net.modificationstation.stationapi.api.client.gui.screen.achievement.AchievementPage;

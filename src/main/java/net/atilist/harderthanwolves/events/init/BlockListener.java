@@ -1,6 +1,6 @@
-package net.glasslauncher.example.events.init;
+package net.atilist.harderthanwolves.events.init;
 
-import net.glasslauncher.example.wrappers.ExampleBlockWithModel;
+import net.atilist.harderthanwolves.wrappers.ExampleBlockWithModel;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;

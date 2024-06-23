@@ -1,4 +1,4 @@
-# @ is a shorthand for the current mod id, which is examplemod.
+# @ is a shorthand for the current mod id, which is harderthanwolves.
 achievement.@.boned=You've been boned!
 achievement.@.boned.desc=Pick up a bone.
 achievement.@.apple=AppleStuff
@@ -6,6 +6,8 @@ achievement.@.apple.desc=Pick up an apple.
 
 gui.stationapi.achievementPage.@.examplemod=Example
 
+item.@.raw_diamond_ingot.name=Raw Diamond Ingot
+item.@.diamond_ingot.name=Diamond Ingot
 item.@.coolitem.name=Cool Item
 
 tile.@.test.name=Example Block

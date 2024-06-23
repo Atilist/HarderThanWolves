@@ -1,4 +1,4 @@
-package net.glasslauncher.example.events.init;
+package net.atilist.harderthanwolves.events.init;
 
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
@@ -15,5 +15,7 @@ public class TextureListener {
     @EventListener
     public void registerTextures(TextureRegisterEvent event) {
         ItemListener.coolItem.setTexture(Identifier.of(NAMESPACE, "item/coolItem"));
+        ItemListener.rawDiamondIngot.setTexture(Identifier.of(NAMESPACE, "item/rawDiamondIngot"));
+        ItemListener.diamondIngot.setTexture(Identifier.of(NAMESPACE, "item/diamondIngot"));
     }
 }
