@@ -14,6 +14,9 @@ tile.@.test.name=Example Block
 tile.@.test2.name=Example Block With Model
 tile.@.smooth_obsidian.name=Smooth Obsidian
 tile.@.chiseled_obsidian.name=Chiseled Obsidian
+tile.@.fire_pile.name=Fire Pile
+tile.@.lit_fire_pile.name=Lit Fire Pile
+tile.@.depleted_fire_pile.name=Depleted Fire Pile
 
 key.@.test=Give Boned Achievement
 key.@.test2=Give Apple Achievement

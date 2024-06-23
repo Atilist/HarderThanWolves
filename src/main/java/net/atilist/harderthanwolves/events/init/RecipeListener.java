@@ -32,6 +32,7 @@ public class RecipeListener {
             addToolAndArmourRecipes();
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.firePile), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Block.PLANKS));
             addMetallurgyRecipes();
         }
         addCrucibleRecipes();

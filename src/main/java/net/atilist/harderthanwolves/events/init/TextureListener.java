@@ -21,6 +21,9 @@ public class TextureListener {
 
         BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
         BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));
+        BlockListener.firePile.specifyTextures(getBlockTexture("block/firePile"));
+        BlockListener.litFirePile.specifyTextures(getBlockTexture("block/litFirePile"));
+        BlockListener.depletedFirePile.specifyTextures(getBlockTexture("block/depletedFirePile"));
     }
 
     public int getBlockTexture(String path) {
