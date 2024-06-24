@@ -15,7 +15,6 @@ public class TextureListener {
 
     @EventListener
     public void registerTextures(TextureRegisterEvent event) {
-        ItemListener.coolItem.setTexture(Identifier.of(NAMESPACE, "item/coolItem"));
         ItemListener.rawDiamondIngot.setTexture(Identifier.of(NAMESPACE, "item/rawDiamondIngot"));
         ItemListener.diamondIngot.setTexture(Identifier.of(NAMESPACE, "item/diamondIngot"));
 

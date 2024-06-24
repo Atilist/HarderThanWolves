@@ -12,7 +12,6 @@ import net.modificationstation.stationapi.api.util.Null;
 
 public class ItemListener {
 
-    public static Item coolItem;
     public static LazyItemTemplate rawDiamondIngot;
     public static LazyItemTemplate diamondIngot;
 
@@ -21,7 +20,6 @@ public class ItemListener {
 
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
-        coolItem = new TemplateItem(Identifier.of(NAMESPACE, "coolitem")).setTranslationKey(NAMESPACE, "coolitem");
         diamondIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "diamond_ingot"));
         rawDiamondIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "raw_diamond_ingot"));
     }
