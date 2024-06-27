@@ -6,17 +6,25 @@ achievement.@.apple.desc=Pick up an apple.
 
 gui.stationapi.achievementPage.@.examplemod=Example
 
+item.@.stone_chisel.name=Stone Chisel
+
+item.@.stone_brick.name=Stone Brick
+
 item.@.raw_diamond_ingot.name=Raw Diamond Ingot
 item.@.diamond_ingot.name=Diamond Ingot
-item.@.coolitem.name=Cool Item
 
-tile.@.test.name=Example Block
-tile.@.test2.name=Example Block With Model
-tile.@.smooth_obsidian.name=Smooth Obsidian
-tile.@.chiseled_obsidian.name=Chiseled Obsidian
 tile.@.fire_pile.name=Fire Pile
 tile.@.lit_fire_pile.name=Lit Fire Pile
 tile.@.depleted_fire_pile.name=Depleted Fire Pile
+
+tile.@.stone_bricks.name=Stone Bricks
+tile.@.metal_forge.name=Metal Forge
+
+tile.@.iron_ore_gravel.name=Iron Ore Gravel
+tile.@.gold_ore_gravel.name=Gold Ore Gravel
+
+tile.@.smooth_obsidian.name=Smooth Obsidian
+tile.@.chiseled_obsidian.name=Chiseled Obsidian
 
 key.@.test=Give Boned Achievement
 key.@.test2=Give Apple Achievement

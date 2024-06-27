@@ -23,15 +23,13 @@ public class LazyBlockTemplate extends TemplateBlock {
         return (LazyBlockTemplate) super.setHardness(Hardness);
     }
 
-    public void specifyTextures(int topTexture, int sideTexture, int bottomTexture)
-    {
+    public void specifyTextures(int topTexture, int sideTexture, int bottomTexture) {
         this.topTexture = topTexture;
         this.sideTexture = sideTexture;
         this.bottomTexture = bottomTexture;
     }
 
-    public void specifyTextures(int universalTexture)
-    {
+    public void specifyTextures(int universalTexture) {
         topTexture = universalTexture;
         sideTexture = universalTexture;
         bottomTexture = universalTexture;

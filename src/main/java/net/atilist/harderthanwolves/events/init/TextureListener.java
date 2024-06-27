@@ -15,14 +15,25 @@ public class TextureListener {
 
     @EventListener
     public void registerTextures(TextureRegisterEvent event) {
+        ItemListener.stoneChisel.setTexture(Identifier.of(NAMESPACE, "item/stoneChisel"));
+
+        ItemListener.stoneBrick.setTexture(Identifier.of(NAMESPACE, "item/stoneBrick"));
+
         ItemListener.rawDiamondIngot.setTexture(Identifier.of(NAMESPACE, "item/rawDiamondIngot"));
         ItemListener.diamondIngot.setTexture(Identifier.of(NAMESPACE, "item/diamondIngot"));
 
-        BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
-        BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));
         BlockListener.firePile.specifyTextures(getBlockTexture("block/firePile"));
         BlockListener.litFirePile.specifyTextures(getBlockTexture("block/litFirePile"));
         BlockListener.depletedFirePile.specifyTextures(getBlockTexture("block/depletedFirePile"));
+
+        BlockListener.stoneBricks.specifyTextures(getBlockTexture("block/stoneBricks"));
+        BlockListener.metalForge.specifyTextures(getBlockTexture("block/metalForgeTop"), getBlockTexture("block/metalForgeSide"), getBlockTexture("block/stoneBricks"));
+
+        BlockListener.ironOreGravel.specifyTextures(getBlockTexture("block/ironOreGravel"));
+        BlockListener.goldOreGravel.specifyTextures(getBlockTexture("block/goldOreGravel"));
+
+        BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
+        BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));
     }
 
     public int getBlockTexture(String path) {

@@ -1,10 +1,13 @@
 package net.atilist.harderthanwolves.utils;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.CraftingRecipeManager;
+import net.minecraft.recipe.SmeltingRecipeManager;
 
 import java.util.List;
+import java.util.Map;
 
 public class RecipeRemover {
     @SuppressWarnings({"unchecked"})
@@ -31,5 +34,11 @@ public class RecipeRemover {
 
     public static void removeRecipe(Item item) {
         removeRecipe(item, -1, false);
+    }
+
+    @SuppressWarnings({"unchecked"})
+    public static void removeSmeltingRecipe(int id) {
+        Map<Integer, ItemStack> recipes = SmeltingRecipeManager.getInstance().getRecipes();
+        recipes.remove(id);
     }
 }

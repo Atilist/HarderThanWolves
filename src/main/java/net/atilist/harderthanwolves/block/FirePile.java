@@ -28,7 +28,7 @@ public class FirePile extends LazyBlockTemplate {
             return false;
         }
         if (world.getBlockId(x, y + 1, z) == 0) {
-            world.playSound((double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "fire.ignite", 1.0F, 0.8F);
+            world.playSound((double) x + 0.5, (double) y + 0.5, (double) z + 0.5, "fire.ignite", 1.0F, 0.8F);
             world.setBlock(x, y, z, BlockListener.litFirePile.id);
             world.setBlock(x, y + 1, z, Block.FIRE.id);
             if (item.itemId == Item.FLINT_AND_STEEL.id) {

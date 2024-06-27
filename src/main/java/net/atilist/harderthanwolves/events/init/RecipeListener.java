@@ -30,6 +30,7 @@ public class RecipeListener {
             removeVanillaRecipes();
             CraftingRegistry.addShapedRecipe(new ItemStack(Item.BED, 1), "XXX", "YYY", "Z Z", 'X', net.kozibrodka.wolves.events.ItemListener.hempCloth, 'Y', new ItemStack(Block.WOOL, 1, -1), 'Z', net.kozibrodka.wolves.events.BlockListener.moulding);
             addToolAndArmourRecipes();
+            addBlockRecipes();
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.firePile), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Block.PLANKS));
@@ -75,6 +76,10 @@ public class RecipeListener {
 
         // Crafting blocks / furniture
         RecipeRemover.removeRecipe(Item.BED);
+
+        // Ore smelting
+        RecipeRemover.removeSmeltingRecipe(Block.IRON_ORE.id);
+        RecipeRemover.removeSmeltingRecipe(Block.GOLD_ORE.id);
     }
 
     private static void addMetallurgyRecipes() {
@@ -91,15 +96,16 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.STONE_HOE, 1), "Y##", "YX ", " X ", '#', Block.COBBLESTONE, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.STONE_SHOVEL, 1), "Y#Y", " X ", " X ", '#', Block.COBBLESTONE, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.STONE_SWORD, 1), " # ", "Y#Y", " X ", '#', Block.COBBLESTONE, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(ItemListener.stoneChisel, 1), "Y#Y", " X ", '#', Block.COBBLESTONE, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
 
         // Iron Tools
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_PICKAXE, 1), "###", "YXY", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_AXE, 1), "##Y", "#XY", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_AXE, 1), "Y##", "YX#", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_HOE, 1), "##Y", " XY", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_HOE, 1), "Y##", "YX ", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SHOVEL, 1), "Y#Y", " X ", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.IRON_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_PICKAXE, 1), "###", "YXY", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_AXE, 1), "##Y", "#XY", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_AXE, 1), "Y##", "YX#", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_HOE, 1), "##Y", " XY", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_HOE, 1), "Y##", "YX ", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SHOVEL, 1), "Y#Y", " X ", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
 
         // Gold Tools
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_PICKAXE, 1), "###", "YXY", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
@@ -111,19 +117,24 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
 
         // Diamond Tools
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_PICKAXE, 1), "###", "YXY", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "##Y", "#XY", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "Y##", "YX#", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "##Y", " XY", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "Y##", "YX ", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_SHOVEL, 1), "Y#Y", " X ", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_SWORD, 1), " # ", "Y#Y", " X ", '#', ItemListener.diamondIngot, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_PICKAXE, 1), "###", "YXY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "##Y", "#XY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_AXE, 1), "Y##", "YX#", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "##Y", " XY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HOE, 1), "Y##", "YX ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_SHOVEL, 1), "Y#Y", " X ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_SWORD, 1), " # ", "Y#Y", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
 
         // Armour
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_HELMET, 1), "###", "# #", '#', ItemListener.diamondIngot);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_CHESTPLATE, 1), "# #", "###", "###", '#', ItemListener.diamondIngot);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_LEGGINGS, 1), "###", "# #", "# #", '#', ItemListener.diamondIngot);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_BOOTS, 1), "# #", "# #", '#', ItemListener.diamondIngot);
+    }
+
+    private static void addBlockRecipes() {
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.stoneBricks, 1), "##", "##", '#', ItemListener.stoneBrick);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.metalForge, 1), "XX", "##", 'X', Block.SLAB, '#', ItemListener.stoneBrick);
     }
 
     private static void addCrucibleRecipes() {
@@ -147,6 +158,9 @@ public class RecipeListener {
 
     private static void addMillingRecipes() {
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(BlockListener.smoothObsidian, 1));
+
+        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.IRON_ORE.id, new ItemStack(BlockListener.ironOreGravel, 1));
+        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.GOLD_ORE.id, new ItemStack(BlockListener.goldOreGravel, 1));
     }
 
     public static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
