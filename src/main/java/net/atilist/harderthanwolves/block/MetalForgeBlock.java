@@ -4,7 +4,6 @@ import net.atilist.harderthanwolves.events.init.BlockListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.entity.ItemEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
@@ -41,7 +40,7 @@ public class MetalForgeBlock extends LazyBlockTemplate {
         if (world.getBlockId(x, y + 1, z - 1) != BlockListener.stoneBricks.id) {
             return;
         }
-        if ((blockId != BlockListener.ironOreGravel.id && blockId != BlockListener.goldOreGravel.id)) {
+        if ((blockId != BlockListener.ironOreGravel.id && blockId != BlockListener.ironChunkBlock.id && blockId != BlockListener.goldChunkBlock.id)) {
             return;
         }
         int smeltingMultiplier = 0;
@@ -59,7 +58,7 @@ public class MetalForgeBlock extends LazyBlockTemplate {
         Item resultItem = null;
         if (world.getBlockMeta(x, y + 1, z) < 15) {
             world.method_215(x, y + 1, z, Math.min(15, world.getBlockMeta(x, y + 1, z) + smeltingMultiplier));
-        } else if (blockId == BlockListener.ironOreGravel.id) {
+        } else if (blockId == BlockListener.ironOreGravel.id || blockId == BlockListener.ironChunkBlock.id) {
             resultItem = Item.IRON_INGOT;
         } else {
             resultItem = Item.GOLD_INGOT;

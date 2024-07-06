@@ -4,6 +4,7 @@ import net.atilist.harderthanwolves.utils.RecipeRemover;
 import net.kozibrodka.wolves.recipe.CauldronCraftingManager;
 import net.kozibrodka.wolves.recipe.CrucibleCraftingManager;
 import net.kozibrodka.wolves.recipe.MillingRecipeRegistry;
+import net.kozibrodka.wolves.recipe.TurntableRecipeRegistry;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -39,6 +40,7 @@ public class RecipeListener {
         addCrucibleRecipes();
         addCauldronRecipes();
         addMillingRecipes();
+        addTurntableRecipes();
     }
 
     private static void removeVanillaRecipes() {
@@ -85,6 +87,8 @@ public class RecipeListener {
     private static void addMetallurgyRecipes() {
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawDiamondIngot), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(Item.IRON_INGOT));
         CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.chiseledObsidian), new ItemStack(BlockListener.smoothObsidian), new ItemStack(Item.DIAMOND), new ItemStack(Item.GOLD_INGOT));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.ironChunks, 4), new ItemStack(BlockListener.ironChunkBlock));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.goldChunks, 4), new ItemStack(BlockListener.goldChunkBlock));
     }
 
     private static void addToolAndArmourRecipes() {
@@ -108,13 +112,13 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
 
         // Gold Tools
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_PICKAXE, 1), "###", "YXY", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_PICKAXE, 1), "###", "YXY", " X ", '#', Item.GOLD_INGOT, 'X', ItemListener.mysticalStick, 'Y', ItemListener.mysticalHempFibers);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_AXE, 1), "##Y", "#XY", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_AXE, 1), "Y##", "YX#", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_HOE, 1), "##Y", " XY", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_HOE, 1), "Y##", "YX ", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_SHOVEL, 1), "Y#Y", " X ", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
-        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.GOLD_INGOT, 'X', Item.STICK, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_HOE, 1), "##Y", " XY", " X ", '#', Item.GOLD_INGOT, 'X', ItemListener.mysticalStick, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_HOE, 1), "Y##", "YX ", " X ", '#', Item.GOLD_INGOT, 'X', ItemListener.mysticalStick, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_SHOVEL, 1), "Y#Y", " X ", " X ", '#', Item.GOLD_INGOT, 'X', ItemListener.mysticalStick, 'Y', ItemListener.mysticalHempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.GOLD_INGOT, 'X', ItemListener.mysticalStick, 'Y', ItemListener.mysticalHempFibers);
 
         // Diamond Tools
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.DIAMOND_PICKAXE, 1), "###", "YXY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
@@ -135,6 +139,9 @@ public class RecipeListener {
     private static void addBlockRecipes() {
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.stoneBricks, 1), "##", "##", '#', ItemListener.stoneBrick);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.metalForge, 1), "XX", "##", 'X', Block.SLAB, '#', ItemListener.stoneBrick);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.rotarySieve, 1), "XYX", "YZY", "XYX", 'X', net.kozibrodka.wolves.events.BlockListener.corner, 'Y', net.kozibrodka.wolves.events.ItemListener.wicker, 'Z', net.kozibrodka.wolves.events.ItemListener.grate);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.ironChunkBlock, 1), "##", "##", '#', ItemListener.ironChunks);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.goldChunkBlock, 1), "##", "##", '#', ItemListener.goldChunks);
     }
 
     private static void addCrucibleRecipes() {
@@ -161,13 +168,19 @@ public class RecipeListener {
 
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.IRON_ORE.id, new ItemStack(BlockListener.ironOreGravel, 1));
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.GOLD_ORE.id, new ItemStack(BlockListener.goldOreGravel, 1));
+
+        MillingRecipeRegistry.getInstance().addMillingRecipe(ItemListener.mysticalHemp.id, new ItemStack(ItemListener.mysticalHempFibers, 4));
     }
 
-    public static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
+    private static void addTurntableRecipes() {
+        TurntableRecipeRegistry.getInstance().addTurntableRecipe(BlockListener.rotarySieve, 0, new ItemStack(BlockListener.rotarySieve, 8, 1));
+    }
+
+    private static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
         CrucibleCraftingManager.getInstance().addRecipe(output, inputs);
     }
 
-    public static void addCauldronRecipe(ItemStack output, ItemStack[] inputs) {
+    private static void addCauldronRecipe(ItemStack output, ItemStack[] inputs) {
         CauldronCraftingManager.getInstance().addRecipe(output, inputs);
     }
 }

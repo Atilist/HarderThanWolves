@@ -21,6 +21,14 @@ public class BlockListener {
     public static LazyFallingBlockTemplate ironOreGravel;
     public static LazyFallingBlockTemplate goldOreGravel;
 
+    public static LazyFallingBlockTemplate ironChunkBlock;
+    public static LazyFallingBlockTemplate goldChunkBlock;
+
+    public static RotarySieveBlock rotarySieve;
+
+    public static LazyBlockTemplate mysticalCobblestone;
+    public static LazyFallingBlockTemplate mysticalGravel;
+
     public static LazyBlockTemplate smoothObsidian;
     public static LazyBlockTemplate chiseledObsidian;
 
@@ -38,6 +46,14 @@ public class BlockListener {
 
         ironOreGravel = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "iron_ore_gravel"), 1.5F, Block.GRAVEL_SOUND_GROUP);
         goldOreGravel = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "gold_ore_gravel"), 1.5F, Block.GRAVEL_SOUND_GROUP);
+
+        ironChunkBlock = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "iron_chunk_block"), 1.5F, Block.GRAVEL_SOUND_GROUP);
+        goldChunkBlock = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "gold_chunk_block"), 1.5F, Block.GRAVEL_SOUND_GROUP);
+
+        rotarySieve = new RotarySieveBlock(Identifier.of(NAMESPACE, "rotary_sieve"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
+
+        mysticalCobblestone = new LazyBlockTemplate(Identifier.of(NAMESPACE, "mystical_cobblestone"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        mysticalGravel = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "mystical_gravel"), 1.5F, Block.GRAVEL_SOUND_GROUP);
 
         smoothObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "smooth_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
         chiseledObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "chiseled_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);

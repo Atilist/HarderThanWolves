@@ -19,6 +19,14 @@ public class TextureListener {
 
         ItemListener.stoneBrick.setTexture(Identifier.of(NAMESPACE, "item/stoneBrick"));
 
+        ItemListener.ironChunks.setTexture(Identifier.of(NAMESPACE, "item/ironChunks"));
+        ItemListener.goldChunks.setTexture(Identifier.of(NAMESPACE, "item/goldChunks"));
+
+        ItemListener.mysticalStick.setTexture(Identifier.of(NAMESPACE, "item/mysticalStick"));
+        ItemListener.mysticalHemp.setTexture(Identifier.of(NAMESPACE, "item/mysticalHemp"));
+        ItemListener.mysticalHempFibers.setTexture(Identifier.of(NAMESPACE, "item/mysticalHempFibers"));
+        ItemListener.monsterCloth.setTexture(Identifier.of(NAMESPACE, "item/monsterCloth"));
+
         ItemListener.rawDiamondIngot.setTexture(Identifier.of(NAMESPACE, "item/rawDiamondIngot"));
         ItemListener.diamondIngot.setTexture(Identifier.of(NAMESPACE, "item/diamondIngot"));
 
@@ -31,6 +39,14 @@ public class TextureListener {
 
         BlockListener.ironOreGravel.specifyTextures(getBlockTexture("block/ironOreGravel"));
         BlockListener.goldOreGravel.specifyTextures(getBlockTexture("block/goldOreGravel"));
+
+        BlockListener.ironChunkBlock.specifyTextures(getBlockTexture("block/ironChunkBlock"));
+        BlockListener.goldChunkBlock.specifyTextures(getBlockTexture("block/goldChunkBlock"));
+
+        BlockListener.rotarySieve.specifyTextures(getBlockTexture("block/rotarySieveTop"), getBlockTexture("block/rotarySieveSide"), getBlockTexture("block/rotarySieveBottom"));
+
+        BlockListener.mysticalCobblestone.specifyTextures(getBlockTexture("block/mysticalCobblestone"));
+        BlockListener.mysticalGravel.specifyTextures(getBlockTexture("block/mysticalGravel"));
 
         BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
         BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));

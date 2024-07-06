@@ -10,6 +10,14 @@ item.@.stone_chisel.name=Stone Chisel
 
 item.@.stone_brick.name=Stone Brick
 
+item.@.iron_chunks.name=Iron Chunks
+item.@.gold_chunks.name=Gold Chunks
+
+item.@.mystical_stick.name=Mystical Stick
+item.@.mystical_hemp.name=Mystical Hemp
+item.@.mystical_hemp_fibers.name=Mystical Hemp Fibers
+item.@.monster_cloth.name=Monster Cloth
+
 item.@.raw_diamond_ingot.name=Raw Diamond Ingot
 item.@.diamond_ingot.name=Diamond Ingot
 
@@ -22,6 +30,14 @@ tile.@.metal_forge.name=Metal Forge
 
 tile.@.iron_ore_gravel.name=Iron Ore Gravel
 tile.@.gold_ore_gravel.name=Gold Ore Gravel
+
+tile.@.iron_chunk_block.name=Block of Iron Chunks
+tile.@.gold_chunk_block.name=Block of Gold Chunks
+
+tile.@.rotary_sieve.name=Rotary Sieve
+
+tile.@.mystical_cobblestone.name=Mystical Cobblestone
+tile.@.mystical_gravel.name=Mystical Gravel
 
 tile.@.smooth_obsidian.name=Smooth Obsidian
 tile.@.chiseled_obsidian.name=Chiseled Obsidian

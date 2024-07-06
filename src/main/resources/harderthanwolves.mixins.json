@@ -4,8 +4,9 @@
   "package": "net.atilist.harderthanwolves.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "NetherPortalMixin",
-    "StoneMixin"
+    "BlockOutcomeMixin",
+    "MonsterDropMixin",
+    "NetherPortalMixin"
   ],
   "server": [
   ],

@@ -15,6 +15,14 @@ public class ItemListener {
 
     public static LazyItemTemplate stoneBrick;
 
+    public static LazyItemTemplate ironChunks;
+    public static LazyItemTemplate goldChunks;
+
+    public static LazyItemTemplate mysticalStick;
+    public static LazyItemTemplate mysticalHemp;
+    public static LazyItemTemplate mysticalHempFibers;
+    public static LazyItemTemplate monsterCloth;
+
     public static LazyItemTemplate rawDiamondIngot;
     public static LazyItemTemplate diamondIngot;
 
@@ -26,6 +34,14 @@ public class ItemListener {
         stoneChisel = new StoneChiselItem(Identifier.of(NAMESPACE, "stone_chisel"));
 
         stoneBrick = new LazyItemTemplate(Identifier.of(NAMESPACE, "stone_brick"));
+
+        ironChunks = new LazyItemTemplate(Identifier.of(NAMESPACE, "iron_chunks"));
+        goldChunks = new LazyItemTemplate(Identifier.of(NAMESPACE, "gold_chunks"));
+
+        mysticalStick = new LazyItemTemplate(Identifier.of(NAMESPACE, "mystical_stick"));
+        mysticalHemp = new LazyItemTemplate(Identifier.of(NAMESPACE, "mystical_hemp"));
+        mysticalHempFibers = new LazyItemTemplate(Identifier.of(NAMESPACE, "mystical_hemp_fibers"));
+        monsterCloth = new LazyItemTemplate(Identifier.of(NAMESPACE, "monster_cloth"));
 
         diamondIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "diamond_ingot"));
         rawDiamondIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "raw_diamond_ingot"));
