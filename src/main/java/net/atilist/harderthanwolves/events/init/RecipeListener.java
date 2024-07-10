@@ -85,7 +85,8 @@ public class RecipeListener {
     }
 
     private static void addMetallurgyRecipes() {
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawDiamondIngot), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(Item.IRON_INGOT));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawLapisIngot), new ItemStack(ItemListener.mysticalHempFibers), new ItemStack(Item.DYE, 1, 4), new ItemStack(Item.IRON_INGOT), new ItemStack(ItemListener.chargedMysticalRock), new ItemStack(ItemListener.mysticalStick));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawDiamondIngot), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(ItemListener.lapisIngot), new ItemStack(ItemListener.chargedMysticalRock));
         CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.chiseledObsidian), new ItemStack(BlockListener.smoothObsidian), new ItemStack(Item.DIAMOND), new ItemStack(Item.GOLD_INGOT));
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.ironChunks, 4), new ItemStack(BlockListener.ironChunkBlock));
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.goldChunks, 4), new ItemStack(BlockListener.goldChunkBlock));
@@ -142,6 +143,7 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.rotarySieve, 1), "XYX", "YZY", "XYX", 'X', net.kozibrodka.wolves.events.BlockListener.corner, 'Y', net.kozibrodka.wolves.events.ItemListener.wicker, 'Z', net.kozibrodka.wolves.events.ItemListener.grate);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.ironChunkBlock, 1), "##", "##", '#', ItemListener.ironChunks);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.goldChunkBlock, 1), "##", "##", '#', ItemListener.goldChunks);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.emptyMonsterSiphon, 1), "XXX", "###", "XYX", 'X', BlockListener.mysticalCobblestone, 'Y', Item.GOLD_INGOT, '#', ItemListener.monsterCloth);
     }
 
     private static void addCrucibleRecipes() {
@@ -158,6 +160,9 @@ public class RecipeListener {
     }
 
     private static void addCauldronRecipes() {
+        addCauldronRecipe(new ItemStack(ItemListener.lapisIngot, 1), new ItemStack[] {
+                new ItemStack(ItemListener.rawLapisIngot, 1), new ItemStack(Item.FLINT)
+        });
         addCauldronRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[] {
                 new ItemStack(ItemListener.rawDiamondIngot, 1), new ItemStack(Item.GUNPOWDER)
         });

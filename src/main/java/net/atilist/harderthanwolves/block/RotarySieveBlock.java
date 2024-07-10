@@ -2,7 +2,7 @@ package net.atilist.harderthanwolves.block;
 
 import net.atilist.harderthanwolves.events.init.BlockListener;
 import net.atilist.harderthanwolves.events.init.ItemListener;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
@@ -24,7 +24,7 @@ public class RotarySieveBlock extends LazyBlockTemplate {
 
     @Override
     public void onTick(World world, int x, int y, int z, Random random) {
-        world.method_216(x, y, z, this.id, this.getTickRate());
+        world.scheduleBlockUpdate(x, y, z, this.id, this.getTickRate());
         if (world.getBlockMeta(x, y, z) != 1) {
             return;
         }
@@ -34,18 +34,20 @@ public class RotarySieveBlock extends LazyBlockTemplate {
             output = new ItemStack(ItemListener.ironChunks, 5);
         } else if (aboveId == BlockListener.goldOreGravel.id) {
             output = new ItemStack(ItemListener.goldChunks, 5);
+        } else if (aboveId == BlockListener.mysticalGravel.id) {
+            output = new ItemStack(ItemListener.mysticalRock, 1);
         }
         if (output == null) {
             return;
         }
-        world.method_215(x, y, z, 0);
+        world.setBlockMeta(x, y, z, 0);
         world.setBlock(x, y + 1, z, 0);
         float randomizerAmplitude = 0.7F;
-        double xOffset = (double)(world.field_214.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
-        double yOffset = (double)(world.field_214.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
-        double zOffset = (double)(world.field_214.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
+        double xOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
+        double yOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
+        double zOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
         ItemEntity itemEntity = new ItemEntity(world, (double)x + xOffset, (double)y + yOffset, (double)z + zOffset, output);
         itemEntity.pickupDelay = 10;
-        world.method_210(itemEntity);
+        world.spawnEntity(itemEntity);
     }
 }

@@ -3,7 +3,7 @@ package net.atilist.harderthanwolves.events.init;
 import net.atilist.harderthanwolves.block.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Identifier;
@@ -28,6 +28,10 @@ public class BlockListener {
 
     public static LazyBlockTemplate mysticalCobblestone;
     public static LazyFallingBlockTemplate mysticalGravel;
+
+    public static EmptyMonsterSiphon emptyMonsterSiphon;
+    public static LoadedMonsterSiphon loadedMonsterSiphon;
+    public static ChargedMonsterSiphon chargedMonsterSiphon;
 
     public static LazyBlockTemplate smoothObsidian;
     public static LazyBlockTemplate chiseledObsidian;
@@ -54,6 +58,10 @@ public class BlockListener {
 
         mysticalCobblestone = new LazyBlockTemplate(Identifier.of(NAMESPACE, "mystical_cobblestone"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
         mysticalGravel = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "mystical_gravel"), 1.5F, Block.GRAVEL_SOUND_GROUP);
+
+        emptyMonsterSiphon = new EmptyMonsterSiphon(Identifier.of(NAMESPACE, "empty_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        loadedMonsterSiphon = new LoadedMonsterSiphon(Identifier.of(NAMESPACE, "loaded_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        chargedMonsterSiphon = new ChargedMonsterSiphon(Identifier.of(NAMESPACE, "charged_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
 
         smoothObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "smooth_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
         chiseledObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "chiseled_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);

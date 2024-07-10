@@ -3,7 +3,7 @@ package net.atilist.harderthanwolves.block;
 import net.atilist.harderthanwolves.events.init.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

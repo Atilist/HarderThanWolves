@@ -27,7 +27,7 @@ public class BlockOutcomeMixin {
         int itemInHand = playerEntity.getHand().itemId;
         ItemStack result = null;
         if (this.id == Block.STONE.id && itemInHand == ItemListener.stoneChisel.id) {
-            result = new ItemStack(ItemListener.stoneBrick, 1 + world.field_214.nextInt(4));
+            result = new ItemStack(ItemListener.stoneBrick, 1 + world.random.nextInt(4));
         } else if (this.id == Block.STONE.id && itemInHand == Item.GOLDEN_PICKAXE.id) {
             result = new ItemStack(BlockListener.mysticalCobblestone, 1);
         } else if (this.id == Block.PLANKS.id && itemInHand == Item.GOLDEN_AXE.id) {
@@ -41,12 +41,12 @@ public class BlockOutcomeMixin {
             return;
         }
         float randomizerAmplitude = 0.7F;
-        double xOffset = (double)(world.field_214.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
-        double yOffset = (double)(world.field_214.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
-        double zOffset = (double)(world.field_214.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
+        double xOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
+        double yOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
+        double zOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
         ItemEntity itemEntity = new ItemEntity(world, (double)x + xOffset, (double)y + yOffset, (double)z + zOffset, result);
         itemEntity.pickupDelay = 10;
-        world.method_210(itemEntity);
+        world.spawnEntity(itemEntity);
         ci.cancel();
     }
 }

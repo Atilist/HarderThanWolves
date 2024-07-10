@@ -3,7 +3,7 @@ package net.atilist.harderthanwolves.block;
 import net.atilist.harderthanwolves.events.init.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -31,7 +31,7 @@ public class LitFirePile extends LazyBlockTemplate {
             return;
         }
         if (meta < 3) {
-            world.method_215(x, y, z, meta + 1);
+            world.setBlockMeta(x, y, z, meta + 1);
         } else {
             world.setBlock(x, y, z, BlockListener.depletedFirePile.id);
         }

@@ -17,6 +17,11 @@ item.@.mystical_stick.name=Mystical Stick
 item.@.mystical_hemp.name=Mystical Hemp
 item.@.mystical_hemp_fibers.name=Mystical Hemp Fibers
 item.@.monster_cloth.name=Monster Cloth
+item.@.mystical_rock.name=Mystical Rock
+item.@.charged_mystical_rock.name=Charged Mystical Rock
+
+item.@.raw_lapis_ingot.name=Raw Lapis Ingot
+item.@.lapis_ingot.name=Lapis Ingot
 
 item.@.raw_diamond_ingot.name=Raw Diamond Ingot
 item.@.diamond_ingot.name=Diamond Ingot
@@ -38,6 +43,10 @@ tile.@.rotary_sieve.name=Rotary Sieve
 
 tile.@.mystical_cobblestone.name=Mystical Cobblestone
 tile.@.mystical_gravel.name=Mystical Gravel
+
+tile.@.empty_monster_siphon.name=Empty Monster Siphon
+tile.@.loaded_monster_siphon.name=Loaded Monster Siphon
+tile.@.charged_monster_siphon.name=Charged Monster Siphon
 
 tile.@.smooth_obsidian.name=Smooth Obsidian
 tile.@.chiseled_obsidian.name=Chiseled Obsidian

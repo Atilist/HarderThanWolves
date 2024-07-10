@@ -1,10 +1,12 @@
 package net.atilist.harderthanwolves.utils;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.CraftingRecipeManager;
 import net.minecraft.recipe.SmeltingRecipeManager;
+import net.modificationstation.stationapi.api.template.block.TemplateBlock;
 
 import java.util.List;
 import java.util.Map;
@@ -40,5 +42,16 @@ public class RecipeRemover {
     public static void removeSmeltingRecipe(int id) {
         Map<Integer, ItemStack> recipes = SmeltingRecipeManager.getInstance().getRecipes();
         recipes.remove(id);
+    }
+
+    public static void removeRecipe(Block block) {
+        List<CraftingRecipe> recipes = CraftingRecipeManager.getInstance().getRecipes();
+        for (int i = 0; i < recipes.size(); i++) {
+            CraftingRecipe recipe = recipes.get(i);
+            if (recipe.getOutput().itemId == block.id) {
+                recipes.remove(i);
+                i--;
+            }
+        }
     }
 }

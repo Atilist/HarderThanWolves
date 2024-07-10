@@ -26,6 +26,11 @@ public class TextureListener {
         ItemListener.mysticalHemp.setTexture(Identifier.of(NAMESPACE, "item/mysticalHemp"));
         ItemListener.mysticalHempFibers.setTexture(Identifier.of(NAMESPACE, "item/mysticalHempFibers"));
         ItemListener.monsterCloth.setTexture(Identifier.of(NAMESPACE, "item/monsterCloth"));
+        ItemListener.mysticalRock.setTexture(Identifier.of(NAMESPACE, "item/mysticalRock"));
+        ItemListener.chargedMysticalRock.setTexture(Identifier.of(NAMESPACE, "item/chargedMysticalRock"));
+
+        ItemListener.rawLapisIngot.setTexture(Identifier.of(NAMESPACE, "item/rawLapisIngot"));
+        ItemListener.lapisIngot.setTexture(Identifier.of(NAMESPACE, "item/lapisIngot"));
 
         ItemListener.rawDiamondIngot.setTexture(Identifier.of(NAMESPACE, "item/rawDiamondIngot"));
         ItemListener.diamondIngot.setTexture(Identifier.of(NAMESPACE, "item/diamondIngot"));
@@ -47,6 +52,10 @@ public class TextureListener {
 
         BlockListener.mysticalCobblestone.specifyTextures(getBlockTexture("block/mysticalCobblestone"));
         BlockListener.mysticalGravel.specifyTextures(getBlockTexture("block/mysticalGravel"));
+
+        BlockListener.emptyMonsterSiphon.specifyTextures(getBlockTexture("block/emptyMonsterSiphonTop"), getBlockTexture("block/monsterSiphonSide"), getBlockTexture("block/monsterSiphonBottom"));
+        BlockListener.loadedMonsterSiphon.specifyTextures(getBlockTexture("block/loadedMonsterSiphonTop"), getBlockTexture("block/monsterSiphonSide"), getBlockTexture("block/monsterSiphonBottom"));
+        BlockListener.chargedMonsterSiphon.specifyTextures(getBlockTexture("block/chargedMonsterSiphonTop"), getBlockTexture("block/monsterSiphonSide"), getBlockTexture("block/monsterSiphonBottom"));
 
         BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
         BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));
