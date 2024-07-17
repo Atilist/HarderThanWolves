@@ -29,6 +29,7 @@ public class TextureListener {
         ItemListener.mysticalRock.setTexture(Identifier.of(NAMESPACE, "item/mysticalRock"));
         ItemListener.chargedMysticalRock.setTexture(Identifier.of(NAMESPACE, "item/chargedMysticalRock"));
 
+        ItemListener.crystallizedLapis.setTexture(Identifier.of(NAMESPACE, "item/crystallizedLapis"));
         ItemListener.rawLapisIngot.setTexture(Identifier.of(NAMESPACE, "item/rawLapisIngot"));
         ItemListener.lapisIngot.setTexture(Identifier.of(NAMESPACE, "item/lapisIngot"));
 
@@ -53,9 +54,17 @@ public class TextureListener {
         BlockListener.mysticalCobblestone.specifyTextures(getBlockTexture("block/mysticalCobblestone"));
         BlockListener.mysticalGravel.specifyTextures(getBlockTexture("block/mysticalGravel"));
 
+        BlockListener.lapisGravel.specifyTextures(getBlockTexture("block/lapisGravel"));
+
         BlockListener.emptyMonsterSiphon.specifyTextures(getBlockTexture("block/emptyMonsterSiphonTop"), getBlockTexture("block/monsterSiphonSide"), getBlockTexture("block/monsterSiphonBottom"));
         BlockListener.loadedMonsterSiphon.specifyTextures(getBlockTexture("block/loadedMonsterSiphonTop"), getBlockTexture("block/monsterSiphonSide"), getBlockTexture("block/monsterSiphonBottom"));
         BlockListener.chargedMonsterSiphon.specifyTextures(getBlockTexture("block/chargedMonsterSiphonTop"), getBlockTexture("block/monsterSiphonSide"), getBlockTexture("block/monsterSiphonBottom"));
+
+        BlockListener.monsterSiphonExpander.specifyTextures(getBlockTexture("block/monsterSiphonExpander"));
+        BlockListener.activeMonsterSiphonExpander.specifyTextures(getBlockTexture("block/activeMonsterSiphonExpander"));
+
+        BlockListener.mysticalInfuserBase.specifyTextures(getBlockTexture("block/mysticalInfuserBase"));
+        BlockListener.mysticalInfuser.specifyTextures(getBlockTexture("block/mysticalInfuserTop"), getBlockTexture("block/mysticalInfuserSide"), getBlockTexture("block/stoneBricks"));
 
         BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
         BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));

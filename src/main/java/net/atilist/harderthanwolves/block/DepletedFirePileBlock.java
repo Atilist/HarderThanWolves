@@ -12,8 +12,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.Random;
 
-public class DepletedFirePile extends LazyBlockTemplate {
-    public DepletedFirePile(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
+public class DepletedFirePileBlock extends LazyBlockTemplate {
+    public DepletedFirePileBlock(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
         super(identifier, material, hardness, blockSounds);
     }
 

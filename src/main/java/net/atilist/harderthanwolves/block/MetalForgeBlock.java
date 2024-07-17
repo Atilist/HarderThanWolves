@@ -1,6 +1,7 @@
 package net.atilist.harderthanwolves.block;
 
 import net.atilist.harderthanwolves.events.init.BlockListener;
+import net.atilist.harderthanwolves.events.init.ItemListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ItemEntity;
@@ -40,7 +41,7 @@ public class MetalForgeBlock extends LazyBlockTemplate {
         if (world.getBlockId(x, y + 1, z - 1) != BlockListener.stoneBricks.id) {
             return;
         }
-        if ((blockId != BlockListener.ironOreGravel.id && blockId != BlockListener.ironChunkBlock.id && blockId != BlockListener.goldChunkBlock.id)) {
+        if ((blockId != BlockListener.ironOreGravel.id && blockId != BlockListener.ironChunkBlock.id && blockId != BlockListener.goldChunkBlock.id && blockId != BlockListener.lapisGravel.id)) {
             return;
         }
         int smeltingMultiplier = 0;
@@ -56,10 +57,14 @@ public class MetalForgeBlock extends LazyBlockTemplate {
             }
         }
         Item resultItem = null;
+        int itemCount = 1;
         if (world.getBlockMeta(x, y + 1, z) < 15) {
             world.setBlockMeta(x, y + 1, z, Math.min(15, world.getBlockMeta(x, y + 1, z) + smeltingMultiplier));
         } else if (blockId == BlockListener.ironOreGravel.id || blockId == BlockListener.ironChunkBlock.id) {
             resultItem = Item.IRON_INGOT;
+        } else if (blockId == BlockListener.lapisGravel.id) {
+            resultItem = ItemListener.crystallizedLapis;
+            itemCount = 36;
         } else {
             resultItem = Item.GOLD_INGOT;
         }
@@ -68,7 +73,7 @@ public class MetalForgeBlock extends LazyBlockTemplate {
         }
         world.playSound((float)x + 0.5F, (float)y + 1.5F, (float)z + 0.5F, "random.fizz", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
         world.setBlock(x, y + 1, z, 0);
-        ItemEntity itemEntity = new ItemEntity(world, (double)x + 0.5, (double)y + 1.5, (double)z + 0.5, new ItemStack(resultItem, 1));
+        ItemEntity itemEntity = new ItemEntity(world, (double)x + 0.5, (double)y + 1.5, (double)z + 0.5, new ItemStack(resultItem, itemCount));
         itemEntity.pickupDelay = 10;
         world.spawnEntity(itemEntity);
     }

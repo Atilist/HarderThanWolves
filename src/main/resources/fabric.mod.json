@@ -23,12 +23,14 @@
       "net.atilist.harderthanwolves.events.init.BlockListener",
       "net.atilist.harderthanwolves.events.init.ItemListener",
       "net.atilist.harderthanwolves.events.init.PlayerHandlerListener",
+      "net.atilist.harderthanwolves.events.init.BlockEntityListener",
       "net.atilist.harderthanwolves.events.init.RecipeListener"
     ],
     "stationapi:event_bus_client": [
       "net.atilist.harderthanwolves.events.init.KeyBindingListener",
       "net.atilist.harderthanwolves.events.init.TextureListener",
-      "net.atilist.harderthanwolves.events.ingame.KeyPressedListener"
+      "net.atilist.harderthanwolves.events.ingame.KeyPressedListener",
+      "net.atilist.harderthanwolves.events.init.ScreenHandlerListener"
     ],
     "stationapi:event_bus_server": [
       "net.atilist.harderthanwolves.events.init.ServerInitListener"

@@ -8,13 +8,14 @@ import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.Random;
 
-public class LoadedMonsterSiphon extends LazyBlockTemplate {
-    public LoadedMonsterSiphon(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
+public class LoadedMonsterSiphonBlock extends LazyBlockTemplate {
+    public LoadedMonsterSiphonBlock(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
         super(identifier, material, hardness, blockSounds);
         setTickRandomly(true);
     }
@@ -34,7 +35,7 @@ public class LoadedMonsterSiphon extends LazyBlockTemplate {
     @Override
     public void onTick(World world, int x, int y, int z, Random random) {
         world.scheduleBlockUpdate(x, y, z, this.id, getTickRate());
-        if (world.getBlockId(x, y - 1, z) != Block.SPAWNER.id) {
+        if (world.getBlockId(x, y - 1, z) != Block.SPAWNER.id && world.getBlockId(x, y - 1, z) != BlockListener.activeMonsterSiphonExpander.id) {
             return;
         }
         int meta = world.getBlockMeta(x, y, z);
@@ -44,5 +45,10 @@ public class LoadedMonsterSiphon extends LazyBlockTemplate {
         }
         world.setBlockMeta(x, y, z, 0);
         world.setBlock(x, y, z, BlockListener.chargedMonsterSiphon.id);
+    }
+
+    @Override
+    public Box getCollisionShape(World world, int x, int y, int z) {
+        return Box.createCached((double)x + this.minX, (double)y + this.minY, (double)z + this.minZ, (double)x + this.maxX, (double)y + 0.99, (double)z + this.maxZ);
     }
 }

@@ -1,27 +1,20 @@
 package net.atilist.harderthanwolves.events.init;
 
+import net.atilist.harderthanwolves.recipe.MysticalInfuserCraftingManager;
 import net.atilist.harderthanwolves.utils.RecipeRemover;
-import net.kozibrodka.wolves.recipe.CauldronCraftingManager;
-import net.kozibrodka.wolves.recipe.CrucibleCraftingManager;
-import net.kozibrodka.wolves.recipe.MillingRecipeRegistry;
-import net.kozibrodka.wolves.recipe.TurntableRecipeRegistry;
+import net.kozibrodka.wolves.recipe.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.modificationstation.stationapi.api.event.recipe.RecipeRegisterEvent;
 import net.modificationstation.stationapi.api.recipe.CraftingRegistry;
-import net.modificationstation.stationapi.api.recipe.SmeltingRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 public class RecipeListener {
 
     @EventListener
     public void registerRecipes(RecipeRegisterEvent event) {
-        Identifier type = event.recipeId;
-        if (type == RecipeRegisterEvent.Vanilla.SMELTING.type()) {
-            SmeltingRegistry.addSmeltingRecipe(new ItemStack(Item.APPLE, 1), new ItemStack(Block.WOOL));
-        }
         addAllModRecipes(event);
     }
 
@@ -35,12 +28,15 @@ public class RecipeListener {
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.firePile), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Block.PLANKS));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.mysticalInfuserBase), new ItemStack(BlockListener.mysticalCobblestone), new ItemStack(ItemListener.monsterCloth), new ItemStack(ItemListener.lapisIngot));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.monsterSiphonExpander), new ItemStack(BlockListener.mysticalCobblestone), new ItemStack(ItemListener.lapisIngot));
             addMetallurgyRecipes();
         }
         addCrucibleRecipes();
         addCauldronRecipes();
         addMillingRecipes();
         addTurntableRecipes();
+        addInfusionRecipes();
     }
 
     private static void removeVanillaRecipes() {
@@ -85,8 +81,7 @@ public class RecipeListener {
     }
 
     private static void addMetallurgyRecipes() {
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawLapisIngot), new ItemStack(ItemListener.mysticalHempFibers), new ItemStack(Item.DYE, 1, 4), new ItemStack(Item.IRON_INGOT), new ItemStack(ItemListener.chargedMysticalRock), new ItemStack(ItemListener.mysticalStick));
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawDiamondIngot), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(ItemListener.lapisIngot), new ItemStack(ItemListener.chargedMysticalRock));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawLapisIngot), new ItemStack(ItemListener.mysticalHempFibers), new ItemStack(ItemListener.crystallizedLapis), new ItemStack(Item.IRON_INGOT), new ItemStack(ItemListener.chargedMysticalRock), new ItemStack(ItemListener.mysticalStick));
         CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.chiseledObsidian), new ItemStack(BlockListener.smoothObsidian), new ItemStack(Item.DIAMOND), new ItemStack(Item.GOLD_INGOT));
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.ironChunks, 4), new ItemStack(BlockListener.ironChunkBlock));
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.goldChunks, 4), new ItemStack(BlockListener.goldChunkBlock));
@@ -144,6 +139,7 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.ironChunkBlock, 1), "##", "##", '#', ItemListener.ironChunks);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.goldChunkBlock, 1), "##", "##", '#', ItemListener.goldChunks);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.emptyMonsterSiphon, 1), "XXX", "###", "XYX", 'X', BlockListener.mysticalCobblestone, 'Y', Item.GOLD_INGOT, '#', ItemListener.monsterCloth);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.mysticalInfuser, 1), "XXX", "YZY", "###", 'X', ItemListener.lapisIngot, 'Y', BlockListener.mysticalCobblestone, 'Z', Block.CRAFTING_TABLE, '#', BlockListener.stoneBricks);
     }
 
     private static void addCrucibleRecipes() {
@@ -163,9 +159,6 @@ public class RecipeListener {
         addCauldronRecipe(new ItemStack(ItemListener.lapisIngot, 1), new ItemStack[] {
                 new ItemStack(ItemListener.rawLapisIngot, 1), new ItemStack(Item.FLINT)
         });
-        addCauldronRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[] {
-                new ItemStack(ItemListener.rawDiamondIngot, 1), new ItemStack(Item.GUNPOWDER)
-        });
     }
 
     private static void addMillingRecipes() {
@@ -173,6 +166,7 @@ public class RecipeListener {
 
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.IRON_ORE.id, new ItemStack(BlockListener.ironOreGravel, 1));
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.GOLD_ORE.id, new ItemStack(BlockListener.goldOreGravel, 1));
+        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.LAPIS_BLOCK.id, new ItemStack(BlockListener.lapisGravel, 1));
 
         MillingRecipeRegistry.getInstance().addMillingRecipe(ItemListener.mysticalHemp.id, new ItemStack(ItemListener.mysticalHempFibers, 4));
     }
@@ -181,11 +175,31 @@ public class RecipeListener {
         TurntableRecipeRegistry.getInstance().addTurntableRecipe(BlockListener.rotarySieve, 0, new ItemStack(BlockListener.rotarySieve, 8, 1));
     }
 
+    private static void addInfusionRecipes() {
+        addShapelessInfusionRecipe(new ItemStack(ItemListener.diamondIngot, 1), new Object[] {
+                ItemListener.rawDiamondIngot, Item.GUNPOWDER, Item.REDSTONE
+        });
+        addShapelessInfusionRecipe(new ItemStack(ItemListener.rawDiamondIngot, 1), new Object[] {
+                new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(ItemListener.lapisIngot), new ItemStack(ItemListener.chargedMysticalRock)
+        });
+        addShapelessInfusionRecipe(new ItemStack(ItemListener.rawLapisIngot, 1), new Object[] {
+                new ItemStack(ItemListener.mysticalHempFibers), new ItemStack(ItemListener.crystallizedLapis), new ItemStack(Item.IRON_INGOT), new ItemStack(ItemListener.mysticalStick)
+        });
+    }
+
     private static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
         CrucibleCraftingManager.getInstance().addRecipe(output, inputs);
     }
 
     private static void addCauldronRecipe(ItemStack output, ItemStack[] inputs) {
         CauldronCraftingManager.getInstance().addRecipe(output, inputs);
+    }
+
+    private static void addInfusionRecipe(ItemStack output, Object[] inputs) {
+        MysticalInfuserCraftingManager.getInstance().addRecipe(output, inputs);
+    }
+
+    private static void addShapelessInfusionRecipe(ItemStack output, Object[] inputs) {
+        MysticalInfuserCraftingManager.getInstance().addShapelessRecipe(output, inputs);
     }
 }

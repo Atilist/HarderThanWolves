@@ -20,6 +20,7 @@ item.@.monster_cloth.name=Monster Cloth
 item.@.mystical_rock.name=Mystical Rock
 item.@.charged_mystical_rock.name=Charged Mystical Rock
 
+item.@.crystallized_lapis.name=Crystallized Lapis
 item.@.raw_lapis_ingot.name=Raw Lapis Ingot
 item.@.lapis_ingot.name=Lapis Ingot
 
@@ -44,9 +45,16 @@ tile.@.rotary_sieve.name=Rotary Sieve
 tile.@.mystical_cobblestone.name=Mystical Cobblestone
 tile.@.mystical_gravel.name=Mystical Gravel
 
+tile.@.lapis_gravel.name=Lapis Gravel
+
 tile.@.empty_monster_siphon.name=Empty Monster Siphon
 tile.@.loaded_monster_siphon.name=Loaded Monster Siphon
 tile.@.charged_monster_siphon.name=Charged Monster Siphon
+tile.@.monster_siphon_expander.name=Monster Siphon Expander
+tile.@.active_monster_siphon_expander.name=Active Monster Siphon Expander
+
+tile.@.mystical_infuser_base.name=Mystical Infuser Base
+tile.@.mystical_infuser.name=Mystical Infuser
 
 tile.@.smooth_obsidian.name=Smooth Obsidian
 tile.@.chiseled_obsidian.name=Chiseled Obsidian

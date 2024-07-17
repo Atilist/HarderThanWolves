@@ -25,6 +25,7 @@ public class ItemListener {
     public static LazyItemTemplate mysticalRock;
     public static LazyItemTemplate chargedMysticalRock;
 
+    public static LazyItemTemplate crystallizedLapis;
     public static LazyItemTemplate rawLapisIngot;
     public static LazyItemTemplate lapisIngot;
 
@@ -50,6 +51,7 @@ public class ItemListener {
         mysticalRock = new LazyItemTemplate(Identifier.of(NAMESPACE, "mystical_rock"));
         chargedMysticalRock = new LazyItemTemplate(Identifier.of(NAMESPACE, "charged_mystical_rock"));
 
+        crystallizedLapis = new LazyItemTemplate(Identifier.of(NAMESPACE, "crystallized_lapis"));
         rawLapisIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "raw_lapis_ingot"));
         lapisIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "lapis_ingot"));
 

@@ -29,9 +29,17 @@ public class BlockListener {
     public static LazyBlockTemplate mysticalCobblestone;
     public static LazyFallingBlockTemplate mysticalGravel;
 
-    public static EmptyMonsterSiphon emptyMonsterSiphon;
-    public static LoadedMonsterSiphon loadedMonsterSiphon;
-    public static ChargedMonsterSiphon chargedMonsterSiphon;
+    public static LazyFallingBlockTemplate lapisGravel;
+
+    public static EmptyMonsterSiphonBlock emptyMonsterSiphon;
+    public static LoadedMonsterSiphonBlock loadedMonsterSiphon;
+    public static ChargedMonsterSiphonBlock chargedMonsterSiphon;
+
+    public static MonsterSiphonExpanderBlock monsterSiphonExpander;
+    public static LazyBlockTemplate activeMonsterSiphonExpander;
+
+    public static LazyBlockTemplate mysticalInfuserBase;
+    public static MysticalInfuserBlock mysticalInfuser;
 
     public static LazyBlockTemplate smoothObsidian;
     public static LazyBlockTemplate chiseledObsidian;
@@ -41,9 +49,9 @@ public class BlockListener {
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {
-        firePile = new FirePile(Identifier.of(NAMESPACE, "fire_pile"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
-        litFirePile = new LitFirePile(Identifier.of(NAMESPACE, "lit_fire_pile"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
-        depletedFirePile = new DepletedFirePile(Identifier.of(NAMESPACE, "depleted_fire_pile"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
+        firePile = new FirePileBlock(Identifier.of(NAMESPACE, "fire_pile"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
+        litFirePile = new LitFirePileBlock(Identifier.of(NAMESPACE, "lit_fire_pile"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
+        depletedFirePile = new DepletedFirePileBlock(Identifier.of(NAMESPACE, "depleted_fire_pile"), Material.WOOD, 1.5F, Block.WOOD_SOUND_GROUP);
 
         stoneBricks = new LazyBlockTemplate(Identifier.of(NAMESPACE, "stone_bricks"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
         metalForge = new MetalForgeBlock(Identifier.of(NAMESPACE, "metal_forge"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
@@ -59,9 +67,17 @@ public class BlockListener {
         mysticalCobblestone = new LazyBlockTemplate(Identifier.of(NAMESPACE, "mystical_cobblestone"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
         mysticalGravel = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "mystical_gravel"), 1.5F, Block.GRAVEL_SOUND_GROUP);
 
-        emptyMonsterSiphon = new EmptyMonsterSiphon(Identifier.of(NAMESPACE, "empty_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
-        loadedMonsterSiphon = new LoadedMonsterSiphon(Identifier.of(NAMESPACE, "loaded_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
-        chargedMonsterSiphon = new ChargedMonsterSiphon(Identifier.of(NAMESPACE, "charged_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        lapisGravel = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "lapis_gravel"), 1.5F, Block.GRAVEL_SOUND_GROUP);
+
+        emptyMonsterSiphon = new EmptyMonsterSiphonBlock(Identifier.of(NAMESPACE, "empty_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        loadedMonsterSiphon = new LoadedMonsterSiphonBlock(Identifier.of(NAMESPACE, "loaded_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        chargedMonsterSiphon = new ChargedMonsterSiphonBlock(Identifier.of(NAMESPACE, "charged_monster_siphon"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+
+        monsterSiphonExpander = new MonsterSiphonExpanderBlock(Identifier.of(NAMESPACE, "monster_siphon_expander"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        activeMonsterSiphonExpander = new LazyBlockTemplate(Identifier.of(NAMESPACE, "active_monster_siphon_expander"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+
+        mysticalInfuserBase = new LazyBlockTemplate(Identifier.of(NAMESPACE, "mystical_infuser_base"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+        mysticalInfuser = new MysticalInfuserBlock(Identifier.of(NAMESPACE, "mystical_infuser"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
 
         smoothObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "smooth_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
         chiseledObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "chiseled_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
