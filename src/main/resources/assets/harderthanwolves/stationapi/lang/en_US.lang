@@ -27,6 +27,16 @@ item.@.lapis_ingot.name=Lapis Ingot
 item.@.raw_diamond_ingot.name=Raw Diamond Ingot
 item.@.diamond_ingot.name=Diamond Ingot
 
+item.@.reinforced_golden_sword.name=Reinforced Golden Sword
+item.@.reinforced_golden_shovel.name=Reinforced Golden Shovel
+item.@.reinforced_golden_pickaxe.name=Reinforced Golden Pickaxe
+item.@.reinforced_golden_axe.name=Reinforced Golden Axe
+item.@.reinforced_golden_hoe.name=Reinforced Golden Hoe
+
+item.@.diamond_gear.name=Diamond Gear
+
+item.@.obsidian_plate.name=Obsidian Plate
+
 tile.@.fire_pile.name=Fire Pile
 tile.@.lit_fire_pile.name=Lit Fire Pile
 tile.@.depleted_fire_pile.name=Depleted Fire Pile
@@ -58,6 +68,9 @@ tile.@.mystical_infuser.name=Mystical Infuser
 
 tile.@.smooth_obsidian.name=Smooth Obsidian
 tile.@.chiseled_obsidian.name=Chiseled Obsidian
+
+tile.@.engraved_obsidian.name=Engraved Obsidian
+tile.@.active_engraved_obsidian.name=Active Engraved Obsidian
 
 key.@.test=Give Boned Achievement
 key.@.test2=Give Apple Achievement

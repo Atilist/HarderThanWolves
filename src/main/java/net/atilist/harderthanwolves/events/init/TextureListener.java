@@ -36,6 +36,16 @@ public class TextureListener {
         ItemListener.rawDiamondIngot.setTexture(Identifier.of(NAMESPACE, "item/rawDiamondIngot"));
         ItemListener.diamondIngot.setTexture(Identifier.of(NAMESPACE, "item/diamondIngot"));
 
+        ItemListener.reinforcedGoldenSword.setTexture(Identifier.of(NAMESPACE, "item/reinforcedGoldenSword"));
+        ItemListener.reinforcedGoldenShovel.setTexture(Identifier.of(NAMESPACE, "item/reinforcedGoldenShovel"));
+        ItemListener.reinforcedGoldenPickaxe.setTexture(Identifier.of(NAMESPACE, "item/reinforcedGoldenPickaxe"));
+        ItemListener.reinforcedGoldenAxe.setTexture(Identifier.of(NAMESPACE, "item/reinforcedGoldenAxe"));
+        ItemListener.reinforcedGoldenHoe.setTexture(Identifier.of(NAMESPACE, "item/reinforcedGoldenHoe"));
+
+        ItemListener.diamondGear.setTexture(Identifier.of(NAMESPACE, "item/diamondGear"));
+
+        ItemListener.obsidianPlate.setTexture(Identifier.of(NAMESPACE, "item/obsidianPlate"));
+
         BlockListener.firePile.specifyTextures(getBlockTexture("block/firePile"));
         BlockListener.litFirePile.specifyTextures(getBlockTexture("block/litFirePile"));
         BlockListener.depletedFirePile.specifyTextures(getBlockTexture("block/depletedFirePile"));
@@ -68,6 +78,9 @@ public class TextureListener {
 
         BlockListener.smoothObsidian.specifyTextures(getBlockTexture("block/smoothObsidian"));
         BlockListener.chiseledObsidian.specifyTextures(getBlockTexture("block/chiseledObsidian"));
+
+        BlockListener.engravedObsidian.specifyTextures(getBlockTexture("block/engravedObsidian"));
+        BlockListener.activeEngravedObsidian.specifyTextures(getBlockTexture("block/activeEngravedObsidian"));
     }
 
     public int getBlockTexture(String path) {

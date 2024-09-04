@@ -110,25 +110,31 @@ public class MysticalInfuserBlockEntity extends BlockEntity implements Inventory
     }
 
     private boolean canAcceptRecipeOutput() {
-        if (this.inventory[3] == null) {
+        boolean containsItems = false;
+        for (int slots = 0; slots < 9; slots++) {
+            if (this.inventory[3 + slots] != null) {
+                containsItems = true;
+                break;
+            }
+        }
+        if (!containsItems) {
             return false;
+        }
+        CraftingInventoryWithoutHandler infusionMatrix = new CraftingInventoryWithoutHandler(3, 3);
+        for (int slots = 0; slots < 9; slots++) {
+            infusionMatrix.setStack(slots, this.inventory[slots + 3]);
+        }
+        ItemStack var1 = MysticalInfuserCraftingManager.getInstance().findMatchingRecipe(infusionMatrix);
+        if (var1 == null) {
+            return false;
+        } else if (this.inventory[2] == null) {
+            return true;
+        } else if (!this.inventory[2].isItemEqual(var1)) {
+            return false;
+        } else if (this.inventory[2].count < this.getMaxCountPerStack() && this.inventory[2].count < this.inventory[2].getMaxCount()) {
+            return true;
         } else {
-            CraftingInventoryWithoutHandler infusionMatrix = new CraftingInventoryWithoutHandler(3, 3);
-            for (int slots = 0; slots < 9; slots++) {
-                infusionMatrix.setStack(slots, this.inventory[slots + 3]);
-            }
-            ItemStack var1 = MysticalInfuserCraftingManager.getInstance().findMatchingRecipe(infusionMatrix);
-            if (var1 == null) {
-                return false;
-            } else if (this.inventory[2] == null) {
-                return true;
-            } else if (!this.inventory[2].isItemEqual(var1)) {
-                return false;
-            } else if (this.inventory[2].count < this.getMaxCountPerStack() && this.inventory[2].count < this.inventory[2].getMaxCount()) {
-                return true;
-            } else {
-                return this.inventory[2].count < var1.getMaxCount();
-            }
+            return this.inventory[2].count < var1.getMaxCount();
         }
     }
 

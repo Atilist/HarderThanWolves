@@ -1,7 +1,9 @@
 package net.atilist.harderthanwolves.events.init;
 
 import net.atilist.harderthanwolves.block.entity.MysticalInfuserBlockEntity;
+import net.atilist.harderthanwolves.block.entity.ReinforcedMillStoneBlockEntity;
 import net.atilist.harderthanwolves.gui.MysticalInfuserScreen;
+import net.atilist.harderthanwolves.gui.ReinforcedMillStoneScreen;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.kozibrodka.wolves.block.entity.*;
@@ -27,6 +29,7 @@ public class ScreenHandlerListener {
     public void registerScreenHandlers(GuiHandlerRegistryEvent event) {
         GuiHandlerRegistry registry = event.registry;
         registry.registerValueNoMessage(Identifier.of(NAMESPACE, "openMysticalInfuser"), BiTuple.of(this::openMysticalInfuser, HopperBlockEntity::new));
+        registry.registerValueNoMessage(Identifier.of(NAMESPACE, "openReinforcedMillStone"), BiTuple.of(this::openReinforcedMillStone, ReinforcedMillStoneBlockEntity::new));
     }
 
     public static int tempGuiX;
@@ -36,5 +39,10 @@ public class ScreenHandlerListener {
     @Environment(EnvType.CLIENT)
     public Screen openMysticalInfuser(PlayerEntity player, Inventory inventoryBase) {
         return new MysticalInfuserScreen(player.inventory, (MysticalInfuserBlockEntity) inventoryBase, tempGuiX, tempGuiY, tempGuiZ);
+    }
+
+    @Environment(EnvType.CLIENT)
+    public Screen openReinforcedMillStone(PlayerEntity player, Inventory inventoryBase) {
+        return new ReinforcedMillStoneScreen(player.inventory, (ReinforcedMillStoneBlockEntity) inventoryBase, tempGuiX, tempGuiY, tempGuiZ);
     }
 }

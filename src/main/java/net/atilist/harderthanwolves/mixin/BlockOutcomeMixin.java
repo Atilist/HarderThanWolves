@@ -28,13 +28,13 @@ public class BlockOutcomeMixin {
         ItemStack result = null;
         if (this.id == Block.STONE.id && itemInHand == ItemListener.stoneChisel.id) {
             result = new ItemStack(ItemListener.stoneBrick, 1 + world.random.nextInt(4));
-        } else if (this.id == Block.STONE.id && itemInHand == Item.GOLDEN_PICKAXE.id) {
+        } else if (this.id == Block.STONE.id && (itemInHand == Item.GOLDEN_PICKAXE.id || itemInHand == ItemListener.reinforcedGoldenPickaxe.id)) {
             result = new ItemStack(BlockListener.mysticalCobblestone, 1);
-        } else if (this.id == Block.PLANKS.id && itemInHand == Item.GOLDEN_AXE.id) {
+        } else if (this.id == Block.PLANKS.id && (itemInHand == Item.GOLDEN_AXE.id || itemInHand == ItemListener.reinforcedGoldenAxe.id)) {
             result = new ItemStack(ItemListener.mysticalStick, 2);
-        } else if (this.id == Block.GRAVEL.id && itemInHand == Item.GOLDEN_SHOVEL.id) {
+        } else if (this.id == Block.GRAVEL.id && (itemInHand == Item.GOLDEN_SHOVEL.id || itemInHand == ItemListener.reinforcedGoldenShovel.id)) {
             result = new ItemStack(BlockListener.mysticalGravel, 1);
-        } else if (this.id == net.kozibrodka.wolves.events.BlockListener.hempCrop.id && itemInHand == Item.GOLDEN_HOE.id && meta == 7) {
+        } else if (this.id == net.kozibrodka.wolves.events.BlockListener.hempCrop.id && (itemInHand == Item.GOLDEN_HOE.id || itemInHand == ItemListener.reinforcedGoldenHoe.id) && meta == 7) {
             result = new ItemStack(ItemListener.mysticalHemp, 1);
         }
         if (result == null) {

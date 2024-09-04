@@ -23,9 +23,6 @@ public abstract class MonsterDropMixin extends MobEntity {
 
     @Inject(at = @At("HEAD"), method = "damage", remap = false)
     private void dropMonsterCloth(Entity damageSource, int amount, CallbackInfoReturnable<Boolean> cir) {
-        if (random.nextInt(5) != 0) {
-            return;
-        }
         if (!(damageSource instanceof PlayerEntity)) {
             return;
         }
@@ -33,7 +30,15 @@ public abstract class MonsterDropMixin extends MobEntity {
         if (itemInHand == null) {
             return;
         }
-        if (itemInHand.itemId != Item.GOLDEN_SWORD.id) {
+        int dropRarity = 1;
+        if (itemInHand.itemId == Item.GOLDEN_SWORD.id) {
+            dropRarity = 5;
+        } else if (itemInHand.itemId == ItemListener.reinforcedGoldenSword.id) {
+            dropRarity = 3;
+        } else {
+            return;
+        }
+        if (random.nextInt(dropRarity) != 0) {
             return;
         }
         float randomizerAmplitude = 0.7F;
