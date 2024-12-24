@@ -89,7 +89,5 @@ public class BlockListener {
 
         engravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
         activeEngravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "active_engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
-
-        activeEngravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "active_engraved_obsidian"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
     }
 }

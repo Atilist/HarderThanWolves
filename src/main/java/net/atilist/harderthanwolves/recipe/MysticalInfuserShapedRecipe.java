@@ -1,10 +1,8 @@
 package net.atilist.harderthanwolves.recipe;
 
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.modificationstation.stationapi.api.recipe.StationRecipe;
 
-public class MysticalInfuserShapedRecipe implements MysticalInfuserRecipeTemplate, StationRecipe {
+public class MysticalInfuserShapedRecipe implements MysticalInfuserRecipeTemplate {
     private int width;
     private int height;
     private ItemStack[] ingredients;
@@ -79,16 +77,6 @@ public class MysticalInfuserShapedRecipe implements MysticalInfuserRecipeTemplat
 
     public int getIngredientCount() {
         return this.width * this.height;
-    }
-
-    @Override
-    public ItemStack[] getIngredients() {
-        return ingredients;
-    }
-
-    @Override
-    public ItemStack[] getOutputs() {
-        return new ItemStack[] {output};
     }
 
     public int getWidth() {

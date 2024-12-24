@@ -1,14 +1,12 @@
 package net.atilist.harderthanwolves.recipe;
 
-import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.modificationstation.stationapi.api.recipe.StationRecipe;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class MysticalInfuserShapelessRecipe implements MysticalInfuserRecipeTemplate, StationRecipe {
+public class MysticalInfuserShapelessRecipe implements MysticalInfuserRecipeTemplate {
     private final ItemStack output;
     private final List input;
 
@@ -56,19 +54,5 @@ public class MysticalInfuserShapelessRecipe implements MysticalInfuserRecipeTemp
 
     public int getIngredientCount() {
         return this.input.size();
-    }
-
-    @Override
-    public ItemStack[] getIngredients() {
-        ItemStack[] ingredients = new ItemStack[input.size()];
-        for (int i = 0; i < input.size(); i++) {
-            ingredients[i] = (ItemStack) input.get(i);
-        }
-        return ingredients;
-    }
-
-    @Override
-    public ItemStack[] getOutputs() {
-        return new ItemStack[] {output};
     }
 }

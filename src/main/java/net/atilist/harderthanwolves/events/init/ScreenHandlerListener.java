@@ -11,13 +11,14 @@ import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
+import net.modificationstation.stationapi.api.client.gui.screen.GuiHandler;
+import net.modificationstation.stationapi.api.client.registry.GuiHandlerRegistry;
 import net.modificationstation.stationapi.api.event.registry.GuiHandlerRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
-import net.modificationstation.stationapi.api.registry.GuiHandlerRegistry;
+import net.modificationstation.stationapi.api.registry.Registry;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
 import net.modificationstation.stationapi.api.util.Null;
-import uk.co.benjiweber.expressions.tuple.BiTuple;
 
 public class ScreenHandlerListener {
 
@@ -28,8 +29,8 @@ public class ScreenHandlerListener {
     @EventListener
     public void registerScreenHandlers(GuiHandlerRegistryEvent event) {
         GuiHandlerRegistry registry = event.registry;
-        registry.registerValueNoMessage(Identifier.of(NAMESPACE, "openMysticalInfuser"), BiTuple.of(this::openMysticalInfuser, HopperBlockEntity::new));
-        registry.registerValueNoMessage(Identifier.of(NAMESPACE, "openReinforcedMillStone"), BiTuple.of(this::openReinforcedMillStone, ReinforcedMillStoneBlockEntity::new));
+        Registry.register(registry, Identifier.of(NAMESPACE, "openMysticalInfuser"), new GuiHandler((GuiHandler.ScreenFactoryNoMessage) this::openMysticalInfuser, MysticalInfuserBlockEntity::new));
+        Registry.register(registry, Identifier.of(NAMESPACE, "openReinforcedMillStone"), new GuiHandler((GuiHandler.ScreenFactoryNoMessage) this::openReinforcedMillStone, ReinforcedMillStoneBlockEntity::new));
     }
 
     public static int tempGuiX;
