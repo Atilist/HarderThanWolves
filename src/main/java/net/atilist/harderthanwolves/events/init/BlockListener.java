@@ -48,6 +48,7 @@ public class BlockListener {
     public static LazyBlockTemplate activeEngravedObsidian;
 
     public static ReinforcedMillStoneBlock reinforcedMillStone;
+    public static ReinforcedSawBlock reinforcedSaw;
 
     @Entrypoint.Namespace
     public static final Namespace NAMESPACE = Null.get();
@@ -91,5 +92,6 @@ public class BlockListener {
         activeEngravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "active_engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
 
         reinforcedMillStone = new ReinforcedMillStoneBlock(Identifier.of(NAMESPACE, "reinforced_mill_stone"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
+        reinforcedSaw = new ReinforcedSawBlock(Identifier.of(NAMESPACE, "reinforced_saw"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
     }
 }

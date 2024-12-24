@@ -85,9 +85,18 @@ public class TextureListener {
         BlockListener.activeEngravedObsidian.specifyTextures(getBlockTexture("block/activeEngravedObsidian"));
 
         BlockListener.reinforcedMillStone.specifyTextures(getBlockTexture("block/reinforcedMillStoneTop"), getBlockTexture("block/reinforcedMillStoneSide"), getBlockTexture("block/reinforcedMillStoneBottom"));
+
+        reinforcedSawSide = getBlockTexture("block/reinforcedSawSide");
+        reinforcedSawFace = getBlockTexture("block/reinforcedSawFace");
+        reinforcedSawSaw = getBlockTexture("block/reinforcedSawSaw");
     }
 
     public int getBlockTexture(String path) {
         return Atlases.getTerrain().addTexture(Identifier.of(NAMESPACE, path)).index;
     }
+
+    public static int
+            reinforcedSawSide,
+            reinforcedSawFace,
+            reinforcedSawSaw;
 }

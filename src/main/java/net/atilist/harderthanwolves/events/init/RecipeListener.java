@@ -2,6 +2,7 @@ package net.atilist.harderthanwolves.events.init;
 
 import net.atilist.harderthanwolves.recipe.MysticalInfuserCraftingManager;
 import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
+import net.atilist.harderthanwolves.recipe.ReinforcedSawRecipeRegistry;
 import net.atilist.harderthanwolves.utils.RecipeRemover;
 import net.kozibrodka.wolves.recipe.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
@@ -36,6 +37,7 @@ public class RecipeListener {
             addToolUpgrades();
             addMillingRecipes();
             addReinforcedMillStoneRecipes();
+            addReinforcedSawRecipes();
             addCrucibleRecipes();
             addCauldronRecipes();
             addTurntableRecipes();
@@ -200,6 +202,15 @@ public class RecipeListener {
         addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 4), new Object[]{" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', Block.OBSIDIAN});
     }
 
+    private static void addReinforcedMillStoneRecipes() {
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianDust, 1));
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(ItemListener.obsidianChunk.id, new ItemStack(ItemListener.obsidianDust, 1));
+    }
+
+    private static void addReinforcedSawRecipes() {
+        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(BlockListener.smoothObsidian.id, new ItemStack(ItemListener.obsidianPlate, 4));
+    }
+
     private static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
         CrucibleCraftingManager.getInstance().addRecipe(output, inputs);
     }
@@ -214,10 +225,5 @@ public class RecipeListener {
 
     private static void addShapelessInfusionRecipe(ItemStack output, Object[] inputs) {
         MysticalInfuserCraftingManager.getInstance().addShapelessRecipe(output, inputs);
-    }
-
-    private static void addReinforcedMillStoneRecipes() {
-        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianDust, 1));
-        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(ItemListener.obsidianChunk.id, new ItemStack(ItemListener.obsidianDust, 1));
     }
 }
