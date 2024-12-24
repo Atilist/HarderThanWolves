@@ -44,6 +44,8 @@ public class TextureListener {
 
         ItemListener.diamondGear.setTexture(Identifier.of(NAMESPACE, "item/diamondGear"));
 
+        ItemListener.obsidianDust.setTexture(Identifier.of(NAMESPACE, "item/obsidianDust"));
+        ItemListener.obsidianChunk.setTexture(Identifier.of(NAMESPACE, "item/obsidianChunk"));
         ItemListener.obsidianPlate.setTexture(Identifier.of(NAMESPACE, "item/obsidianPlate"));
 
         BlockListener.firePile.specifyTextures(getBlockTexture("block/firePile"));

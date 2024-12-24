@@ -1,6 +1,7 @@
 package net.atilist.harderthanwolves.events.init;
 
 import net.atilist.harderthanwolves.recipe.MysticalInfuserCraftingManager;
+import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
 import net.atilist.harderthanwolves.utils.RecipeRemover;
 import net.kozibrodka.wolves.recipe.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
@@ -25,6 +26,7 @@ public class RecipeListener {
             CraftingRegistry.addShapedRecipe(new ItemStack(Item.BED, 1), "XXX", "YYY", "Z Z", 'X', net.kozibrodka.wolves.events.ItemListener.hempCloth, 'Y', new ItemStack(Block.WOOL, 1, -1), 'Z', net.kozibrodka.wolves.events.BlockListener.moulding);
             addToolAndArmourRecipes();
             addBlockRecipes();
+            addInfusionRecipes();
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.firePile), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Block.PLANKS));
@@ -32,12 +34,12 @@ public class RecipeListener {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.monsterSiphonExpander), new ItemStack(BlockListener.mysticalCobblestone), new ItemStack(ItemListener.lapisIngot));
             addMetallurgyRecipes();
             addToolUpgrades();
+            addMillingRecipes();
+            addReinforcedMillStoneRecipes();
+            addCrucibleRecipes();
+            addCauldronRecipes();
+            addTurntableRecipes();
         }
-        addCrucibleRecipes();
-        addCauldronRecipes();
-        addMillingRecipes();
-        addTurntableRecipes();
-        addInfusionRecipes();
     }
 
     private static void removeVanillaRecipes() {
@@ -138,26 +140,24 @@ public class RecipeListener {
 
     private static void addCrucibleRecipes() {
         // Recycling (diamond)
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 8), new ItemStack[] { new ItemStack(Item.DIAMOND_CHESTPLATE, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 7), new ItemStack[] { new ItemStack(Item.DIAMOND_LEGGINGS, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 5), new ItemStack[] { new ItemStack(Item.DIAMOND_HELMET, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 4), new ItemStack[] { new ItemStack(Item.DIAMOND_BOOTS, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 3), new ItemStack[] { new ItemStack(Item.DIAMOND_PICKAXE, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 3), new ItemStack[] { new ItemStack(Item.DIAMOND_AXE, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 2), new ItemStack[] { new ItemStack(Item.DIAMOND_SWORD, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 2), new ItemStack[] { new ItemStack(Item.DIAMOND_HOE, 1, -1) });
-        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[] { new ItemStack(Item.DIAMOND_SHOVEL, 1, -1) });
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 8), new ItemStack[]{new ItemStack(Item.DIAMOND_CHESTPLATE, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 7), new ItemStack[]{new ItemStack(Item.DIAMOND_LEGGINGS, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 5), new ItemStack[]{new ItemStack(Item.DIAMOND_HELMET, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 4), new ItemStack[]{new ItemStack(Item.DIAMOND_BOOTS, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 3), new ItemStack[]{new ItemStack(Item.DIAMOND_PICKAXE, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 3), new ItemStack[]{new ItemStack(Item.DIAMOND_AXE, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 2), new ItemStack[]{new ItemStack(Item.DIAMOND_SWORD, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 2), new ItemStack[]{new ItemStack(Item.DIAMOND_HOE, 1, -1)});
+        addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[]{new ItemStack(Item.DIAMOND_SHOVEL, 1, -1)});
     }
 
     private static void addCauldronRecipes() {
-        addCauldronRecipe(new ItemStack(ItemListener.lapisIngot, 1), new ItemStack[] {
+        addCauldronRecipe(new ItemStack(ItemListener.lapisIngot, 1), new ItemStack[]{
                 new ItemStack(ItemListener.rawLapisIngot, 1), new ItemStack(Item.FLINT), new ItemStack(net.kozibrodka.wolves.events.ItemListener.hempCloth)
         });
     }
 
     private static void addMillingRecipes() {
-        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(BlockListener.smoothObsidian, 1));
-
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.IRON_ORE.id, new ItemStack(BlockListener.ironOreGravel, 1));
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.GOLD_ORE.id, new ItemStack(BlockListener.goldOreGravel, 1));
         MillingRecipeRegistry.getInstance().addMillingRecipe(Block.LAPIS_BLOCK.id, new ItemStack(BlockListener.lapisGravel, 1));
@@ -170,34 +170,34 @@ public class RecipeListener {
     }
 
     private static void addInfusionRecipes() {
-        addShapelessInfusionRecipe(new ItemStack(ItemListener.diamondIngot, 1), new Object[] {
+        addShapelessInfusionRecipe(new ItemStack(ItemListener.diamondIngot, 1), new Object[]{
                 ItemListener.rawDiamondIngot, Item.GUNPOWDER, Item.REDSTONE
         });
-        addShapelessInfusionRecipe(new ItemStack(ItemListener.rawDiamondIngot, 1), new Object[] {
+        addShapelessInfusionRecipe(new ItemStack(ItemListener.rawDiamondIngot, 1), new Object[]{
                 new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Item.DIAMOND), new ItemStack(ItemListener.lapisIngot), new ItemStack(ItemListener.chargedMysticalRock)
         });
-        addShapelessInfusionRecipe(new ItemStack(ItemListener.rawLapisIngot, 1), new Object[] {
+        addShapelessInfusionRecipe(new ItemStack(ItemListener.rawLapisIngot, 1), new Object[]{
                 new ItemStack(ItemListener.mysticalHempFibers), new ItemStack(ItemListener.crystallizedLapis), new ItemStack(Item.IRON_INGOT), new ItemStack(ItemListener.mysticalStick)
         });
 
         // Diamond Tools
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_PICKAXE, 1), new Object[] { "###", "YXY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_AXE, 1), new Object[] { "##Y", "#XY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_AXE, 1), new Object[] { "Y##", "YX#", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_HOE, 1), new Object[] { "##Y", " XY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_HOE, 1), new Object[] { "Y##", "YX ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_SHOVEL, 1), new Object[] { "Y#Y", " X ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_SWORD, 1), new Object[] { " # ", "Y#Y", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_PICKAXE, 1), new Object[]{"###", "YXY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_AXE, 1), new Object[]{"##Y", "#XY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_AXE, 1), new Object[]{"Y##", "YX#", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_HOE, 1), new Object[]{"##Y", " XY", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_HOE, 1), new Object[]{"Y##", "YX ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_SHOVEL, 1), new Object[]{"Y#Y", " X ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_SWORD, 1), new Object[]{" # ", "Y#Y", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
 
         // Armour
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_HELMET, 1), new Object[] { "###", "# #", '#', ItemListener.diamondIngot});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_CHESTPLATE, 1), new Object[] { "# #", "###", "###", '#', ItemListener.diamondIngot});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_LEGGINGS, 1), new Object[] { "###", "# #", "# #", '#', ItemListener.diamondIngot});
-        addInfusionRecipe(new ItemStack(Item.DIAMOND_BOOTS, 1), new Object[] { "# #", "# #", '#', ItemListener.diamondIngot});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_HELMET, 1), new Object[]{"###", "# #", '#', ItemListener.diamondIngot});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_CHESTPLATE, 1), new Object[]{"# #", "###", "###", '#', ItemListener.diamondIngot});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_LEGGINGS, 1), new Object[]{"###", "# #", "# #", '#', ItemListener.diamondIngot});
+        addInfusionRecipe(new ItemStack(Item.DIAMOND_BOOTS, 1), new Object[]{"# #", "# #", '#', ItemListener.diamondIngot});
 
         // Diamond age crafting components
-        addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 1), new Object[] {" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', ItemListener.obsidianPlate});
-        addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 1), new Object[] {" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', Block.OBSIDIAN});
+        addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 8), new Object[]{" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', ItemListener.obsidianPlate});
+        addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 4), new Object[]{" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', Block.OBSIDIAN});
     }
 
     private static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
@@ -214,5 +214,10 @@ public class RecipeListener {
 
     private static void addShapelessInfusionRecipe(ItemStack output, Object[] inputs) {
         MysticalInfuserCraftingManager.getInstance().addShapelessRecipe(output, inputs);
+    }
+
+    private static void addReinforcedMillStoneRecipes() {
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianDust, 1));
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(ItemListener.obsidianChunk.id, new ItemStack(ItemListener.obsidianDust, 1));
     }
 }

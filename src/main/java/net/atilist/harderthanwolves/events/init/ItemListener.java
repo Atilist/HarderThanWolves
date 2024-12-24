@@ -40,6 +40,8 @@ public class ItemListener {
 
     public static LazyItemTemplate diamondGear;
 
+    public static LazyItemTemplate obsidianDust;
+    public static LazyItemTemplate obsidianChunk;
     public static LazyItemTemplate obsidianPlate;
 
     @Entrypoint.Namespace
@@ -76,6 +78,8 @@ public class ItemListener {
 
         diamondGear = new LazyItemTemplate(Identifier.of(NAMESPACE, "diamond_gear"));
 
+        obsidianDust = new LazyItemTemplate(Identifier.of(NAMESPACE, "obsidian_dust"));
+        obsidianChunk = new LazyItemTemplate(Identifier.of(NAMESPACE, "obsidian_chunk"));
         obsidianPlate = new LazyItemTemplate(Identifier.of(NAMESPACE, "obsidian_plate"));
     }
 }

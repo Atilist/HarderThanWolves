@@ -1,5 +1,6 @@
 package net.atilist.harderthanwolves.block.entity;
 
+import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.FabricLoader;
@@ -8,11 +9,9 @@ import net.kozibrodka.wolves.block.MillStoneBlock;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
 import net.kozibrodka.wolves.network.SoundPacket;
-import net.kozibrodka.wolves.recipe.MillingRecipeRegistry;
 import net.kozibrodka.wolves.utils.BlockPosition;
 import net.kozibrodka.wolves.utils.InventoryHandler;
 import net.kozibrodka.wolves.utils.UnsortedUtils;
-import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
@@ -175,39 +174,11 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
 
         int iUnmilledItemID = millStoneContents[iUnmilledItemIndex].getItem().id;
 
-        if(iUnmilledItemID == BlockListener.companionCube.id) // Companion cube torture during milling
-        {
-            if(millStoneContents[iUnmilledItemIndex].getDamage() == 0 && world.random.nextInt(10) == 0)
-            {
-                world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, "mob.wolf.hurt", 2.0F, (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 1.0F);
-                if(FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                    voicePacket(world, "mob.wolf.hurt", x, y, z, 2.0F, (world.random.nextFloat() - world.random.nextFloat()) * 0.2F + 1.0F);
-                }
-            }
-            if(world.random.nextInt(20) == 0)
-            {
-                ItemStack stringStack = new ItemStack(Item.STRING);
-                EjectStack(stringStack);
-            }
-            if(world.random.nextInt(60) == 0)
-            {
-                ItemStack woolStack = new ItemStack(Item.DYE.id, 1, 1);
-                EjectStack(woolStack);
-            }
-        }
-        else if(iUnmilledItemID == Block.NETHERRACK.id && world.random.nextInt(10) == 0) // Random scream when there is netherrack
-        {
-            world.playSound((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "mob.ghast.scream", 0.25F, world.random.nextFloat() * 0.4F + 0.8F);
-            if(FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                voicePacket(world, "mob.ghast.scream", x, y, z, 0.25F, world.random.nextFloat() * 0.4F + 0.8F);
-            }
-        }
-
         if(iMillStoneGrindCounter < 200) return;
 
         iMillStoneGrindCounter = 0;
 
-        ItemStack milledStack = MillingRecipeRegistry.getInstance().getResult(iUnmilledItemID);
+        ItemStack milledStack = ReinforcedMillStoneRecipeRegistry.getInstance().getResult(iUnmilledItemID);
         if(milledStack != null)
         {
             milledStack = new ItemStack(milledStack.itemId, milledStack.count, milledStack.getDamage()); // This looks very redundant but cures the millstone from the curse of losing the item count value from the registry for no apparent reason besides metaphysical powers beyond human comprehension or something, I do not know how to explain this anymore.

@@ -35,6 +35,8 @@ item.@.reinforced_golden_hoe.name=Reinforced Golden Hoe
 
 item.@.diamond_gear.name=Diamond Gear
 
+item.@.obsidian_dust.name=Obsidian Dust
+item.@.obsidian_chunk.name=Obsidian Chunk
 item.@.obsidian_plate.name=Obsidian Plate
 
 tile.@.fire_pile.name=Fire Pile
