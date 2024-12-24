@@ -5,7 +5,6 @@ import net.atilist.harderthanwolves.container.ReinforcedMillStoneScreenHandler;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.kozibrodka.wolves.block.AxleBlock;
-import net.kozibrodka.wolves.block.entity.MillStoneBlockEntity;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.network.ScreenPacket;
 import net.kozibrodka.wolves.network.SoundPacket;
@@ -27,7 +26,7 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import java.util.List;
 import java.util.Random;
 
-public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate {
+public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate implements MechanicalDevice {
     public ReinforcedMillStoneBlock(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
         super(identifier, material, hardness, blockSounds);
     }
@@ -37,36 +36,16 @@ public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate {
         return iMillStoneTickRate;
     }
 
-    public void onPlaced(World world, int i, int j, int k)
-    {
+    public void onPlaced(World world, int i, int j, int k) {
         super.onPlaced(world, i, j, k);
-        world.scheduleBlockUpdate(i, j, k, BlockListener.millStone.id, getTickRate());
-        /*
-
-
-
-        REPLACE THE BLOCK ID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-         */
+        world.scheduleBlockUpdate(i, j, k, net.atilist.harderthanwolves.events.init.BlockListener.reinforcedMillStone.id, getTickRate());
     }
 
     public void neighborUpdate(World world, int i, int j, int k, int iid)
     {
         boolean bReceivingPower = IsInputtingMechanicalPower(world, i, j, k);
-        if(IsBlockOn(world, i, j, k) != bReceivingPower)
-        {
-            world.scheduleBlockUpdate(i, j, k, BlockListener.millStone.id, getTickRate());
-            /*
-
-
-
-        REPLACE THE BLOCK ID !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-         */
+        if(IsBlockOn(world, i, j, k) != bReceivingPower) {
+            world.scheduleBlockUpdate(i, j, k, net.atilist.harderthanwolves.events.init.BlockListener.reinforcedMillStone.id, getTickRate());
         }
     }
 
@@ -82,7 +61,7 @@ public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate {
 
     protected BlockEntity createBlockEntity()
     {
-        return new MillStoneBlockEntity();
+        return new ReinforcedMillStoneBlockEntity();
     }
 
     public void onTick(World world, int i, int j, int k, Random random)

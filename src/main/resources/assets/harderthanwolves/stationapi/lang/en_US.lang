@@ -72,6 +72,8 @@ tile.@.chiseled_obsidian.name=Chiseled Obsidian
 tile.@.engraved_obsidian.name=Engraved Obsidian
 tile.@.active_engraved_obsidian.name=Active Engraved Obsidian
 
+tile.@.reinforced_mill_stone.name=Reinforced Mill Stone
+
 key.@.test=Give Boned Achievement
 key.@.test2=Give Apple Achievement
 key.@.hurtme=Hurt Self

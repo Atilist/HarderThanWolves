@@ -20,8 +20,8 @@ public class LazyBlockWithEntityTemplate extends TemplateBlockWithEntity {
     }
 
     @Override
-    public LazyBlockTemplate setHardness(float Hardness) {
-        return (LazyBlockTemplate) super.setHardness(Hardness);
+    public LazyBlockWithEntityTemplate setHardness(float Hardness) {
+        return (LazyBlockWithEntityTemplate) super.setHardness(Hardness);
     }
 
     public void specifyTextures(int topTexture, int sideTexture, int bottomTexture) {

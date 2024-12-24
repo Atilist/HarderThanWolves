@@ -151,7 +151,7 @@ public class RecipeListener {
 
     private static void addCauldronRecipes() {
         addCauldronRecipe(new ItemStack(ItemListener.lapisIngot, 1), new ItemStack[] {
-                new ItemStack(ItemListener.rawLapisIngot, 1), new ItemStack(Item.FLINT)
+                new ItemStack(ItemListener.rawLapisIngot, 1), new ItemStack(Item.FLINT), new ItemStack(net.kozibrodka.wolves.events.ItemListener.hempCloth)
         });
     }
 

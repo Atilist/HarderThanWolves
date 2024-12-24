@@ -69,7 +69,7 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
 
     public String getName()
     {
-        return "MillStone";
+        return "ReinforcedMillStone";
     }
 
     public void readNbt(NbtCompound nbttagcompound)
