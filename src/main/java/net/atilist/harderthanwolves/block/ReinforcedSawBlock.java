@@ -6,7 +6,6 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.loader.FabricLoader;
 import net.kozibrodka.wolves.block.AxleBlock;
-import net.kozibrodka.wolves.block.CompanionCubeBlock;
 import net.kozibrodka.wolves.block.OmniSlabBlock;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
@@ -144,7 +143,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
             int iFacing = this.GetFacing(world, i, j, k);
             BlockPosition targetPos = new BlockPosition(i, j, k);
             targetPos.AddFacingAsOffset(iFacing);
-            if (!this.AttemptToSawBlock(world, targetPos.i, targetPos.j, targetPos.k, random, iFacing)) {
+            if (!this.AttemptToSawBlock(world, targetPos.i, targetPos.j, targetPos.k, random)) {
                 this.BreakSaw(world, i, j, k);
             }
         }
@@ -333,7 +332,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
 
     }
 
-    boolean AttemptToSawBlock(World world, int i, int j, int k, Random random, int iSawFacing) {
+    boolean AttemptToSawBlock(World world, int i, int j, int k, Random random) {
         if (!world.isAir(i, j, k)) {
             int iTargetid = world.getBlockId(i, j, k);
             ItemStack targetItem = new ItemStack(iTargetid, 1, world.getBlockMeta(i, j, k));
@@ -355,35 +354,6 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
                 }
 
                 bSawedBlock = true;
-            } else if (iTargetid == BlockListener.companionCube.id) {
-                CompanionCubeBlock cubeBlock = (CompanionCubeBlock)BlockListener.companionCube;
-                if (cubeBlock.GetHalfCubeState(world, i, j, k)) {
-                    if (iSawFacing == 0 || iSawFacing == 1) {
-                        UnsortedUtils.EjectSingleItemWithRandomOffset(world, i, j, k, BlockListener.companionCube.id, 1);
-                        bSawedBlock = true;
-                    }
-                } else {
-                    if (iSawFacing != 0 && iSawFacing != 1) {
-                        UnsortedUtils.EjectSingleItemWithRandomOffset(world, i, j, k, BlockListener.companionCube.id, 1);
-                        cubeBlock.SetHalfCubeState(world, i, j, k, true);
-                        world.setBlocksDirty(i, j, k, i, j, k);
-                        bRemoveOriginalBlockIfSawed = false;
-                    } else {
-                        for(int iTempCount = 0; iTempCount < 2; ++iTempCount) {
-                            UnsortedUtils.EjectSingleItemWithRandomOffset(world, i, j, k, BlockListener.companionCube.id, 1);
-                        }
-                    }
-
-                    BlockPosition bloodPos = new BlockPosition(i, j, k);
-                    bloodPos.AddFacingAsOffset(UnsortedUtils.getOppositeFacing(iSawFacing));
-                    this.EmitBloodParticles(world, bloodPos.i, bloodPos.j, bloodPos.k, world.random);
-                    world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "mob.wolf.hurt", 5.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
-                    if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                        this.voicePacket(world, "mob.wolf.hurt", i, j, k, 5.0F, (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F);
-                    }
-
-                    bSawedBlock = true;
-                }
             } else if (iTargetid != Block.LEAVES.id && iTargetid != Block.SUGAR_CANE.id && iTargetid != Block.WHEAT.id && iTargetid != BlockListener.hempCrop.id) {
                 if (iTargetid != Block.PISTON_HEAD.id && targetBlock != null) {
                     Material targetMaterial = targetBlock.material;

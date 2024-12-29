@@ -1,5 +1,6 @@
 package net.atilist.harderthanwolves.events.init;
 
+import net.atilist.harderthanwolves.recipe.DiamondDrillRecipeRegistry;
 import net.atilist.harderthanwolves.recipe.MysticalInfuserCraftingManager;
 import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
 import net.atilist.harderthanwolves.recipe.ReinforcedSawRecipeRegistry;
@@ -38,6 +39,7 @@ public class RecipeListener {
             addMillingRecipes();
             addReinforcedMillStoneRecipes();
             addReinforcedSawRecipes();
+            addDiamondDrillRecipes();
             addCrucibleRecipes();
             addCauldronRecipes();
             addTurntableRecipes();
@@ -208,7 +210,11 @@ public class RecipeListener {
     }
 
     private static void addReinforcedSawRecipes() {
-        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(BlockListener.smoothObsidian.id, new ItemStack(ItemListener.obsidianPlate, 4));
+        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianPlate, 4));
+    }
+
+    private static void addDiamondDrillRecipes() {
+        DiamondDrillRecipeRegistry.getInstance().addDrillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianChunk, 4));
     }
 
     private static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {

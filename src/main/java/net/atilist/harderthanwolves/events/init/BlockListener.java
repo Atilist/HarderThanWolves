@@ -50,6 +50,8 @@ public class BlockListener {
     public static ReinforcedMillStoneBlock reinforcedMillStone;
     public static ReinforcedSawBlock reinforcedSaw;
 
+    public static DiamondDrillBlock diamondDrill;
+
     @Entrypoint.Namespace
     public static final Namespace NAMESPACE = Null.get();
 
@@ -93,5 +95,7 @@ public class BlockListener {
 
         reinforcedMillStone = new ReinforcedMillStoneBlock(Identifier.of(NAMESPACE, "reinforced_mill_stone"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
         reinforcedSaw = new ReinforcedSawBlock(Identifier.of(NAMESPACE, "reinforced_saw"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
+
+        diamondDrill = new DiamondDrillBlock(Identifier.of(NAMESPACE, "diamond_drill"), Material.METAL, 4.5F, Block.STONE_SOUND_GROUP);
     }
 }
