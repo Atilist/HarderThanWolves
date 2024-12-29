@@ -1,9 +1,6 @@
 package net.atilist.harderthanwolves.events.init;
 
-import net.atilist.harderthanwolves.recipe.DiamondDrillRecipeRegistry;
-import net.atilist.harderthanwolves.recipe.MysticalInfuserCraftingManager;
-import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
-import net.atilist.harderthanwolves.recipe.ReinforcedSawRecipeRegistry;
+import net.atilist.harderthanwolves.recipe.*;
 import net.atilist.harderthanwolves.utils.RecipeRemover;
 import net.kozibrodka.wolves.recipe.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
@@ -41,6 +38,7 @@ public class RecipeListener {
             addReinforcedSawRecipes();
             addDiamondDrillRecipes();
             addCrucibleRecipes();
+            addMetalForgeRecipes();
             addCauldronRecipes();
             addTurntableRecipes();
         }
@@ -155,6 +153,13 @@ public class RecipeListener {
         addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[]{new ItemStack(Item.DIAMOND_SHOVEL, 1, -1)});
     }
 
+    private static void addMetalForgeRecipes() {
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.ironOreGravel.id, new ItemStack(Item.IRON_INGOT, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.ironChunkBlock.id, new ItemStack(Item.IRON_INGOT, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.goldChunkBlock.id, new ItemStack(Item.GOLD_INGOT, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.lapisGravel.id, new ItemStack(ItemListener.crystallizedLapis, 36));
+    }
+
     private static void addCauldronRecipes() {
         addCauldronRecipe(new ItemStack(ItemListener.lapisIngot, 1), new ItemStack[]{
                 new ItemStack(ItemListener.rawLapisIngot, 1), new ItemStack(Item.FLINT), new ItemStack(net.kozibrodka.wolves.events.ItemListener.hempCloth)
@@ -202,6 +207,13 @@ public class RecipeListener {
         // Diamond age crafting components
         addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 8), new Object[]{" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', ItemListener.obsidianPlate});
         addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 4), new Object[]{" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', Block.OBSIDIAN});
+
+        // Diamond age machines
+        addInfusionRecipe(new ItemStack(BlockListener.reinforcedSaw, 1), new Object[]{"YYY", "XZX", "#X#", '#', Block.OBSIDIAN, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', net.kozibrodka.wolves.events.BlockListener.saw});
+        addInfusionRecipe(new ItemStack(BlockListener.reinforcedSaw, 1), new Object[]{"YYY", "XZX", "#X#", '#', ItemListener.obsidianPlate, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', net.kozibrodka.wolves.events.BlockListener.saw});
+        addInfusionRecipe(new ItemStack(BlockListener.reinforcedMillStone, 1), new Object[]{"YYY", "#Z#", "#X#", 'X', ItemListener.diamondGear, 'Y', Block.OBSIDIAN, 'Z', net.kozibrodka.wolves.events.BlockListener.millStone, '#', ItemListener.stoneBrick});
+        addInfusionRecipe(new ItemStack(BlockListener.reinforcedMillStone, 1), new Object[]{"YYY", "#Z#", "#X#", 'X', ItemListener.diamondGear, 'Y', ItemListener.obsidianPlate, 'Z', net.kozibrodka.wolves.events.BlockListener.millStone, '#', ItemListener.stoneBrick});
+        addInfusionRecipe(new ItemStack(BlockListener.diamondDrill, 1), new Object[]{" Y ", "YXY", "#Z#", '#', ItemListener.obsidianPlate, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', ItemListener.diamondGear});
     }
 
     private static void addReinforcedMillStoneRecipes() {
