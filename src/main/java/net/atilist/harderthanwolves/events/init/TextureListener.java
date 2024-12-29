@@ -83,6 +83,8 @@ public class TextureListener {
 
         BlockListener.engravedObsidian.specifyTextures(getBlockTexture("block/engravedObsidian"));
         BlockListener.activeEngravedObsidian.specifyTextures(getBlockTexture("block/activeEngravedObsidian"));
+        BlockListener.obsidianGlassMixture.specifyTextures(getBlockTexture("block/obsidianGlassMixture"));
+        BlockListener.obsidianGlass.specifyTextures(getBlockTexture("block/obsidianGlass"));
 
         BlockListener.reinforcedMillStone.specifyTextures(getBlockTexture("block/reinforcedMillStoneTop"), getBlockTexture("block/reinforcedMillStoneSide"), getBlockTexture("block/reinforcedMillStoneBottom"));
 

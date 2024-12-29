@@ -46,6 +46,8 @@ public class BlockListener {
 
     public static LazyBlockTemplate engravedObsidian;
     public static LazyBlockTemplate activeEngravedObsidian;
+    public static LazyFallingBlockTemplate obsidianGlassMixture;
+    public static ObsidianGlassBlock obsidianGlass;
 
     public static ReinforcedMillStoneBlock reinforcedMillStone;
     public static ReinforcedSawBlock reinforcedSaw;
@@ -92,6 +94,8 @@ public class BlockListener {
 
         engravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
         activeEngravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "active_engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
+        obsidianGlassMixture = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "obsidian_glass_mixture"), 2.5F, Block.SAND_SOUND_GROUP);
+        obsidianGlass = new ObsidianGlassBlock(Identifier.of(NAMESPACE, "obsidian_glass"), Material.GLASS, 1.5F, Block.GLASS_SOUND_GROUP);
 
         reinforcedMillStone = new ReinforcedMillStoneBlock(Identifier.of(NAMESPACE, "reinforced_mill_stone"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
         reinforcedSaw = new ReinforcedSawBlock(Identifier.of(NAMESPACE, "reinforced_saw"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);

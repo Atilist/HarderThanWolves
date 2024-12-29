@@ -47,6 +47,7 @@ public class MetalForgeBlock extends LazyBlockTemplate {
         if (resultItem == null) {
             return;
         }
+        resultItem = resultItem.copy();
         int smeltingMultiplier = 0;
         for (int xOffset = -1; xOffset <= 1; xOffset++) {
             for (int yOffset = -1; yOffset <= 0; yOffset++) {

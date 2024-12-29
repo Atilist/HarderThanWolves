@@ -31,6 +31,7 @@ public class RecipeListener {
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.firePile), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(Block.PLANKS));
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.mysticalInfuserBase), new ItemStack(BlockListener.mysticalCobblestone), new ItemStack(ItemListener.monsterCloth), new ItemStack(ItemListener.lapisIngot));
             CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.monsterSiphonExpander), new ItemStack(BlockListener.mysticalCobblestone), new ItemStack(ItemListener.lapisIngot));
+            CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.obsidianGlassMixture), new ItemStack(Block.SAND), new ItemStack(ItemListener.obsidianDust));
             addMetallurgyRecipes();
             addToolUpgrades();
             addMillingRecipes();
@@ -158,6 +159,7 @@ public class RecipeListener {
         MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.ironChunkBlock.id, new ItemStack(Item.IRON_INGOT, 1));
         MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.goldChunkBlock.id, new ItemStack(Item.GOLD_INGOT, 1));
         MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.lapisGravel.id, new ItemStack(ItemListener.crystallizedLapis, 36));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.obsidianGlassMixture.id, new ItemStack(BlockListener.obsidianGlass, 1));
     }
 
     private static void addCauldronRecipes() {
