@@ -1,5 +1,6 @@
 package net.atilist.harderthanwolves.recipe;
 
+import net.kozibrodka.wolves.events.ItemListener;
 import net.minecraft.item.ItemStack;
 
 public class MysticalInfuserShapedRecipe implements MysticalInfuserRecipeTemplate {
@@ -81,5 +82,23 @@ public class MysticalInfuserShapedRecipe implements MysticalInfuserRecipeTemplat
 
     public int getWidth() {
         return width;
+    }
+
+    public ItemStack[] getIngredients() {
+        int widthCompensation = 3 - width;
+        ItemStack[] convertedIngredients = new ItemStack[9];
+        for (int i = 0; i < ingredients.length; i++) {
+            ItemStack ingredient = ingredients[i];
+            if (ingredient == null) {
+                continue;
+            }
+            convertedIngredients[i + widthCompensation * (i / width)] = ingredient.copy();
+        }
+        for (int i = 0; i < 9; i++) {
+            if (convertedIngredients[i] == null) {
+                convertedIngredients[i] = new ItemStack(ItemListener.nothing, 1);
+            }
+        }
+        return convertedIngredients;
     }
 }

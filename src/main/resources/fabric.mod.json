@@ -34,6 +34,9 @@
     ],
     "stationapi:event_bus_server": [
       "net.atilist.harderthanwolves.events.init.ServerInitListener"
+    ],
+    "alwaysmoreitems:plugin": [
+      "net.atilist.harderthanwolves.compat.ami.AMICompat"
     ]
   },
   "mixins": [

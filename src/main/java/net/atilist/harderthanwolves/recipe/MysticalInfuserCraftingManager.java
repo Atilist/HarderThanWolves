@@ -1,5 +1,7 @@
 package net.atilist.harderthanwolves.recipe;
 
+import net.kozibrodka.wolves.recipe.AnvilShapedRecipe;
+import net.kozibrodka.wolves.recipe.AnvilShapelessRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.inventory.CraftingInventory;
 import net.minecraft.item.Item;
@@ -105,6 +107,26 @@ public class MysticalInfuserCraftingManager {
 
     public List getRecipeList() {
         return recipes;
+    }
+
+    public ArrayList getShapedRecipes() {
+        ArrayList shapedRecipes = new ArrayList();
+        for (Object recipe : recipes) {
+            if (recipe instanceof MysticalInfuserShapedRecipe) {
+                shapedRecipes.add(recipe);
+            }
+        }
+        return shapedRecipes;
+    }
+
+    public ArrayList getShapelessRecipes() {
+        ArrayList shapelessRecipes = new ArrayList();
+        for (Object recipe : recipes) {
+            if (recipe instanceof MysticalInfuserShapelessRecipe) {
+                shapelessRecipes.add(recipe);
+            }
+        }
+        return shapelessRecipes;
     }
 
     private static final MysticalInfuserCraftingManager instance = new MysticalInfuserCraftingManager();

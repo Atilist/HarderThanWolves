@@ -19,6 +19,10 @@ public class MysticalInfuserShapelessRecipe implements MysticalInfuserRecipeTemp
         return this.output;
     }
 
+    public List getInput() {
+        return input;
+    }
+
     public boolean canCraft(CraftingInventoryWithoutHandler arg) {
         ArrayList var2 = new ArrayList(this.input);
 
