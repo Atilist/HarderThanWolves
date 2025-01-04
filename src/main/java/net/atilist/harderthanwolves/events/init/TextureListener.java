@@ -86,6 +86,7 @@ public class TextureListener {
         BlockListener.obsidianGlassMixture.specifyTextures(getBlockTexture("block/obsidianGlassMixture"));
         BlockListener.obsidianGlass.specifyTextures(getBlockTexture("block/obsidianGlass"));
 
+        BlockListener.obsidianGenerator.specifyTextures(getBlockTexture("block/obsidianGeneratorTop"), getBlockTexture("block/obsidianGeneratorEmptySide"), getBlockTexture("block/obsidianGeneratorFullSide"), getBlockTexture("block/obsidianGeneratorBottom"));
         BlockListener.reinforcedMillStone.specifyTextures(getBlockTexture("block/reinforcedMillStoneTop"), getBlockTexture("block/reinforcedMillStoneSide"), getBlockTexture("block/reinforcedMillStoneBottom"));
 
         reinforcedSawSide = getBlockTexture("block/reinforcedSawSide");

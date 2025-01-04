@@ -49,6 +49,7 @@ public class BlockListener {
     public static LazyFallingBlockTemplate obsidianGlassMixture;
     public static ObsidianGlassBlock obsidianGlass;
 
+    public static ObsidianGeneratorBlock obsidianGenerator;
     public static ReinforcedMillStoneBlock reinforcedMillStone;
     public static ReinforcedSawBlock reinforcedSaw;
     public static MysticalDevourerBlock mysticalDevourer;
@@ -97,9 +98,9 @@ public class BlockListener {
         obsidianGlassMixture = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "obsidian_glass_mixture"), 2.5F, Block.SAND_SOUND_GROUP);
         obsidianGlass = new ObsidianGlassBlock(Identifier.of(NAMESPACE, "obsidian_glass"), Material.GLASS, 1.5F, Block.GLASS_SOUND_GROUP);
 
+        obsidianGenerator = new ObsidianGeneratorBlock(Identifier.of(NAMESPACE, "obsidian_generator"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
         reinforcedMillStone = new ReinforcedMillStoneBlock(Identifier.of(NAMESPACE, "reinforced_mill_stone"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
         reinforcedSaw = new ReinforcedSawBlock(Identifier.of(NAMESPACE, "reinforced_saw"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
-
         diamondDrill = new DiamondDrillBlock(Identifier.of(NAMESPACE, "diamond_drill"), Material.METAL, 4.5F, Block.STONE_SOUND_GROUP);
         mysticalDevourer = new MysticalDevourerBlock(Identifier.of(NAMESPACE, "mystical_devourer"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
     }

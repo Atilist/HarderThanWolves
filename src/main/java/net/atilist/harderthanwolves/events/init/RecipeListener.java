@@ -213,6 +213,7 @@ public class RecipeListener {
         addInfusionRecipe(new ItemStack(ItemListener.diamondGear, 4), new Object[]{" X ", "XYX", " X ", 'X', ItemListener.diamondIngot, 'Y', Block.OBSIDIAN});
 
         // Diamond age machines
+        addInfusionRecipe(new ItemStack(BlockListener.obsidianGenerator, 1), new Object[]{"XYX", "YZY", "X#X", '#', ItemListener.diamondIngot, 'X', ItemListener.obsidianPlate, 'Y', Item.IRON_INGOT, 'Z', Item.BUCKET});
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedSaw, 1), new Object[]{"YYY", "XZX", "#X#", '#', Block.OBSIDIAN, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', net.kozibrodka.wolves.events.BlockListener.saw});
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedSaw, 1), new Object[]{"YYY", "XZX", "#X#", '#', ItemListener.obsidianPlate, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', net.kozibrodka.wolves.events.BlockListener.saw});
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedMillStone, 1), new Object[]{"YYY", "#Z#", "#X#", 'X', ItemListener.diamondGear, 'Y', Block.OBSIDIAN, 'Z', net.kozibrodka.wolves.events.BlockListener.millStone, '#', ItemListener.stoneBrick});
