@@ -88,16 +88,16 @@ public class RecipeListener {
     }
 
     private static void addToolUpgrades() {
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenSword), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_SWORD));
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenShovel), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_SHOVEL));
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenPickaxe), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_PICKAXE));
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenAxe), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_AXE));
-        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenHoe), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_HOE));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenSword), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_SWORD, 1, -1));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenShovel), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_SHOVEL, 1, -1));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenPickaxe), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_PICKAXE, 1, -1));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenAxe), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_AXE, 1, -1));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.reinforcedGoldenHoe), new ItemStack(ItemListener.diamondIngot), new ItemStack(Item.GOLDEN_HOE, 1, -1));
     }
 
     private static void addMetallurgyRecipes() {
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.rawLapisIngot), new ItemStack(ItemListener.mysticalHempFibers), new ItemStack(ItemListener.crystallizedLapis), new ItemStack(Item.IRON_INGOT), new ItemStack(ItemListener.chargedMysticalRock), new ItemStack(ItemListener.mysticalStick));
-        CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.chiseledObsidian), new ItemStack(BlockListener.smoothObsidian), new ItemStack(Item.DIAMOND), new ItemStack(Item.GOLD_INGOT));
+        CraftingRegistry.addShapelessRecipe(new ItemStack(BlockListener.chiseledObsidian), new ItemStack(BlockListener.smoothObsidian), new ItemStack(Item.DIAMOND), new ItemStack(Item.GOLD_INGOT), new ItemStack(ItemListener.obsidianChunk));
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.ironChunks, 4), new ItemStack(BlockListener.ironChunkBlock));
         CraftingRegistry.addShapelessRecipe(new ItemStack(ItemListener.goldChunks, 4), new ItemStack(BlockListener.goldChunkBlock));
     }
@@ -140,6 +140,7 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.goldChunkBlock, 1), "##", "##", '#', ItemListener.goldChunks);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.emptyMonsterSiphon, 1), "XXX", "###", "XYX", 'X', BlockListener.mysticalCobblestone, 'Y', Item.GOLD_INGOT, '#', ItemListener.monsterCloth);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.mysticalInfuser, 1), "XXX", "YZY", "###", 'X', ItemListener.lapisIngot, 'Y', BlockListener.mysticalCobblestone, 'Z', Block.CRAFTING_TABLE, '#', BlockListener.stoneBricks);
+        CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.smoothObsidian, 2), " X ", "XYX", " X ", 'X', ItemListener.obsidianPlate, 'Y', ItemListener.obsidianDust);
     }
 
     private static void addCrucibleRecipes() {
@@ -216,6 +217,7 @@ public class RecipeListener {
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedSaw, 1), new Object[]{"YYY", "XZX", "#X#", '#', ItemListener.obsidianPlate, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', net.kozibrodka.wolves.events.BlockListener.saw});
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedMillStone, 1), new Object[]{"YYY", "#Z#", "#X#", 'X', ItemListener.diamondGear, 'Y', Block.OBSIDIAN, 'Z', net.kozibrodka.wolves.events.BlockListener.millStone, '#', ItemListener.stoneBrick});
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedMillStone, 1), new Object[]{"YYY", "#Z#", "#X#", 'X', ItemListener.diamondGear, 'Y', ItemListener.obsidianPlate, 'Z', net.kozibrodka.wolves.events.BlockListener.millStone, '#', ItemListener.stoneBrick});
+        addInfusionRecipe(new ItemStack(BlockListener.mysticalDevourer, 1), new Object[]{"STU", "VXW", "YZY", 'S', ItemListener.reinforcedGoldenShovel, 'T', ItemListener.reinforcedGoldenSword, 'U', ItemListener.reinforcedGoldenHoe, 'V', ItemListener.reinforcedGoldenAxe, 'W', ItemListener.reinforcedGoldenPickaxe, 'X', net.kozibrodka.wolves.events.BlockListener.blockDispenser, 'Y', Item.GOLD_INGOT, 'Z', ItemListener.diamondGear});
         addInfusionRecipe(new ItemStack(BlockListener.diamondDrill, 1), new Object[]{" Y ", "YXY", "#Z#", '#', ItemListener.obsidianPlate, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', ItemListener.diamondGear});
     }
 
