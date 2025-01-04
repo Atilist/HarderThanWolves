@@ -51,7 +51,7 @@ public class BlockListener {
 
     public static ReinforcedMillStoneBlock reinforcedMillStone;
     public static ReinforcedSawBlock reinforcedSaw;
-
+    public static MysticalDevourerBlock mysticalDevourer;
     public static DiamondDrillBlock diamondDrill;
 
     @Entrypoint.Namespace
@@ -101,5 +101,6 @@ public class BlockListener {
         reinforcedSaw = new ReinforcedSawBlock(Identifier.of(NAMESPACE, "reinforced_saw"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
 
         diamondDrill = new DiamondDrillBlock(Identifier.of(NAMESPACE, "diamond_drill"), Material.METAL, 4.5F, Block.STONE_SOUND_GROUP);
+        mysticalDevourer = new MysticalDevourerBlock(Identifier.of(NAMESPACE, "mystical_devourer"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
     }
 }

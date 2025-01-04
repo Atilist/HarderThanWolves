@@ -91,6 +91,11 @@ public class TextureListener {
         reinforcedSawSide = getBlockTexture("block/reinforcedSawSide");
         reinforcedSawFace = getBlockTexture("block/reinforcedSawFace");
         reinforcedSawSaw = getBlockTexture("block/reinforcedSawSaw");
+
+        mysticalDevourerTop = getBlockTexture("block/mysticalDevourerTop");
+        mysticalDevourerSide = getBlockTexture("block/mysticalDevourerSide");
+        mysticalDevourerBottom = getBlockTexture("block/mysticalDevourerBottom");
+        mysticalDevourerFront = getBlockTexture("block/mysticalDevourerFront");
     }
 
     public int getBlockTexture(String path) {
@@ -100,5 +105,10 @@ public class TextureListener {
     public static int
             reinforcedSawSide,
             reinforcedSawFace,
-            reinforcedSawSaw;
+            reinforcedSawSaw,
+
+            mysticalDevourerTop,
+            mysticalDevourerSide,
+            mysticalDevourerBottom,
+            mysticalDevourerFront;
 }
