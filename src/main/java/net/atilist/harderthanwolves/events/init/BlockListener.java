@@ -42,10 +42,10 @@ public class BlockListener {
     public static MysticalInfuserBlock mysticalInfuser;
 
     public static LazyBlockTemplate smoothObsidian;
-    public static LazyBlockTemplate chiseledObsidian;
+    public static ChiseledObsidianBlock chiseledObsidian;
 
-    public static LazyBlockTemplate engravedObsidian;
-    public static LazyBlockTemplate activeEngravedObsidian;
+    public static EngravedObsidianBlock engravedObsidian;
+    public static ActiveEngravedObsidianBlock activeEngravedObsidian;
     public static LazyFallingBlockTemplate obsidianGlassMixture;
     public static ObsidianGlassBlock obsidianGlass;
 
@@ -91,10 +91,10 @@ public class BlockListener {
         mysticalInfuser = new MysticalInfuserBlock(Identifier.of(NAMESPACE, "mystical_infuser"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
 
         smoothObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "smooth_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
-        chiseledObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "chiseled_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
+        chiseledObsidian = new ChiseledObsidianBlock(Identifier.of(NAMESPACE, "chiseled_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
 
-        engravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
-        activeEngravedObsidian = new LazyBlockTemplate(Identifier.of(NAMESPACE, "active_engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
+        engravedObsidian = new EngravedObsidianBlock(Identifier.of(NAMESPACE, "engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
+        activeEngravedObsidian = new ActiveEngravedObsidianBlock(Identifier.of(NAMESPACE, "active_engraved_obsidian"), Material.STONE, 2.5F, Block.STONE_SOUND_GROUP);
         obsidianGlassMixture = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "obsidian_glass_mixture"), 2.5F, Block.SAND_SOUND_GROUP);
         obsidianGlass = new ObsidianGlassBlock(Identifier.of(NAMESPACE, "obsidian_glass"), Material.GLASS, 1.5F, Block.GLASS_SOUND_GROUP);
 
