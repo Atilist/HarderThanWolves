@@ -16,6 +16,24 @@ public class ActiveEngravedObsidianBlock extends LazyBlockTemplate {
     }
 
     @Override
+    public int getDroppedItemId(int blockMeta, Random random) {
+        return BlockListener.engravedObsidian.id;
+    }
+
+    @Override
+    public void onBreak(World world, int x, int y, int z) {
+        super.onBreak(world, x, y, z);
+        for (int xOffset = -1; xOffset <= 1; xOffset++) {
+            for (int zOffset = -1; zOffset <= 1; zOffset++) {
+                if (world.getBlockId(x + xOffset, y + 1, z + zOffset) == Block.NETHER_PORTAL.id) {
+                    world.setBlock(x + xOffset, y + 1, z + zOffset, 0);
+                    world.blockUpdateEvent(x + xOffset, y + 1, z + zOffset);
+                }
+            }
+        }
+    }
+
+    @Override
     public void onTick(World world, int x, int y, int z, Random random) {
         super.onTick(world, x, y, z, random);
         boolean failedStructureRequirement = false;
