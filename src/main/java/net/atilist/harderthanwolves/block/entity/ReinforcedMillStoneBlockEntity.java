@@ -1,29 +1,20 @@
 package net.atilist.harderthanwolves.block.entity;
 
 import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.FabricLoader;
 import net.kozibrodka.wolves.block.CompanionCubeBlock;
 import net.kozibrodka.wolves.block.MillStoneBlock;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
-import net.kozibrodka.wolves.network.SoundPacket;
 import net.kozibrodka.wolves.utils.BlockPosition;
 import net.kozibrodka.wolves.utils.InventoryHandler;
 import net.kozibrodka.wolves.utils.UnsortedUtils;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
-import net.minecraft.world.World;
-import net.modificationstation.stationapi.api.network.packet.PacketHelper;
-
-import java.util.List;
 
 public class ReinforcedMillStoneBlockEntity extends BlockEntity
         implements Inventory
@@ -193,9 +184,6 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
             if(millStoneContents[iUnmilledItemIndex].getDamage() == 0)
             {
                 world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, "mob.wolf.whine", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-                if(FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                    voicePacket(world, "mob.wolf.whine", x, y, z, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-                }
             }
             removeStack(iUnmilledItemIndex, 1);
         }
@@ -329,21 +317,6 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
         if(IsWholeCompanionCubeInInventory())
         {
             world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, "mob.wolf.whine", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-            if(FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                voicePacket(world, "mob.wolf.whine", x, y, z, 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-            }
-        }
-    }
-
-    @Environment(EnvType.SERVER)
-    public void voicePacket(World world, String name, int x, int y, int z, float g, float h){
-        List list2 = world.players;
-        if(list2.size() != 0) {
-            for(int k = 0; k < list2.size(); k++)
-            {
-                ServerPlayerEntity player1 = (ServerPlayerEntity) list2.get(k);
-                PacketHelper.sendTo(player1, new SoundPacket(name, x, y, z, g,h));
-            }
         }
     }
 

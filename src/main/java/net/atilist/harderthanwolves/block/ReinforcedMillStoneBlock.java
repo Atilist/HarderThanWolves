@@ -2,12 +2,8 @@ package net.atilist.harderthanwolves.block;
 
 import net.atilist.harderthanwolves.block.entity.ReinforcedMillStoneBlockEntity;
 import net.atilist.harderthanwolves.container.ReinforcedMillStoneScreenHandler;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
 import net.kozibrodka.wolves.block.AxleBlock;
 import net.kozibrodka.wolves.events.BlockListener;
-import net.kozibrodka.wolves.network.ScreenPacket;
-import net.kozibrodka.wolves.network.SoundPacket;
 import net.kozibrodka.wolves.utils.BlockPosition;
 import net.kozibrodka.wolves.utils.InventoryHandler;
 import net.kozibrodka.wolves.utils.MechanicalDevice;
@@ -15,15 +11,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
-import net.modificationstation.stationapi.api.network.packet.PacketHelper;
 import net.modificationstation.stationapi.api.util.Identifier;
 
-import java.util.List;
 import java.util.Random;
 
 public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate implements MechanicalDevice {
@@ -52,9 +45,6 @@ public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate implem
     public boolean onUse(World world, int i, int j, int k, PlayerEntity entityplayer)
     {
         ReinforcedMillStoneBlockEntity tileEntityMillStone = (ReinforcedMillStoneBlockEntity)world.getBlockEntity(i, j, k);
-        if(world.isRemote){
-            PacketHelper.send(new ScreenPacket("mill",0, i, j, k));
-        }
         GuiHelper.openGUI(entityplayer, Identifier.of("harderthanwolves:openReinforcedMillStone"), (Inventory) tileEntityMillStone, new ReinforcedMillStoneScreenHandler(entityplayer.inventory, (ReinforcedMillStoneBlockEntity) tileEntityMillStone));
         return true;
     }
@@ -71,18 +61,6 @@ public class ReinforcedMillStoneBlock extends LazyBlockWithEntityTemplate implem
         if(bOn != bReceivingPower)
         {
             SetBlockOn(world, i, j, k, !bOn);
-        }
-    }
-
-    @Environment(EnvType.SERVER)
-    public void voicePacket(World world, String name, int x, int y, int z, float g, float h){
-        List list2 = world.players;
-        if(list2.size() != 0) {
-            for(int k = 0; k < list2.size(); k++)
-            {
-                ServerPlayerEntity player1 = (ServerPlayerEntity) list2.get(k);
-                PacketHelper.sendTo(player1, new SoundPacket(name, x, y, z, g,h));
-            }
         }
     }
 

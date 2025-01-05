@@ -2,23 +2,17 @@ package net.atilist.harderthanwolves.block;
 
 import net.atilist.harderthanwolves.events.init.TextureListener;
 import net.atilist.harderthanwolves.recipe.ReinforcedSawRecipeRegistry;
-import net.fabricmc.api.EnvType;
-import net.fabricmc.api.Environment;
-import net.fabricmc.loader.FabricLoader;
 import net.kozibrodka.wolves.block.AxleBlock;
 import net.kozibrodka.wolves.block.OmniSlabBlock;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
 import net.kozibrodka.wolves.mixin.LevelAccessor;
-import net.kozibrodka.wolves.network.ParticlePacket;
-import net.kozibrodka.wolves.network.SoundPacket;
 import net.kozibrodka.wolves.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.render.block.BlockRenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
@@ -27,7 +21,6 @@ import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.modificationstation.stationapi.api.client.model.block.BlockWithInventoryRenderer;
 import net.modificationstation.stationapi.api.client.model.block.BlockWithWorldRenderer;
-import net.modificationstation.stationapi.api.network.packet.PacketHelper;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.List;
@@ -130,9 +123,6 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         boolean bOn = this.IsBlockOn(world, i, j, k);
         if (bOn != bReceivingPower) {
             world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-            if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                this.voicePacket(world, "random.explode", i, j, k, 0.2F, 1.25F);
-            }
 
             this.EmitSawParticles(world, i, j, k, random);
             this.SetBlockOn(world, i, j, k, bReceivingPower);
@@ -181,9 +171,6 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
                     LivingEntity tempTargetEntity = (LivingEntity)collisionList.get(iTempListIndex);
                     if (tempTargetEntity.damage((Entity)null, 4)) {
                         world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-                        if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                            this.voicePacket(world, "random.explode", i, j, k, 0.2F, 1.25F);
-                        }
 
                         this.EmitBloodParticles(world, i, j, k, world.random);
                     }
@@ -301,33 +288,6 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
             float smokeY = (float)iTargetPos.j + random.nextFloat();
             float smokeZ = (float)iTargetPos.k + random.nextFloat();
             world.addParticle("reddust", (double)smokeX, (double)smokeY, (double)smokeZ, 0.0, 0.0, 0.0);
-            if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                this.particlePacket(world, "reddust", (double)smokeX, (double)smokeY, (double)smokeZ);
-            }
-        }
-
-    }
-
-    @Environment(EnvType.SERVER)
-    public void voicePacket(World world, String name, int x, int y, int z, float g, float h) {
-        List list2 = world.players;
-        if (list2.size() != 0) {
-            for(int k = 0; k < list2.size(); ++k) {
-                ServerPlayerEntity player1 = (ServerPlayerEntity)list2.get(k);
-                PacketHelper.sendTo(player1, new SoundPacket(name, x, y, z, g, h));
-            }
-        }
-
-    }
-
-    @Environment(EnvType.SERVER)
-    public void particlePacket(World world, String name, double x, double y, double z) {
-        List list2 = world.players;
-        if (list2.size() != 0) {
-            for(int k1 = 0; k1 < list2.size(); ++k1) {
-                ServerPlayerEntity player1 = (ServerPlayerEntity)list2.get(k1);
-                PacketHelper.sendTo(player1, new ParticlePacket(name, x, y, z, 0.0, 0.0, 0.0));
-            }
         }
 
     }
@@ -373,9 +333,6 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
 
             if (bSawedBlock) {
                 world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-                if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                    this.voicePacket(world, "random.explode", i, j, k, 0.2F, 1.25F);
-                }
 
                 this.EmitSawParticles(world, i, j, k, random);
                 if (bRemoveOriginalBlockIfSawed) {
@@ -406,9 +363,6 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         }
 
         world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-        if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-            this.voicePacket(world, "random.explode", i, j, k, 0.2F, 1.25F);
-        }
 
         world.setBlock(i, j, k, 0);
     }
