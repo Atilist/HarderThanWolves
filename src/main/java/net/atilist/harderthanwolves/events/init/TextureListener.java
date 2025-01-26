@@ -113,3 +113,8 @@ public class TextureListener {
             mysticalDevourerBottom,
             mysticalDevourerFront;
 }
+
+// TODO for release:
+// TODO: Fix icons of reinforced saw, reinforced mill stone, and mystical devourer
+// TODO: Give mystical infusion AMI tab a proper texture
+// TODO: Add AMI tabs for reinforced saw, reinforced mill stone, mystical devourer, diamond drill, chisel, metal forging, rotary sieve, and gold tools

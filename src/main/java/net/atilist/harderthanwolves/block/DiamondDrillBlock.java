@@ -117,10 +117,7 @@ public class DiamondDrillBlock extends LazyBlockTemplate implements MechanicalDe
 
     @Override
     public void neighborUpdate(World world, int i, int j, int k, int iid) {
-        boolean bReceivingPower = IsInputtingMechanicalPower(world, i, j, k);
-        if(isBlockOn(world, i, j, k) != bReceivingPower) {
-            world.scheduleBlockUpdate(i, j, k, net.atilist.harderthanwolves.events.init.BlockListener.diamondDrill.id, getTickRate());
-        }
+        world.scheduleBlockUpdate(i, j, k, net.atilist.harderthanwolves.events.init.BlockListener.diamondDrill.id, getTickRate());
     }
 
     @Override
