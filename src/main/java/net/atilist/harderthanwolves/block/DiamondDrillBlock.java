@@ -57,9 +57,11 @@ public class DiamondDrillBlock extends LazyBlockTemplate implements MechanicalDe
         boolean on = this.isBlockOn(world, i, j, k);
         if (on != receivingPower) {
             world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-            this.setBlockOn(world, i, j, k, receivingPower);
             if (receivingPower) {
                 world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate() + random.nextInt(6));
+                this.setBlockOn(world, i, j, k);
+            } else {
+                this.setBlockOff(world, i, j, k);
             }
         } else if (on) {
             BlockPosition targetPos = new BlockPosition(i, j, k);
@@ -69,8 +71,13 @@ public class DiamondDrillBlock extends LazyBlockTemplate implements MechanicalDe
 
     }
 
-    public void setBlockOn(World world, int x, int y, int z, boolean on) {
+    public void setBlockOn(World world, int x, int y, int z) {
         world.setBlockMeta(x, y, z, 1);
+        world.blockUpdateEvent(x, y, z);
+    }
+
+    public void setBlockOff(World world, int x, int y, int z) {
+        world.setBlockMeta(x, y, z, 0);
         world.blockUpdateEvent(x, y, z);
     }
 
