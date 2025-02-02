@@ -40,8 +40,8 @@ public class DiamondDrillRecipeRegistry {
         return items[1];
     }
 
-    public ArrayList<SawRecipe> getRecipes() {
-        ArrayList<SawRecipe> convertedRecipes = new ArrayList();
+    public ArrayList<DiamondDrillRecipe> getRecipes() {
+        ArrayList<DiamondDrillRecipe> convertedRecipes = new ArrayList();
         ArrayList<ItemStack> inputs = new ArrayList();
         ArrayList<ItemStack> outputs = new ArrayList();
         Iterator var4 = this.recipes.iterator();
@@ -53,7 +53,7 @@ public class DiamondDrillRecipeRegistry {
         }
 
         for(int i = 0; i < inputs.size() && i < outputs.size(); ++i) {
-            convertedRecipes.add(new SawRecipe((ItemStack)inputs.get(i), (ItemStack)outputs.get(i)));
+            convertedRecipes.add(new DiamondDrillRecipe((ItemStack)inputs.get(i), (ItemStack)outputs.get(i)));
         }
 
         return convertedRecipes;

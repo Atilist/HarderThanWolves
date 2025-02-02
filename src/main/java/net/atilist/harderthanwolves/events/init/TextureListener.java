@@ -118,4 +118,6 @@ public class TextureListener {
 }
 
 // TODO for release:
-// TODO: Add AMI tabs for reinforced saw, reinforced mill stone, mystical devourer, diamond drill, chisel, metal forging, rotary sieve, and gold tools
+// TODO: Add AMI tabs for rotary sieve, chisel, and gold tools
+// TODO: Iron and diamond chisels
+// TODO: Annotate all instances of client side interfaces

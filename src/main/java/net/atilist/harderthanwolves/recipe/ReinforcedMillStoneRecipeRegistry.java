@@ -27,8 +27,8 @@ public class ReinforcedMillStoneRecipeRegistry {
         return (ItemStack)this.recipes.get(i);
     }
 
-    public ArrayList<MillStoneRecipe> getRecipes() {
-        ArrayList<MillStoneRecipe> convertedRecipes = new ArrayList();
+    public ArrayList<ReinforcedMillStoneRecipe> getRecipes() {
+        ArrayList<ReinforcedMillStoneRecipe> convertedRecipes = new ArrayList();
         ArrayList<ItemStack> inputs = new ArrayList();
         ArrayList<ItemStack> outputs = new ArrayList();
         Iterator var4 = this.recipes.keySet().iterator();
@@ -42,7 +42,7 @@ public class ReinforcedMillStoneRecipeRegistry {
         }
 
         for(int i = 0; i < inputs.size() && i < outputs.size(); ++i) {
-            convertedRecipes.add(new MillStoneRecipe((ItemStack)inputs.get(i), (ItemStack)outputs.get(i)));
+            convertedRecipes.add(new ReinforcedMillStoneRecipe((ItemStack)inputs.get(i), (ItemStack)outputs.get(i)));
         }
 
         return convertedRecipes;
