@@ -68,7 +68,7 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
         }
     }
 
-    public int getTexture(int iSide) {
+    public int getTexture(int iSide, int meta) {
         if (iSide == 3) {
             return TextureListener.mysticalDevourerFront;
         } else if (iSide == 1) {

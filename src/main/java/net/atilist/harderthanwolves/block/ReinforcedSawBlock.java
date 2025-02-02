@@ -2,6 +2,8 @@ package net.atilist.harderthanwolves.block;
 
 import net.atilist.harderthanwolves.events.init.TextureListener;
 import net.atilist.harderthanwolves.recipe.ReinforcedSawRecipeRegistry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.EnvironmentInterface;
 import net.kozibrodka.wolves.block.AxleBlock;
 import net.kozibrodka.wolves.block.OmniSlabBlock;
 import net.kozibrodka.wolves.events.BlockListener;
@@ -26,6 +28,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import java.util.List;
 import java.util.Random;
 
+@EnvironmentInterface(value= EnvType.CLIENT, itf=BlockWithWorldRenderer.class)
+@EnvironmentInterface(value=EnvType.CLIENT, itf=BlockWithInventoryRenderer.class)
 public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalDevice, RotatableBlock, BlockWithWorldRenderer, BlockWithInventoryRenderer {
     private static int iSawTickRate = 10;
     public static final float fSawBaseHeight = 0.75F;
@@ -44,7 +48,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         return iSide != iFacing ? TextureListener.reinforcedSawSide : TextureListener.reinforcedSawFace;
     }
 
-    public int getTexture(int iSide) {
+    public int getTexture(int iSide, int meta) {
         return iSide != 1 ? TextureListener.reinforcedSawSide : TextureListener.reinforcedSawFace;
     }
 

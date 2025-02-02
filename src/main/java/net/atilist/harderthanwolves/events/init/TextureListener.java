@@ -88,6 +88,7 @@ public class TextureListener {
 
         BlockListener.obsidianGenerator.specifyTextures(getBlockTexture("block/obsidianGeneratorTop"), getBlockTexture("block/obsidianGeneratorEmptySide"), getBlockTexture("block/obsidianGeneratorFullSide"), getBlockTexture("block/obsidianGeneratorBottom"));
         BlockListener.reinforcedMillStone.specifyTextures(getBlockTexture("block/reinforcedMillStoneTop"), getBlockTexture("block/reinforcedMillStoneSide"), getBlockTexture("block/reinforcedMillStoneBottom"));
+        BlockListener.diamondDrill.specifyTextures(getBlockTexture("block/diamondDrillIcon"));
 
         reinforcedSawSide = getBlockTexture("block/reinforcedSawSide");
         reinforcedSawFace = getBlockTexture("block/reinforcedSawFace");
@@ -97,6 +98,8 @@ public class TextureListener {
         mysticalDevourerSide = getBlockTexture("block/mysticalDevourerSide");
         mysticalDevourerBottom = getBlockTexture("block/mysticalDevourerBottom");
         mysticalDevourerFront = getBlockTexture("block/mysticalDevourerFront");
+
+        //BlockListener.diamondDrill.asItem().setTextureId(getBlockTexture("block/diamondDrillIcon"));
     }
 
     public int getBlockTexture(String path) {
@@ -115,5 +118,4 @@ public class TextureListener {
 }
 
 // TODO for release:
-// TODO: Fix icons of reinforced saw, reinforced mill stone, and mystical devourer
 // TODO: Add AMI tabs for reinforced saw, reinforced mill stone, mystical devourer, diamond drill, chisel, metal forging, rotary sieve, and gold tools
