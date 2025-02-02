@@ -14,6 +14,8 @@ import net.atilist.harderthanwolves.compat.ami.reinforcedmillstone.ReinforcedMil
 import net.atilist.harderthanwolves.compat.ami.reinforcedmillstone.ReinforcedMillStoneRecipeHandler;
 import net.atilist.harderthanwolves.compat.ami.reinforcedsaw.ReinforcedSawRecipeCategory;
 import net.atilist.harderthanwolves.compat.ami.reinforcedsaw.ReinforcedSawRecipeHandler;
+import net.atilist.harderthanwolves.compat.ami.rotarysieve.RotarySieveRecipeCategory;
+import net.atilist.harderthanwolves.compat.ami.rotarysieve.RotarySieveRecipeHandler;
 import net.atilist.harderthanwolves.recipe.*;
 import net.glasslauncher.mods.alwaysmoreitems.api.*;
 import net.kozibrodka.wolves.events.ConfigListener;
@@ -71,6 +73,10 @@ public class AMICompat implements ModPluginProvider {
         registry.addRecipeCategories(new MetalForgeRecipeCategory());
         registry.addRecipeHandlers(new MetalForgeRecipeHandler());
         registry.addRecipes(MetalForgeRecipeRegistry.getInstance().getRecipes());
+
+        registry.addRecipeCategories(new RotarySieveRecipeCategory());
+        registry.addRecipeHandlers(new RotarySieveRecipeHandler());
+        registry.addRecipes(RotarySieveRecipeRegistry.getInstance().getRecipes());
     }
 
     @Override

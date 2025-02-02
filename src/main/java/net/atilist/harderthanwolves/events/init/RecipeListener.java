@@ -43,6 +43,7 @@ public class RecipeListener {
             addMetalForgeRecipes();
             addCauldronRecipes();
             addTurntableRecipes();
+            addRotarySieveRecipes();
         }
     }
 
@@ -258,5 +259,11 @@ public class RecipeListener {
 
     private static void addShapelessInfusionRecipe(ItemStack output, Object[] inputs) {
         MysticalInfuserCraftingManager.getInstance().addShapelessRecipe(output, inputs);
+    }
+
+    private static void addRotarySieveRecipes() {
+        RotarySieveRecipeRegistry.getInstance().addRotarySieveRecipe(BlockListener.ironOreGravel, new ItemStack(ItemListener.ironChunks, 5));
+        RotarySieveRecipeRegistry.getInstance().addRotarySieveRecipe(BlockListener.goldOreGravel, new ItemStack(ItemListener.goldChunks, 5));
+        RotarySieveRecipeRegistry.getInstance().addRotarySieveRecipe(BlockListener.mysticalGravel, new ItemStack(ItemListener.mysticalRock, 1));
     }
 }

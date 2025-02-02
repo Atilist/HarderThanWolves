@@ -1,7 +1,6 @@
 package net.atilist.harderthanwolves.block;
 
-import net.atilist.harderthanwolves.events.init.BlockListener;
-import net.atilist.harderthanwolves.events.init.ItemListener;
+import net.atilist.harderthanwolves.recipe.RotarySieveRecipeRegistry;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -29,14 +28,8 @@ public class RotarySieveBlock extends LazyBlockTemplate {
             return;
         }
         int aboveId = world.getBlockId(x, y + 1, z);
-        ItemStack output = null;
-        if (aboveId == BlockListener.ironOreGravel.id) {
-            output = new ItemStack(ItemListener.ironChunks, 5);
-        } else if (aboveId == BlockListener.goldOreGravel.id) {
-            output = new ItemStack(ItemListener.goldChunks, 5);
-        } else if (aboveId == BlockListener.mysticalGravel.id) {
-            output = new ItemStack(ItemListener.mysticalRock, 1);
-        }
+        ItemStack input = new ItemStack(aboveId, 1, 0);
+        ItemStack[] output = RotarySieveRecipeRegistry.getInstance().getResult(input);
         if (output == null) {
             return;
         }
@@ -46,7 +39,7 @@ public class RotarySieveBlock extends LazyBlockTemplate {
         double xOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
         double yOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
         double zOffset = (double)(world.random.nextFloat() * randomizerAmplitude) + (double)(1.0F - randomizerAmplitude) * 0.5;
-        ItemEntity itemEntity = new ItemEntity(world, (double)x + xOffset, (double)y + yOffset, (double)z + zOffset, output);
+        ItemEntity itemEntity = new ItemEntity(world, (double)x + xOffset, (double)y + yOffset, (double)z + zOffset, output[0].copy());
         itemEntity.pickupDelay = 10;
         world.spawnEntity(itemEntity);
     }
