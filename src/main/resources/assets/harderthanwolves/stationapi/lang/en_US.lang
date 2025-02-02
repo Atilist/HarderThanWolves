@@ -1,12 +1,7 @@
 # @ is a shorthand for the current mod id, which is harderthanwolves.
-achievement.@.boned=You've been boned!
-achievement.@.boned.desc=Pick up a bone.
-achievement.@.apple=AppleStuff
-achievement.@.apple.desc=Pick up an apple.
-
-gui.stationapi.achievementPage.@.examplemod=Example
-
 item.@.stone_chisel.name=Stone Chisel
+item.@.iron_chisel.name=Iron Chisel
+item.@.diamond_chisel.name=Diamond Chisel
 
 item.@.stone_brick.name=Stone Brick
 
@@ -81,10 +76,6 @@ tile.@.reinforced_mill_stone.name=Reinforced Mill Stone
 tile.@.reinforced_saw.name=Reinforced Saw
 tile.@.mystical_devourer.name=Mystical Devourer
 tile.@.diamond_drill.name=Diamond Drill
-
-key.@.test=Give Boned Achievement
-key.@.test2=Give Apple Achievement
-key.@.hurtme=Hurt Self
 
 description.harderthanwolves.stone_brick=Dropped when stone is mined with a chisel
 description.harderthanwolves.charged_mystical_rock=Charged by putting a mystical rock into a monster siphon. The monster siphon needs to be above a mob spawner

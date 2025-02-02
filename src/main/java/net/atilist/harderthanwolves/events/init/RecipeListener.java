@@ -122,6 +122,7 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_HOE, 1), "Y##", "YX ", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SHOVEL, 1), "Y#Y", " X ", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.IRON_SWORD, 1), " # ", "Y#Y", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
+        CraftingRegistry.addShapedRecipe(new ItemStack(ItemListener.ironChisel, 1), "Y#Y", " X ", '#', Item.IRON_INGOT, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers);
 
         // Gold Tools
         CraftingRegistry.addShapedRecipe(new ItemStack(Item.GOLDEN_PICKAXE, 1), "###", "YXY", " X ", '#', Item.GOLD_INGOT, 'X', ItemListener.mysticalStick, 'Y', ItemListener.mysticalHempFibers);
@@ -202,6 +203,7 @@ public class RecipeListener {
         addInfusionRecipe(new ItemStack(Item.DIAMOND_HOE, 1), new Object[]{"Y##", "YX ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
         addInfusionRecipe(new ItemStack(Item.DIAMOND_SHOVEL, 1), new Object[]{"Y#Y", " X ", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
         addInfusionRecipe(new ItemStack(Item.DIAMOND_SWORD, 1), new Object[]{" # ", "Y#Y", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
+        addInfusionRecipe(new ItemStack(ItemListener.diamondChisel, 1), new Object[]{"Y#Y", " X ", '#', ItemListener.diamondIngot, 'X', net.kozibrodka.wolves.events.BlockListener.moulding, 'Y', net.kozibrodka.wolves.events.ItemListener.hempFibers});
 
         // Armour
         addInfusionRecipe(new ItemStack(Item.DIAMOND_HELMET, 1), new Object[]{"###", "# #", '#', ItemListener.diamondIngot});

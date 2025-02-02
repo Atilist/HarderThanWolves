@@ -26,7 +26,7 @@ public class BlockOutcomeMixin {
         }
         int itemInHand = playerEntity.getHand().itemId;
         ItemStack result = null;
-        if (this.id == Block.STONE.id && itemInHand == ItemListener.stoneChisel.id) {
+        if (this.id == Block.STONE.id && (itemInHand == ItemListener.stoneChisel.id || itemInHand == ItemListener.ironChisel.id || itemInHand == ItemListener.diamondChisel.id)) {
             result = new ItemStack(ItemListener.stoneBrick, 1 + world.random.nextInt(4));
         } else if (this.id == Block.STONE.id && (itemInHand == Item.GOLDEN_PICKAXE.id || itemInHand == ItemListener.reinforcedGoldenPickaxe.id)) {
             result = new ItemStack(BlockListener.mysticalCobblestone, 1);

@@ -16,6 +16,8 @@ public class TextureListener {
     @EventListener
     public void registerTextures(TextureRegisterEvent event) {
         ItemListener.stoneChisel.setTexture(Identifier.of(NAMESPACE, "item/stoneChisel"));
+        ItemListener.ironChisel.setTexture(Identifier.of(NAMESPACE, "item/ironChisel"));
+        ItemListener.diamondChisel.setTexture(Identifier.of(NAMESPACE, "item/diamondChisel"));
 
         ItemListener.stoneBrick.setTexture(Identifier.of(NAMESPACE, "item/stoneBrick"));
 
@@ -118,5 +120,5 @@ public class TextureListener {
 }
 
 // TODO for release:
-// TODO: Iron and diamond chisels
 // TODO: Annotate all instances of client side interfaces
+// TODO: Add mod icon

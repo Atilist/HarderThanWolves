@@ -1,5 +1,7 @@
 package net.atilist.harderthanwolves.events.init;
 
+import net.atilist.harderthanwolves.block.DiamondChiselItem;
+import net.atilist.harderthanwolves.block.IronChiselItem;
 import net.atilist.harderthanwolves.item.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.ToolMaterial;
@@ -12,6 +14,8 @@ import net.modificationstation.stationapi.api.util.Null;
 public class ItemListener {
 
     public static StoneChiselItem stoneChisel;
+    public static IronChiselItem ironChisel;
+    public static DiamondChiselItem diamondChisel;
 
     public static LazyItemTemplate stoneBrick;
 
@@ -50,6 +54,8 @@ public class ItemListener {
     @EventListener
     public void registerItems(ItemRegistryEvent event) {
         stoneChisel = new StoneChiselItem(Identifier.of(NAMESPACE, "stone_chisel"));
+        ironChisel = new IronChiselItem(Identifier.of(NAMESPACE, "iron_chisel"));
+        diamondChisel = new DiamondChiselItem(Identifier.of(NAMESPACE, "diamond_chisel"));
 
         stoneBrick = new LazyItemTemplate(Identifier.of(NAMESPACE, "stone_brick"));
 
