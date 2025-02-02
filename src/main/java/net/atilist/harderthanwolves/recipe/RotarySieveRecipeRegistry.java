@@ -50,7 +50,6 @@ public class RotarySieveRecipeRegistry {
             } else {
                 byproduct = recipe[2].copy();
             }
-            output.count = 1;
             inputs.add(input);
             outputs.add(output);
             byproducts.add(byproduct);

@@ -118,6 +118,5 @@ public class TextureListener {
 }
 
 // TODO for release:
-// TODO: Add AMI tabs for chisel and gold tools
 // TODO: Iron and diamond chisels
 // TODO: Annotate all instances of client side interfaces

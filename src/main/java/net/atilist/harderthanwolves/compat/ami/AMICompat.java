@@ -16,9 +16,12 @@ import net.atilist.harderthanwolves.compat.ami.reinforcedsaw.ReinforcedSawRecipe
 import net.atilist.harderthanwolves.compat.ami.reinforcedsaw.ReinforcedSawRecipeHandler;
 import net.atilist.harderthanwolves.compat.ami.rotarysieve.RotarySieveRecipeCategory;
 import net.atilist.harderthanwolves.compat.ami.rotarysieve.RotarySieveRecipeHandler;
+import net.atilist.harderthanwolves.events.init.BlockListener;
+import net.atilist.harderthanwolves.events.init.ItemListener;
 import net.atilist.harderthanwolves.recipe.*;
 import net.glasslauncher.mods.alwaysmoreitems.api.*;
 import net.kozibrodka.wolves.events.ConfigListener;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.modificationstation.stationapi.api.util.Identifier;
 
@@ -46,6 +49,14 @@ public class AMICompat implements ModPluginProvider {
 
     @Override
     public void register(ModRegistry registry) {
+        registry.addDescription(new ItemStack(ItemListener.stoneBrick), "description.harderthanwolves.stone_brick");
+        registry.addDescription(new ItemStack(ItemListener.chargedMysticalRock), "description.harderthanwolves.charged_mystical_rock");
+        registry.addDescription(new ItemStack(BlockListener.mysticalGravel), "description.harderthanwolves.mystical_gravel");
+        registry.addDescription(new ItemStack(BlockListener.mysticalCobblestone), "description.harderthanwolves.mystical_cobblestone");
+        registry.addDescription(new ItemStack(ItemListener.mysticalStick), "description.harderthanwolves.mystical_stick");
+        registry.addDescription(new ItemStack(ItemListener.mysticalHemp), "description.harderthanwolves.mystical_hemp");
+        registry.addDescription(new ItemStack(ItemListener.monsterCloth), "description.harderthanwolves.monster_cloth");
+
         registry.addRecipeCategories(new InfusionShapedRecipeCategory());
         registry.addRecipeHandlers(new InfusionShapedRecipeHandler());
         registry.addRecipes(MysticalInfuserCraftingManager.getInstance().getShapedRecipes());

@@ -85,3 +85,11 @@ tile.@.diamond_drill.name=Diamond Drill
 key.@.test=Give Boned Achievement
 key.@.test2=Give Apple Achievement
 key.@.hurtme=Hurt Self
+
+description.harderthanwolves.stone_brick=Dropped when stone is mined with a chisel
+description.harderthanwolves.charged_mystical_rock=Charged by putting a mystical rock into a monster siphon. The monster siphon needs to be above a mob spawner
+description.harderthanwolves.mystical_gravel=Dropped when gravel is mined with a golden shovel
+description.harderthanwolves.mystical_cobblestone=Dropped when cobblestone is mined with a golden pickaxe
+description.harderthanwolves.mystical_stick=Dropped when wooden planks are chopped with a golden axe
+description.harderthanwolves.mystical_hemp=Dropped when a hemp crop is harvested with a golden hoe
+description.harderthanwolves.monster_cloth=Sometimes dropped when a monster is hit by a golden sword
