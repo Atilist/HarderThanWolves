@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class BlockOutcomeMixin {
     @Shadow @Final public int id;
 
-    @Inject(at = @At("HEAD"), method = "afterBreak", remap = false, cancellable = true)
+    @Inject(at = @At("HEAD"), method = "afterBreak", cancellable = true)
     private void addCustomOutcome(World world, PlayerEntity playerEntity, int x, int y, int z, int meta, CallbackInfo ci) {
         if (playerEntity.getHand() == null) {
             return;

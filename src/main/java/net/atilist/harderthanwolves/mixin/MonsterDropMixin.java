@@ -21,7 +21,7 @@ public abstract class MonsterDropMixin extends MobEntity {
         super(world);
     }
 
-    @Inject(at = @At("HEAD"), method = "damage", remap = false)
+    @Inject(at = @At("HEAD"), method = "damage")
     private void dropMonsterCloth(Entity damageSource, int amount, CallbackInfoReturnable<Boolean> cir) {
         if (!(damageSource instanceof PlayerEntity)) {
             return;
