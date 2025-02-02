@@ -1,4 +1,4 @@
-package net.atilist.harderthanwolves.block;
+package net.atilist.harderthanwolves.item;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.LivingEntity;
@@ -7,12 +7,12 @@ import net.minecraft.item.ToolMaterial;
 import net.modificationstation.stationapi.api.template.item.TemplatePickaxeItem;
 import net.modificationstation.stationapi.api.util.Identifier;
 
-public class IronChiselItem extends TemplatePickaxeItem {
-    public IronChiselItem(Identifier identifier) {
-        super(identifier, ToolMaterial.IRON);
+public class DiamondChiselItem extends TemplatePickaxeItem {
+    public DiamondChiselItem(Identifier identifier) {
+        super(identifier, ToolMaterial.DIAMOND);
         this.setTranslationKey(identifier.namespace, identifier.path);
         this.setMaxCount(1);
-        this.setMaxDamage(64);
+        this.setMaxDamage(256);
     }
 
     public boolean postMine(ItemStack stack, int blockId, int x, int y, int z, LivingEntity miner) {

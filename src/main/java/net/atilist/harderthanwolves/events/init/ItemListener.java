@@ -1,7 +1,7 @@
 package net.atilist.harderthanwolves.events.init;
 
-import net.atilist.harderthanwolves.block.DiamondChiselItem;
-import net.atilist.harderthanwolves.block.IronChiselItem;
+import net.atilist.harderthanwolves.item.DiamondChiselItem;
+import net.atilist.harderthanwolves.item.IronChiselItem;
 import net.atilist.harderthanwolves.item.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.ToolMaterial;
