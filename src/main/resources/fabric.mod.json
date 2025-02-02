@@ -4,13 +4,13 @@
   "version": "${version}",
 
   "name": "Harder Than Wolves",
-  "description": "Adds multiple changes to the game to make it more difficult",
+  "description": "Expands the Vanilla progression before the Nether portal to make it more difficult. The early game is far longer and many new machines need to be built in order to progress",
   "authors": [
     "Atilist"
   ],
   "contact": {
     "homepage": "https://glass-launcher.net/",
-    "sources": "https://github.com/calmilamsy/stationapi-example-mod"
+    "sources": "https://github.com/Atilist/HarderThanWolves"
   },
 
   "license": "CC0-1.0",

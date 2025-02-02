@@ -118,7 +118,3 @@ public class TextureListener {
             mysticalDevourerBottom,
             mysticalDevourerFront;
 }
-
-// TODO for release:
-// TODO: Annotate all instances of client side interfaces
-// TODO: Add mod icon
