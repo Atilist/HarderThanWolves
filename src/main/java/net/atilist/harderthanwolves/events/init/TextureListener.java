@@ -100,8 +100,6 @@ public class TextureListener {
         mysticalDevourerSide = getBlockTexture("block/mysticalDevourerSide");
         mysticalDevourerBottom = getBlockTexture("block/mysticalDevourerBottom");
         mysticalDevourerFront = getBlockTexture("block/mysticalDevourerFront");
-
-        //BlockListener.diamondDrill.asItem().setTextureId(getBlockTexture("block/diamondDrillIcon"));
     }
 
     public int getBlockTexture(String path) {
