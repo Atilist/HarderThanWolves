@@ -8,7 +8,6 @@ import net.modificationstation.stationapi.api.event.registry.BlockRegistryEvent;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
-import net.modificationstation.stationapi.api.util.Null;
 
 public class BlockListener {
     public static LazyBlockTemplate firePile;
@@ -56,7 +55,7 @@ public class BlockListener {
     public static DiamondDrillBlock diamondDrill;
 
     @Entrypoint.Namespace
-    public static final Namespace NAMESPACE = Null.get();
+    public static Namespace NAMESPACE;
 
     @EventListener
     public void registerBlocks(BlockRegistryEvent event) {

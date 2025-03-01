@@ -7,15 +7,14 @@ import net.modificationstation.stationapi.api.event.block.entity.BlockEntityRegi
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
-import net.modificationstation.stationapi.api.util.Null;
 
 public class BlockEntityListener {
 
     @Entrypoint.Namespace
-    public static final Namespace NAMESPACE = Null.get();
+    public static Namespace NAMESPACE;
 
     @EventListener
-    private static void registerBlockEntities(BlockEntityRegisterEvent event) {
+    public static void registerBlockEntities(BlockEntityRegisterEvent event) {
         event.register(MysticalInfuserBlockEntity.class, String.valueOf(Identifier.of(NAMESPACE, "MysticalInfuserBlock")));
         event.register(ReinforcedMillStoneBlockEntity.class, String.valueOf(Identifier.of(NAMESPACE, "ReinforcedMillStone")));
     }
