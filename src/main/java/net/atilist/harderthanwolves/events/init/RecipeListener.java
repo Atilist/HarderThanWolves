@@ -143,6 +143,8 @@ public class RecipeListener {
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.emptyMonsterSiphon, 1), "XXX", "###", "XYX", 'X', BlockListener.mysticalCobblestone, 'Y', Item.GOLD_INGOT, '#', ItemListener.monsterCloth);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.mysticalInfuser, 1), "XXX", "YZY", "###", 'X', ItemListener.lapisIngot, 'Y', BlockListener.mysticalCobblestone, 'Z', Block.CRAFTING_TABLE, '#', BlockListener.stoneBricks);
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.smoothObsidian, 2), " X ", "XYX", " X ", 'X', ItemListener.obsidianPlate, 'Y', ItemListener.obsidianDust);
+        CraftingRegistry.addShapedRecipe(new ItemStack(net.kozibrodka.wolves.events.BlockListener.blockDispenser), "###", "# #", "YXY", '#', Block.MOSSY_COBBLESTONE, 'X', Item.REDSTONE, 'Y', ItemListener.stoneBrick);
+        CraftingRegistry.addShapedRecipe(new ItemStack(net.kozibrodka.wolves.events.BlockListener.detectorBlock), "X#X", "###", "ZYZ", '#', Block.COBBLESTONE, 'X', new ItemStack(ItemListener.lapisIngot), 'Y', Item.REDSTONE, 'Z', ItemListener.stoneBrick);
     }
 
     private static void addCrucibleRecipes() {
@@ -156,6 +158,9 @@ public class RecipeListener {
         addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 2), new ItemStack[]{new ItemStack(Item.DIAMOND_SWORD, 1, -1)});
         addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 2), new ItemStack[]{new ItemStack(Item.DIAMOND_HOE, 1, -1)});
         addCrucibleRecipe(new ItemStack(ItemListener.diamondIngot, 1), new ItemStack[]{new ItemStack(Item.DIAMOND_SHOVEL, 1, -1)});
+
+        // Soulforged Steel
+        addCrucibleRecipe(new ItemStack(net.kozibrodka.wolves.events.ItemListener.steel, 4), new ItemStack[]{new ItemStack(Item.IRON_INGOT, 3), new ItemStack(net.kozibrodka.wolves.events.ItemListener.concentratedHellfire), new ItemStack(net.kozibrodka.wolves.events.ItemListener.coalDust), new ItemStack(ItemListener.obsidianDust)});
     }
 
     private static void addMetalForgeRecipes() {
@@ -223,11 +228,18 @@ public class RecipeListener {
         addInfusionRecipe(new ItemStack(BlockListener.reinforcedMillStone, 1), new Object[]{"YYY", "#Z#", "#X#", 'X', ItemListener.diamondGear, 'Y', ItemListener.obsidianPlate, 'Z', net.kozibrodka.wolves.events.BlockListener.millStone, '#', ItemListener.stoneBrick});
         addInfusionRecipe(new ItemStack(BlockListener.mysticalDevourer, 1), new Object[]{"STU", "VXW", "YZY", 'S', ItemListener.reinforcedGoldenShovel, 'T', ItemListener.reinforcedGoldenSword, 'U', ItemListener.reinforcedGoldenHoe, 'V', ItemListener.reinforcedGoldenAxe, 'W', ItemListener.reinforcedGoldenPickaxe, 'X', net.kozibrodka.wolves.events.BlockListener.blockDispenser, 'Y', Item.GOLD_INGOT, 'Z', ItemListener.diamondGear});
         addInfusionRecipe(new ItemStack(BlockListener.diamondDrill, 1), new Object[]{" Y ", "YXY", "#Z#", '#', ItemListener.obsidianPlate, 'X', Item.IRON_INGOT, 'Y', ItemListener.diamondIngot, 'Z', ItemListener.diamondGear});
+
+        // Nether age machines and components
+        addShapelessInfusionRecipe(new ItemStack(net.kozibrodka.wolves.events.ItemListener.soulFilter, 1), new Object[] {
+                net.kozibrodka.wolves.events.ItemListener.hempCloth, net.kozibrodka.wolves.events.ItemListener.hempCloth, Block.SOUL_SAND, ItemListener.mysticalHempFibers
+        });
+        addInfusionRecipe(new ItemStack(net.kozibrodka.wolves.events.BlockListener.hibachi, 1), new Object[]{"X+X", "YZY", "Y#Y", 'X', net.kozibrodka.wolves.events.ItemListener.concentratedHellfire, 'Y', ItemListener.stoneBrick, 'Z', Item.GLOWSTONE_DUST, '#', Item.REDSTONE, '+', ItemListener.obsidianPlate});
     }
 
     private static void addReinforcedMillStoneRecipes() {
         ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianDust, 1));
         ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(ItemListener.obsidianChunk.id, new ItemStack(ItemListener.obsidianDust, 1));
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.NETHERRACK.id, new ItemStack(net.kozibrodka.wolves.events.ItemListener.groundNetherrack, 1));
     }
 
     private static void addReinforcedSawRecipes() {

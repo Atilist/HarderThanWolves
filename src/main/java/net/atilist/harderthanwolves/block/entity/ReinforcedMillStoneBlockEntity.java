@@ -1,6 +1,8 @@
 package net.atilist.harderthanwolves.block.entity;
 
 import net.atilist.harderthanwolves.recipe.ReinforcedMillStoneRecipeRegistry;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.loader.FabricLoader;
 import net.kozibrodka.wolves.block.CompanionCubeBlock;
 import net.kozibrodka.wolves.block.MillStoneBlock;
 import net.kozibrodka.wolves.events.BlockListener;
@@ -8,6 +10,7 @@ import net.kozibrodka.wolves.events.ItemListener;
 import net.kozibrodka.wolves.utils.BlockPosition;
 import net.kozibrodka.wolves.utils.InventoryHandler;
 import net.kozibrodka.wolves.utils.UnsortedUtils;
+import net.minecraft.block.Block;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
@@ -186,6 +189,8 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
                 world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, "mob.wolf.whine", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
             }
             removeStack(iUnmilledItemIndex, 1);
+        } else if(iUnmilledItemID == Block.NETHERRACK.id && world.random.nextInt(10) == 0) { // Random scream when there is netherrack
+            world.playSound((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "mob.ghast.scream", 0.25F, world.random.nextFloat() * 0.4F + 0.8F);
         }
 
     }
