@@ -51,6 +51,11 @@ repositories {
 		name = 'Jitpack'
 		url = 'https://jitpack.io'
 	}
+	// NyaRepo
+	maven {
+		name = "nyarepo"
+		url = "https://maven.fildand.cz/releases"
+	}
 	// Modrinth Maven
 	exclusiveContent {
 		forRepository {
@@ -81,6 +86,11 @@ dependencies {
 
 	// Required content mods
 	modImplementation("com.github.kozibrodka:BetterThanWolves:${project.better_than_wolves_version}") {
+		transitive false
+	}
+
+	// Optional content mods
+	modImplementation("net.danygames2014:Tropicraft:${project.tropicraft_version}") {
 		transitive false
 	}
 
