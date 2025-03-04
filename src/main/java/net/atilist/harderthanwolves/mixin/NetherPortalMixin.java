@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(NetherPortalBlock.class)
 public class NetherPortalMixin {
-    @Inject(at = @At("HEAD"), method = "method_736", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "create", cancellable = true)
     private void addIgnitionCondition(World world, int x, int y, int z, CallbackInfoReturnable<Boolean> cir) {
         if (world.dimension instanceof NetherDimension) {
             return;

@@ -233,8 +233,8 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
         if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
             this.renderPacket(world, targetPos.i, targetPos.j, targetPos.k, targetId, iTargetMetaData);
         } else {
-            ((Minecraft)Minecraft.class.cast(net.fabricmc.loader.api.FabricLoader.getInstance().getGameInstance())).field_2808.method_322(targetPos.i, targetPos.j, targetPos.k, targetId, iTargetMetaData);
-            world.playSound((double)((float)targetPos.i + 0.5F), (double)((float)targetPos.j + 0.5F), (double)((float)targetPos.k + 0.5F), targetBlock.soundGroup.getSound(), (targetBlock.soundGroup.method_1976() + 1.0F) / 2.0F, targetBlock.soundGroup.method_1977() * 0.8F);
+            ((Minecraft)Minecraft.class.cast(net.fabricmc.loader.api.FabricLoader.getInstance().getGameInstance())).particleManager.addBlockBreakParticles(targetPos.i, targetPos.j, targetPos.k, targetId, iTargetMetaData);
+            world.playSound((double)((float)targetPos.i + 0.5F), (double)((float)targetPos.j + 0.5F), (double)((float)targetPos.k + 0.5F), targetBlock.soundGroup.getSound(), (targetBlock.soundGroup.getVolume() + 1.0F) / 2.0F, targetBlock.soundGroup.getPitch() * 0.8F);
         }
         world.setBlock(targetPos.i, targetPos.j, targetPos.k, 0);
     }
@@ -415,9 +415,9 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
                                 InventoryHandler.addSingleItemToInventory(tileEntityBlockDispenser, iteminstance.itemId, 0);
                             } else {
                                 newBlock = Block.WHEAT;
-                                world.playSound((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), newBlock.soundGroup.getSound(), (newBlock.soundGroup.method_1976() + 1.0F) / 2.0F, newBlock.soundGroup.method_1977() * 0.8F);
+                                world.playSound((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), newBlock.soundGroup.getSound(), (newBlock.soundGroup.getVolume() + 1.0F) / 2.0F, newBlock.soundGroup.getPitch() * 0.8F);
                                 if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                                    this.voicePacket(world, newBlock.soundGroup.getSound(), i, j, k, (newBlock.soundGroup.method_1976() + 1.0F) / 2.0F, newBlock.soundGroup.method_1977() * 0.8F);
+                                    this.voicePacket(world, newBlock.soundGroup.getSound(), i, j, k, (newBlock.soundGroup.getVolume() + 1.0F) / 2.0F, newBlock.soundGroup.getPitch() * 0.8F);
                                 }
 
                                 bSuccessfullyDispensed = true;
@@ -449,9 +449,9 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
                                         world.setBlock(targetPos.i, targetPos.j, targetPos.k, iNewid, iFacing);
                                     }
 
-                                    world.playSound((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), newBlock.soundGroup.getSound(), (newBlock.soundGroup.method_1976() + 1.0F) / 2.0F, newBlock.soundGroup.method_1977() * 0.8F);
+                                    world.playSound((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), newBlock.soundGroup.getSound(), (newBlock.soundGroup.getVolume() + 1.0F) / 2.0F, newBlock.soundGroup.getPitch() * 0.8F);
                                     if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-                                        this.voicePacket(world, newBlock.soundGroup.getSound(), i, j, k, (newBlock.soundGroup.method_1976() + 1.0F) / 2.0F, newBlock.soundGroup.method_1977() * 0.8F);
+                                        this.voicePacket(world, newBlock.soundGroup.getSound(), i, j, k, (newBlock.soundGroup.getVolume() + 1.0F) / 2.0F, newBlock.soundGroup.getPitch() * 0.8F);
                                     }
 
                                     bSuccessfullyDispensed = true;
