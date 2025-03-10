@@ -46,6 +46,7 @@ item.@.caged_iguana.name=Caged Iguana
 item.@.caged_pig.name=Caged Pig
 item.@.caged_cow.name=Caged Cow
 item.@.caged_chicken.name=Caged Chicken
+item.@.caged_sheep.name=Caged Sheep
 
 tile.@.fire_pile.name=Fire Pile
 tile.@.lit_fire_pile.name=Lit Fire Pile

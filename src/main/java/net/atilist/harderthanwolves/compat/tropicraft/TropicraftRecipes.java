@@ -17,6 +17,7 @@ public class TropicraftRecipes {
         Identifier type = event.recipeId;
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPED.type()) {
             addBlockRecipes();
+            addComponentRecipes();
             //addInfusionRecipes();
         }
         if (type == RecipeRegisterEvent.Vanilla.CRAFTING_SHAPELESS.type()) {
@@ -35,6 +36,10 @@ public class TropicraftRecipes {
 
     private static void addBlockRecipes() {
         CraftingRegistry.addShapedRecipe(new ItemStack(BlockListener.tropifuelMixturePile, 1), "##", "##", '#', ItemListener.tropifuelMixture);
+    }
+
+    private static void addComponentRecipes() {
+        CraftingRegistry.addShapedRecipe(new ItemStack(ItemListener.animalCage, 1), "XYX", "YZY", "XYX", 'X', net.kozibrodka.wolves.events.ItemListener.hempFibers, 'Y', Tropicraft.bambooStickItem, 'Z', ItemListener.lapisIngot);
     }
 
     private static void addShapelessItemRecipes() {

@@ -65,6 +65,7 @@ public class TextureListener {
             ItemListener.cagedPig.setTexture(Identifier.of(NAMESPACE, "item/cagedPig"));
             ItemListener.cagedCow.setTexture(Identifier.of(NAMESPACE, "item/cagedCow"));
             ItemListener.cagedChicken.setTexture(Identifier.of(NAMESPACE, "item/cagedChicken"));
+            ItemListener.cagedSheep.setTexture(Identifier.of(NAMESPACE, "item/cagedSheep"));
 
             BlockListener.tropifuelMixturePile.specifyTextures(getBlockTexture("block/tropifuelMixturePile"));
         }

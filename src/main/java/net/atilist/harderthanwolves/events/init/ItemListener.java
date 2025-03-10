@@ -62,6 +62,7 @@ public class ItemListener {
     public static FilledCageItem cagedPig;
     public static FilledCageItem cagedCow;
     public static FilledCageItem cagedChicken;
+    public static FilledCageItem cagedSheep;
 
     @Entrypoint.Namespace
     public static Namespace NAMESPACE;
@@ -116,6 +117,7 @@ public class ItemListener {
             cagedPig = new FilledCageItem(Identifier.of(NAMESPACE, "caged_pig"));
             cagedCow = new FilledCageItem(Identifier.of(NAMESPACE, "caged_cow"));
             cagedChicken = new FilledCageItem(Identifier.of(NAMESPACE, "caged_chicken"));
+            cagedSheep = new FilledCageItem(Identifier.of(NAMESPACE, "caged_sheep"));
         }
     }
 }
