@@ -58,6 +58,15 @@ public class TextureListener {
             ItemListener.tropifuel.setTexture(Identifier.of(NAMESPACE, "item/tropifuel"));
             ItemListener.frogiumComposite.setTexture(Identifier.of(NAMESPACE, "item/frogiumComposite"));
             ItemListener.tropisteelIngot.setTexture(Identifier.of(NAMESPACE, "item/tropisteelIngot"));
+
+            ItemListener.animalCage.setTexture(Identifier.of(NAMESPACE, "item/animalCage"));
+            ItemListener.cagedFrog.setTexture(Identifier.of(NAMESPACE, "item/cagedFrog"));
+            ItemListener.cagedIguana.setTexture(Identifier.of(NAMESPACE, "item/cagedIguana"));
+            ItemListener.cagedPig.setTexture(Identifier.of(NAMESPACE, "item/cagedPig"));
+            ItemListener.cagedCow.setTexture(Identifier.of(NAMESPACE, "item/cagedCow"));
+            ItemListener.cagedChicken.setTexture(Identifier.of(NAMESPACE, "item/cagedChicken"));
+
+            BlockListener.tropifuelMixturePile.specifyTextures(getBlockTexture("block/tropifuelMixturePile"));
         }
 
         BlockListener.firePile.specifyTextures(getBlockTexture("block/firePile"));

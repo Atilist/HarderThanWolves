@@ -1,6 +1,7 @@
 package net.atilist.harderthanwolves.events.init;
 
 import net.atilist.harderthanwolves.block.*;
+import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -10,6 +11,9 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
 
 public class BlockListener {
+
+    static boolean isTropicraftPresent = FabricLoader.getInstance().isModLoaded("tropicraft");
+
     public static LazyBlockTemplate firePile;
     public static LazyBlockTemplate litFirePile;
     public static LazyBlockTemplate depletedFirePile;
@@ -53,6 +57,8 @@ public class BlockListener {
     public static ReinforcedSawBlock reinforcedSaw;
     public static MysticalDevourerBlock mysticalDevourer;
     public static DiamondDrillBlock diamondDrill;
+
+    public static LazyFallingBlockTemplate tropifuelMixturePile;
 
     @Entrypoint.Namespace
     public static Namespace NAMESPACE;
@@ -102,5 +108,9 @@ public class BlockListener {
         reinforcedSaw = new ReinforcedSawBlock(Identifier.of(NAMESPACE, "reinforced_saw"), Material.STONE, 4.5F, Block.STONE_SOUND_GROUP);
         diamondDrill = new DiamondDrillBlock(Identifier.of(NAMESPACE, "diamond_drill"), Material.METAL, 4.5F, Block.STONE_SOUND_GROUP);
         mysticalDevourer = new MysticalDevourerBlock(Identifier.of(NAMESPACE, "mystical_devourer"), Material.STONE, 1.5F, Block.STONE_SOUND_GROUP);
+
+        if (isTropicraftPresent) {
+            tropifuelMixturePile = new LazyFallingBlockTemplate(Identifier.of(NAMESPACE, "tropifuel_mixture_pile"), 1.0F, Block.SAND_SOUND_GROUP);
+        }
     }
 }

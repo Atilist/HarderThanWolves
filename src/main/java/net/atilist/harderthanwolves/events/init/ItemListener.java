@@ -56,6 +56,13 @@ public class ItemListener {
     public static LazyItemTemplate frogiumComposite;
     public static LazyItemTemplate tropisteelIngot;
 
+    public static AnimalCageItem animalCage;
+    public static FilledCageItem cagedFrog;
+    public static FilledCageItem cagedIguana;
+    public static FilledCageItem cagedPig;
+    public static FilledCageItem cagedCow;
+    public static FilledCageItem cagedChicken;
+
     @Entrypoint.Namespace
     public static Namespace NAMESPACE;
 
@@ -102,6 +109,13 @@ public class ItemListener {
             tropifuel = new LazyItemTemplate(Identifier.of(NAMESPACE, "tropifuel"));
             frogiumComposite = new LazyItemTemplate(Identifier.of(NAMESPACE, "frogium_composite"));
             tropisteelIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "tropisteel_ingot"));
+
+            animalCage = new AnimalCageItem(Identifier.of(NAMESPACE, "animal_cage"));
+            cagedFrog = new FilledCageItem(Identifier.of(NAMESPACE, "caged_frog"));
+            cagedIguana = new FilledCageItem(Identifier.of(NAMESPACE, "caged_iguana"));
+            cagedPig = new FilledCageItem(Identifier.of(NAMESPACE, "caged_pig"));
+            cagedCow = new FilledCageItem(Identifier.of(NAMESPACE, "caged_cow"));
+            cagedChicken = new FilledCageItem(Identifier.of(NAMESPACE, "caged_chicken"));
         }
     }
 }

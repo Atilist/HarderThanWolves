@@ -40,6 +40,13 @@ item.@.tropifuel.name=Tropifuel
 item.@.frogium_composite.name=Frogium Composite
 item.@.tropisteel_ingot.name=Tropisteel Ingot
 
+item.@.animal_cage.name=Animal Cage
+item.@.caged_frog.name=Caged Frog
+item.@.caged_iguana.name=Caged Iguana
+item.@.caged_pig.name=Caged Pig
+item.@.caged_cow.name=Caged Cow
+item.@.caged_chicken.name=Caged Chicken
+
 tile.@.fire_pile.name=Fire Pile
 tile.@.lit_fire_pile.name=Lit Fire Pile
 tile.@.depleted_fire_pile.name=Depleted Fire Pile
@@ -82,6 +89,8 @@ tile.@.reinforced_mill_stone.name=Reinforced Mill Stone
 tile.@.reinforced_saw.name=Reinforced Saw
 tile.@.mystical_devourer.name=Mystical Devourer
 tile.@.diamond_drill.name=Diamond Drill
+
+tile.@.tropifuel_mixture_pile.name=Tropifuel Mixture Pile
 
 description.harderthanwolves.stone_brick=Dropped when stone is mined with a chisel
 description.harderthanwolves.charged_mystical_rock=Charged by putting a mystical rock into a monster siphon. The monster siphon needs to be above a mob spawner
