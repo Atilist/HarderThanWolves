@@ -1,7 +1,9 @@
 package net.atilist.harderthanwolves.events.init;
 
+import net.atilist.harderthanwolves.compat.tropicraft.TropicraftRecipes;
 import net.atilist.harderthanwolves.recipe.*;
 import net.atilist.harderthanwolves.utils.RecipeRemover;
+import net.fabricmc.loader.api.FabricLoader;
 import net.kozibrodka.wolves.recipe.*;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.block.Block;
@@ -12,6 +14,8 @@ import net.modificationstation.stationapi.api.recipe.CraftingRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 public class RecipeListener {
+
+    static boolean isTropicraftPresent = FabricLoader.getInstance().isModLoaded("tropicraft");
 
     @EventListener
     public void registerRecipes(RecipeRegisterEvent event) {
@@ -44,6 +48,9 @@ public class RecipeListener {
             addCauldronRecipes();
             addTurntableRecipes();
             addRotarySieveRecipes();
+        }
+        if (isTropicraftPresent) {
+            TropicraftRecipes.addAllTropicraftRecipes(event);
         }
     }
 
