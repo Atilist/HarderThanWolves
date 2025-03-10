@@ -3,6 +3,7 @@ package net.atilist.harderthanwolves.events.init;
 import net.atilist.harderthanwolves.item.DiamondChiselItem;
 import net.atilist.harderthanwolves.item.IronChiselItem;
 import net.atilist.harderthanwolves.item.*;
+import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.ToolMaterial;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
@@ -11,6 +12,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
 
 public class ItemListener {
+
+    static boolean isTropicraftPresent = FabricLoader.getInstance().isModLoaded("tropicraft");
 
     public static StoneChiselItem stoneChisel;
     public static IronChiselItem ironChisel;
@@ -46,6 +49,12 @@ public class ItemListener {
     public static LazyItemTemplate obsidianDust;
     public static LazyItemTemplate obsidianChunk;
     public static LazyItemTemplate obsidianPlate;
+
+    public static LazyItemTemplate seashellDust;
+    public static LazyItemTemplate tropifuelMixture;
+    public static LazyItemTemplate tropifuel;
+    public static LazyItemTemplate frogiumComposite;
+    public static LazyItemTemplate tropisteelIngot;
 
     @Entrypoint.Namespace
     public static Namespace NAMESPACE;
@@ -86,5 +95,13 @@ public class ItemListener {
         obsidianDust = new LazyItemTemplate(Identifier.of(NAMESPACE, "obsidian_dust"));
         obsidianChunk = new LazyItemTemplate(Identifier.of(NAMESPACE, "obsidian_chunk"));
         obsidianPlate = new LazyItemTemplate(Identifier.of(NAMESPACE, "obsidian_plate"));
+
+        if (isTropicraftPresent) {
+            seashellDust = new LazyItemTemplate(Identifier.of(NAMESPACE, "seashell_dust"));
+            tropifuelMixture = new LazyItemTemplate(Identifier.of(NAMESPACE, "tropifuel_mixture"));
+            tropifuel = new LazyItemTemplate(Identifier.of(NAMESPACE, "tropifuel"));
+            frogiumComposite = new LazyItemTemplate(Identifier.of(NAMESPACE, "frogium_composite"));
+            tropisteelIngot = new LazyItemTemplate(Identifier.of(NAMESPACE, "tropisteel_ingot"));
+        }
     }
 }

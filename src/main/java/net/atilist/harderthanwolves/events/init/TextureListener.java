@@ -1,5 +1,6 @@
 package net.atilist.harderthanwolves.events.init;
 
+import net.fabricmc.loader.api.FabricLoader;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.modificationstation.stationapi.api.client.event.texture.TextureRegisterEvent;
 import net.modificationstation.stationapi.api.client.texture.atlas.Atlases;
@@ -8,6 +9,8 @@ import net.modificationstation.stationapi.api.util.Identifier;
 import net.modificationstation.stationapi.api.util.Namespace;
 
 public class TextureListener {
+
+    static boolean isTropicraftPresent = FabricLoader.getInstance().isModLoaded("tropicraft");
 
     @Entrypoint.Namespace
     public static Namespace NAMESPACE;
@@ -48,6 +51,14 @@ public class TextureListener {
         ItemListener.obsidianDust.setTexture(Identifier.of(NAMESPACE, "item/obsidianDust"));
         ItemListener.obsidianChunk.setTexture(Identifier.of(NAMESPACE, "item/obsidianChunk"));
         ItemListener.obsidianPlate.setTexture(Identifier.of(NAMESPACE, "item/obsidianPlate"));
+
+        if (isTropicraftPresent) {
+            ItemListener.seashellDust.setTexture(Identifier.of(NAMESPACE, "item/seashellDust"));
+            ItemListener.tropifuelMixture.setTexture(Identifier.of(NAMESPACE, "item/tropifuelMixture"));
+            ItemListener.tropifuel.setTexture(Identifier.of(NAMESPACE, "item/tropifuel"));
+            ItemListener.frogiumComposite.setTexture(Identifier.of(NAMESPACE, "item/frogiumComposite"));
+            ItemListener.tropisteelIngot.setTexture(Identifier.of(NAMESPACE, "item/tropisteelIngot"));
+        }
 
         BlockListener.firePile.specifyTextures(getBlockTexture("block/firePile"));
         BlockListener.litFirePile.specifyTextures(getBlockTexture("block/litFirePile"));
