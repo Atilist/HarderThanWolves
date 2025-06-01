@@ -249,11 +249,11 @@ public class RecipeListener {
     }
 
     private static void addMysticalDevourerRecipes() {
-        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(Block.COBBLESTONE.id, new ItemStack(BlockListener.mysticalCobblestone, 1));
-        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(Block.GRAVEL.id, new ItemStack(BlockListener.mysticalGravel, 1));
-        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(Block.PLANKS.id, new ItemStack(ItemListener.mysticalStick, 2));
-        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(net.kozibrodka.wolves.events.BlockListener.hempCrop.id, new ItemStack(ItemListener.mysticalHemp, 1));
-        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockListener.smoothObsidian.id, new ItemStack(BlockListener.engravedObsidian, 1));
+        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockRegistry.INSTANCE.getId(Block.COBBLESTONE), new ItemStack(BlockListener.mysticalCobblestone, 1));
+        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockRegistry.INSTANCE.getId(Block.GRAVEL), new ItemStack(BlockListener.mysticalGravel, 1));
+        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockRegistry.INSTANCE.getId(Block.PLANKS), new ItemStack(ItemListener.mysticalStick, 2));
+        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(net.kozibrodka.wolves.events.BlockListener.MOD_ID.id("hempCrop"), new ItemStack(ItemListener.mysticalHemp, 1));
+        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockListener.NAMESPACE.id("smooth_obsidian"), new ItemStack(BlockListener.engravedObsidian, 1));
     }
 
     private static void addDiamondDrillRecipes() {
