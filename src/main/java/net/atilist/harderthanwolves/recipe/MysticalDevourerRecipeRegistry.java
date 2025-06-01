@@ -1,6 +1,5 @@
 package net.atilist.harderthanwolves.recipe;
 
-import net.kozibrodka.wolves.recipe.SawRecipe;
 import net.minecraft.item.ItemStack;
 import net.modificationstation.stationapi.api.registry.ItemRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;

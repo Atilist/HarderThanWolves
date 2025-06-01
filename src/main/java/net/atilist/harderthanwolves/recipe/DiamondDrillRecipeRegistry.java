@@ -1,7 +1,8 @@
 package net.atilist.harderthanwolves.recipe;
 
-import net.kozibrodka.wolves.recipe.SawRecipe;
 import net.minecraft.item.ItemStack;
+import net.modificationstation.stationapi.api.registry.ItemRegistry;
+import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,8 +18,8 @@ public class DiamondDrillRecipeRegistry {
         return INSTANCE;
     }
 
-    public void addDrillingRecipe(int input, ItemStack output) {
-        this.recipes.add(new ItemStack[]{new ItemStack(input, 1, 0), output});
+    public void addDrillingRecipe(Identifier input, ItemStack output) {
+        this.recipes.add(new ItemStack[]{new ItemStack(ItemRegistry.INSTANCE.get(input), 1, 0), output});
     }
 
     public void addDrillingRecipe(ItemStack input, ItemStack output) {
@@ -53,7 +54,7 @@ public class DiamondDrillRecipeRegistry {
         }
 
         for(int i = 0; i < inputs.size() && i < outputs.size(); ++i) {
-            convertedRecipes.add(new DiamondDrillRecipe((ItemStack)inputs.get(i), (ItemStack)outputs.get(i)));
+            convertedRecipes.add(new DiamondDrillRecipe(inputs.get(i), outputs.get(i)));
         }
 
         return convertedRecipes;

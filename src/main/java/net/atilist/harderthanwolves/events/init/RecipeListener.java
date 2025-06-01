@@ -257,7 +257,7 @@ public class RecipeListener {
     }
 
     private static void addDiamondDrillRecipes() {
-        DiamondDrillRecipeRegistry.getInstance().addDrillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianChunk, 4));
+        DiamondDrillRecipeRegistry.getInstance().addDrillingRecipe(BlockRegistry.INSTANCE.getId(Block.OBSIDIAN), new ItemStack(ItemListener.obsidianChunk, 4));
     }
 
     private static void addCrucibleRecipe(ItemStack output, ItemStack[] inputs) {
