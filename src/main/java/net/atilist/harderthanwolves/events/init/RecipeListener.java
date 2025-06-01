@@ -244,8 +244,8 @@ public class RecipeListener {
     }
 
     private static void addReinforcedSawRecipes() {
-        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianPlate, 4));
-        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(Block.STONE.id, new ItemStack(ItemListener.stoneBrick, 4));
+        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(BlockRegistry.INSTANCE.getId(Block.OBSIDIAN), new ItemStack(ItemListener.obsidianPlate, 4));
+        ReinforcedSawRecipeRegistry.getInstance().addSawingRecipe(BlockRegistry.INSTANCE.getId(Block.STONE), new ItemStack(ItemListener.stoneBrick, 4));
     }
 
     private static void addMysticalDevourerRecipes() {
