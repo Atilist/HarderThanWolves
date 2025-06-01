@@ -165,11 +165,11 @@ public class RecipeListener {
     }
 
     private static void addMetalForgeRecipes() {
-        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.ironOreGravel.id, new ItemStack(Item.IRON_INGOT, 1));
-        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.ironChunkBlock.id, new ItemStack(Item.IRON_INGOT, 1));
-        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.goldChunkBlock.id, new ItemStack(Item.GOLD_INGOT, 1));
-        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.lapisGravel.id, new ItemStack(ItemListener.crystallizedLapis, 36));
-        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.obsidianGlassMixture.id, new ItemStack(BlockListener.obsidianGlass, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.NAMESPACE.id("iron_ore_gravel"), new ItemStack(Item.IRON_INGOT, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.NAMESPACE.id("iron_chunk_block"), new ItemStack(Item.IRON_INGOT, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.NAMESPACE.id("gold_chunk_block"), new ItemStack(Item.GOLD_INGOT, 1));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.NAMESPACE.id("lapis_gravel"), new ItemStack(ItemListener.crystallizedLapis, 36));
+        MetalForgeRecipeRegistry.getInstance().addForgingRecipe(BlockListener.NAMESPACE.id("obsidian_glass_mixture"), new ItemStack(BlockListener.obsidianGlass, 1));
     }
 
     private static void addCauldronRecipes() {
@@ -238,9 +238,9 @@ public class RecipeListener {
     }
 
     private static void addReinforcedMillStoneRecipes() {
-        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.OBSIDIAN.id, new ItemStack(ItemListener.obsidianDust, 1));
-        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(ItemListener.obsidianChunk.id, new ItemStack(ItemListener.obsidianDust, 1));
-        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(Block.NETHERRACK.id, new ItemStack(net.kozibrodka.wolves.events.ItemListener.groundNetherrack, 1));
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(BlockRegistry.INSTANCE.getId(Block.OBSIDIAN), new ItemStack(ItemListener.obsidianDust, 1));
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(ItemListener.NAMESPACE.id("obsidian_chunk"), new ItemStack(ItemListener.obsidianDust, 1));
+        ReinforcedMillStoneRecipeRegistry.getInstance().addMillingRecipe(BlockRegistry.INSTANCE.getId(Block.NETHERRACK), new ItemStack(net.kozibrodka.wolves.events.ItemListener.groundNetherrack, 1));
     }
 
     private static void addReinforcedSawRecipes() {

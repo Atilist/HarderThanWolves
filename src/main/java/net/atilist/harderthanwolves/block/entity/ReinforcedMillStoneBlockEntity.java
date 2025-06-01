@@ -18,6 +18,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtList;
+import net.modificationstation.stationapi.api.registry.BlockRegistry;
+import net.modificationstation.stationapi.api.registry.ItemRegistry;
+import net.modificationstation.stationapi.api.util.Identifier;
 
 public class ReinforcedMillStoneBlockEntity extends BlockEntity
         implements Inventory
@@ -149,15 +152,13 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
         return iMillStoneGrindCounter > 0;
     }
 
-    public void tick() // updateEntity
-    {
-        if(world.isRemote){
+    public void tick() {
+        if(world.isRemote) {
             return;
         }
         int iUnmilledItemIndex = GetUnmilledItemInventoryIndex();
 
-        if(iUnmilledItemIndex < 0)
-        {
+        if(iUnmilledItemIndex < 0) {
             iMillStoneGrindCounter = 0;
             return;
         }
@@ -166,30 +167,25 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
 
         iMillStoneGrindCounter++;
 
-        int iUnmilledItemID = millStoneContents[iUnmilledItemIndex].getItem().id;
+        Item unmilledItem = millStoneContents[iUnmilledItemIndex].getItem();
+
+        if (unmilledItem == null) {
+            return;
+        }
+
+        Identifier unmilledItemIdentifier = ItemRegistry.INSTANCE.getId(unmilledItem);
 
         if(iMillStoneGrindCounter < 200) return;
 
         iMillStoneGrindCounter = 0;
 
-        ItemStack milledStack = ReinforcedMillStoneRecipeRegistry.getInstance().getResult(iUnmilledItemID);
-        if(milledStack != null)
-        {
+        ItemStack milledStack = ReinforcedMillStoneRecipeRegistry.getInstance().getResult(unmilledItemIdentifier);
+        if(milledStack != null) {
             milledStack = new ItemStack(milledStack.itemId, milledStack.count, milledStack.getDamage()); // This looks very redundant but cures the millstone from the curse of losing the item count value from the registry for no apparent reason besides metaphysical powers beyond human comprehension or something, I do not know how to explain this anymore.
             if (milledStack.count == 0) milledStack.count = 1;
             removeStack(iUnmilledItemIndex, 1);
             EjectStack(milledStack);
-        }
-        else if(iUnmilledItemID == BlockListener.companionCube.id) // Special recipe (companion cube)
-        {
-            EjectStack(new ItemStack(ItemListener.wolfRaw.id, 1, 0));
-            CompanionCubeBlock.SpawnHearts(world, x, y, z);
-            if(millStoneContents[iUnmilledItemIndex].getDamage() == 0)
-            {
-                world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, "mob.wolf.whine", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
-            }
-            removeStack(iUnmilledItemIndex, 1);
-        } else if(iUnmilledItemID == Block.NETHERRACK.id && world.random.nextInt(10) == 0) { // Random scream when there is netherrack
+        } else if(unmilledItemIdentifier == BlockRegistry.INSTANCE.getId(Block.NETHERRACK) && world.random.nextInt(10) == 0) { // Random scream when there is netherrack
             world.playSound((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D, "mob.ghast.scream", 0.25F, world.random.nextFloat() * 0.4F + 0.8F);
         }
 
@@ -201,12 +197,6 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
         int iDirection = 2 + world.random.nextInt(4);
         targetPos.AddFacingAsOffset(iDirection);
         UnsortedUtils.ejectStackWithRandomOffset(world, targetPos.i, targetPos.j, targetPos.k, stack);
-    }
-
-    public boolean AddSingleItemToInventory(int iItemShiftedIndex)
-    {
-        ItemStack ItemInstance = new ItemStack(iItemShiftedIndex, 1, 0);
-        return addItemInstanceToInventory(ItemInstance);
     }
 
     public boolean addItemInstanceToInventory(ItemStack ItemInstance)

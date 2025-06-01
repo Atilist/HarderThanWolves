@@ -2,6 +2,8 @@ package net.atilist.harderthanwolves.recipe;
 
 import net.kozibrodka.wolves.recipe.SawRecipe;
 import net.minecraft.item.ItemStack;
+import net.modificationstation.stationapi.api.registry.ItemRegistry;
+import net.modificationstation.stationapi.api.util.Identifier;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -17,8 +19,8 @@ public class MetalForgeRecipeRegistry {
         return INSTANCE;
     }
 
-    public void addForgingRecipe(int input, ItemStack output) {
-        this.recipes.add(new ItemStack[]{new ItemStack(input, 1, 0), output});
+    public void addForgingRecipe(Identifier input, ItemStack output) {
+        this.recipes.add(new ItemStack[]{new ItemStack(ItemRegistry.INSTANCE.get(input), 1, 0), output});
     }
 
     public void addForgingRecipe(ItemStack input, ItemStack output) {
