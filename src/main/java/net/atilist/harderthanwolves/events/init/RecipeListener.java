@@ -9,6 +9,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.modificationstation.stationapi.api.event.recipe.RecipeRegisterEvent;
 import net.modificationstation.stationapi.api.recipe.CraftingRegistry;
+import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
 
 public class RecipeListener {
@@ -178,11 +179,11 @@ public class RecipeListener {
     }
 
     private static void addMillingRecipes() {
-        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.IRON_ORE.id, new ItemStack(BlockListener.ironOreGravel, 1));
-        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.GOLD_ORE.id, new ItemStack(BlockListener.goldOreGravel, 1));
-        MillingRecipeRegistry.getInstance().addMillingRecipe(Block.LAPIS_BLOCK.id, new ItemStack(BlockListener.lapisGravel, 1));
+        MillingRecipeRegistry.getInstance().addMillingRecipe(BlockRegistry.INSTANCE.getId(Block.IRON_ORE), new ItemStack(BlockListener.ironOreGravel, 1));
+        MillingRecipeRegistry.getInstance().addMillingRecipe(BlockRegistry.INSTANCE.getId(Block.GOLD_ORE), new ItemStack(BlockListener.goldOreGravel, 1));
+        MillingRecipeRegistry.getInstance().addMillingRecipe(BlockRegistry.INSTANCE.getId(Block.LAPIS_BLOCK), new ItemStack(BlockListener.lapisGravel, 1));
 
-        MillingRecipeRegistry.getInstance().addMillingRecipe(ItemListener.mysticalHemp.id, new ItemStack(ItemListener.mysticalHempFibers, 4));
+        MillingRecipeRegistry.getInstance().addMillingRecipe(ItemListener.NAMESPACE.id("mystical_hemp"), new ItemStack(ItemListener.mysticalHempFibers, 4));
     }
 
     private static void addTurntableRecipes() {
