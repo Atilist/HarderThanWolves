@@ -187,7 +187,7 @@ public class RecipeListener {
     }
 
     private static void addTurntableRecipes() {
-        TurntableRecipeRegistry.getInstance().addTurntableRecipe(BlockListener.rotarySieve, 0, new ItemStack(BlockListener.rotarySieve, 8, 1));
+        TurntableRecipeRegistry.getInstance().addTurntableRecipe(new TurntableRecipe(new TurntableInput(BlockListener.rotarySieve, 0), new TurntableResult(new TurntableOutput(BlockListener.rotarySieve, 8, 1), new TurntableByproduct(net.kozibrodka.wolves.events.ItemListener.nothing, 0))));
     }
 
     private static void addInfusionRecipes() {
@@ -252,7 +252,7 @@ public class RecipeListener {
         MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockRegistry.INSTANCE.getId(Block.COBBLESTONE), new ItemStack(BlockListener.mysticalCobblestone, 1));
         MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockRegistry.INSTANCE.getId(Block.GRAVEL), new ItemStack(BlockListener.mysticalGravel, 1));
         MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockRegistry.INSTANCE.getId(Block.PLANKS), new ItemStack(ItemListener.mysticalStick, 2));
-        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(net.kozibrodka.wolves.events.BlockListener.MOD_ID.id("hempCrop"), new ItemStack(ItemListener.mysticalHemp, 1));
+        MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(net.kozibrodka.wolves.events.BlockListener.NAMESPACE.id("hempCrop"), new ItemStack(ItemListener.mysticalHemp, 1));
         MysticalDevourerRecipeRegistry.getInstance().addDevouringRecipe(BlockListener.NAMESPACE.id("smooth_obsidian"), new ItemStack(BlockListener.engravedObsidian, 1));
     }
 

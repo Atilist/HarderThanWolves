@@ -34,7 +34,7 @@ public class AMICompat implements ModPluginProvider {
 
     @Override
     public Identifier getId() {
-        return ConfigListener.MOD_ID.id("harderthanwolves");
+        return ConfigListener.NAMESPACE.id("harderthanwolves");
     }
 
     @Override

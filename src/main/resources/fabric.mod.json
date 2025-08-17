@@ -17,6 +17,7 @@
   "icon": "assets/harderthanwolves/icon.png",
 
   "environment": "*",
+  "accessWidener": "harderthanwolves.accesswidener",
   "entrypoints": {
     "stationapi:event_bus": [
       "net.atilist.harderthanwolves.events.init.BlockListener",

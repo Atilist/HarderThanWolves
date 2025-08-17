@@ -8,7 +8,6 @@ import net.kozibrodka.wolves.block.AxleBlock;
 import net.kozibrodka.wolves.block.OmniSlabBlock;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
-import net.kozibrodka.wolves.mixin.LevelAccessor;
 import net.kozibrodka.wolves.utils.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -211,7 +210,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
             this.SetFacing(world, i, j, k, iNewFacing);
             world.setBlocksDirty(i, j, k, i, j, k);
             world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate());
-            ((LevelAccessor)world).invokeBlockUpdate(i, j, k, this.id);
+            world.blockUpdate(i, j, k, this.id);
         }
 
         UnsortedUtils.DestroyHorizontallyAttachedAxles(world, i, j, k);
