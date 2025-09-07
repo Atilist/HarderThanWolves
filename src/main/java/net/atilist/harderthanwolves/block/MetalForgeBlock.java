@@ -43,7 +43,8 @@ public class MetalForgeBlock extends LazyBlockTemplate {
         if (world.getBlockId(x, y + 1, z - 1) != BlockListener.stoneBricks.id) {
             return;
         }
-        ItemStack resultItem = MetalForgeRecipeRegistry.getInstance().getResult(new ItemStack(ingredientId, 1, 0));
+        Block ingredientBlock = Block.BLOCKS[ingredientId];
+        ItemStack resultItem = MetalForgeRecipeRegistry.getInstance().getResult(new ItemStack(ingredientBlock.asItem(), 1, 0));
         if (resultItem == null) {
             return;
         }
