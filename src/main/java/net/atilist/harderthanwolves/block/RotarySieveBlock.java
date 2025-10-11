@@ -1,6 +1,7 @@
 package net.atilist.harderthanwolves.block;
 
 import net.atilist.harderthanwolves.recipe.RotarySieveRecipeRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.item.ItemStack;
@@ -28,7 +29,14 @@ public class RotarySieveBlock extends LazyBlockTemplate {
             return;
         }
         int aboveId = world.getBlockId(x, y + 1, z);
-        ItemStack input = new ItemStack(aboveId, 1, 0);
+        if (aboveId == 0) {
+            return;
+        }
+        Block block = Block.BLOCKS[aboveId];
+        if (block == null) {
+            return;
+        }
+        ItemStack input = new ItemStack(block, 1, 0);
         ItemStack[] output = RotarySieveRecipeRegistry.getInstance().getResult(input);
         if (output == null) {
             return;
