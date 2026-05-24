@@ -22,12 +22,9 @@ import net.modificationstation.stationapi.api.registry.BlockRegistry;
 import net.modificationstation.stationapi.api.registry.ItemRegistry;
 import net.modificationstation.stationapi.api.util.Identifier;
 
-public class ReinforcedMillStoneBlockEntity extends BlockEntity
-        implements Inventory
-{
+public class ReinforcedMillStoneBlockEntity extends BlockEntity implements Inventory {
 
-    public ReinforcedMillStoneBlockEntity()
-    {
+    public ReinforcedMillStoneBlockEntity() {
         millStoneContents = new ItemStack[3];
         iMillStoneGrindCounter = 0;
     }
@@ -37,118 +34,91 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
         super.cancelRemoval();
     }
 
-
-    public int size()
-    {
+    public int size() {
         return 3;
     }
 
-    public ItemStack getStack(int iSlot)
-    {
+    public ItemStack getStack(int iSlot) {
         return millStoneContents[iSlot];
     }
 
-    public ItemStack removeStack(int iSlot, int iAmount)
-    {
+    public ItemStack removeStack(int iSlot, int iAmount) {
         return InventoryHandler.decreaseStackSize(this, iSlot, iAmount);
     }
 
-    public void setStack(int iSlot, ItemStack ItemInstance)
-    {
+    public void setStack(int iSlot, ItemStack ItemInstance) {
         millStoneContents[iSlot] = ItemInstance;
-        if(ItemInstance != null && ItemInstance.count > getMaxCountPerStack())
-        {
+        if(ItemInstance != null && ItemInstance.count > getMaxCountPerStack()) {
             ItemInstance.count = getMaxCountPerStack();
         }
         markDirty();
     }
 
-    public String getName()
-    {
+    public String getName() {
         return "ReinforcedMillStone";
     }
 
-    public void readNbt(NbtCompound nbttagcompound)
-    {
+    public void readNbt(NbtCompound nbttagcompound) {
         super.readNbt(nbttagcompound);
         NbtList nbttaglist = nbttagcompound.getList("Items");
         millStoneContents = new ItemStack[size()];
-        for(int i = 0; i < nbttaglist.size(); i++)
-        {
+        for(int i = 0; i < nbttaglist.size(); i++) {
             NbtCompound nbttagcompound1 = (NbtCompound)nbttaglist.get(i);
             int j = nbttagcompound1.getByte("Slot") & 0xff;
-            if(j >= 0 && j < millStoneContents.length)
-            {
+            if(j >= 0 && j < millStoneContents.length) {
                 millStoneContents[j] = new ItemStack(nbttagcompound1);
             }
         }
-
-        if(nbttagcompound.contains("grindCounter"))
-        {
+        if(nbttagcompound.contains("grindCounter")) {
             iMillStoneGrindCounter = nbttagcompound.getInt("grindCounter");
         }
     }
 
-    public void writeNbt(NbtCompound nbttagcompound)
-    {
+    public void writeNbt(NbtCompound nbttagcompound) {
         super.writeNbt(nbttagcompound);
         NbtList nbttaglist = new NbtList();
-        for(int i = 0; i < millStoneContents.length; i++)
-        {
-            if(millStoneContents[i] != null)
-            {
+        for(int i = 0; i < millStoneContents.length; i++) {
+            if(millStoneContents[i] != null) {
                 NbtCompound nbttagcompound1 = new NbtCompound();
                 nbttagcompound1.putByte("Slot", (byte)i);
                 millStoneContents[i].writeNbt(nbttagcompound1);
                 nbttaglist.add(nbttagcompound1);
             }
         }
-
         nbttagcompound.put("Items", nbttaglist);
         nbttagcompound.putInt("grindCounter", iMillStoneGrindCounter);
     }
 
-    public int getMaxCountPerStack()
-    {
+    public int getMaxCountPerStack() {
         return 64;
     }
 
-    public boolean canPlayerUse(PlayerEntity entityplayer)
-    {
-        if(world.getBlockEntity(x, y, z) != this)
-        {
+    public boolean canPlayerUse(PlayerEntity entityplayer) {
+        if(world.getBlockEntity(x, y, z) != this) {
             return false;
-        } else
-        {
+        } else {
             return entityplayer.getSquaredDistance((double)x + 0.5D, (double)y + 0.5D, (double)z + 0.5D) <= 64D;
         }
     }
 
-    public int GetUnmilledItemInventoryIndex()
-    {
-        for(int tempIndex = 0; tempIndex < 3; tempIndex++)
-        {
-            if(millStoneContents[tempIndex] == null)
-            {
+    public int GetUnmilledItemInventoryIndex() {
+        for(int tempIndex = 0; tempIndex < 3; tempIndex++) {
+            if(millStoneContents[tempIndex] == null) {
                 continue;
             }
             Item tempItem = millStoneContents[tempIndex].getItem();
-            if(tempItem != null)
-            {
+            if(tempItem != null) {
                 return tempIndex;
             }
         }
-
         return -1;
     }
 
-    public int getGrindProgressScaled(int iScale)
-    {
+    public int getGrindProgressScaled(int iScale) {
         return (iMillStoneGrindCounter * iScale) / 200;
     }
 
-    public boolean IsGrinding()
-    {
+    public boolean IsGrinding() {
         return iMillStoneGrindCounter > 0;
     }
 
@@ -191,80 +161,46 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
 
     }
 
-    public void EjectStack(ItemStack stack)
-    {
+    public void EjectStack(ItemStack stack) {
         BlockPosition targetPos = new BlockPosition(x, y, z);
         int iDirection = 2 + world.random.nextInt(4);
-        targetPos.AddFacingAsOffset(iDirection);
-        UnsortedUtils.ejectStackWithRandomOffset(world, targetPos.i, targetPos.j, targetPos.k, stack);
+        targetPos.addFacingAsOffset(iDirection);
+        UnsortedUtils.ejectStackWithRandomOffset(world, targetPos.x, targetPos.y, targetPos.z, stack);
     }
 
-    public boolean addItemInstanceToInventory(ItemStack ItemInstance)
-    {
-        if(!ItemInstance.isDamaged())
-        {
-            ItemInstance.count = storePartialItemInstance(ItemInstance);
-            if(ItemInstance.count == 0)
-            {
-                return true;
-            }
-        }
-        int i = getFirstEmptyStack();
-        if(i >= 0)
-        {
-            setStack(i, ItemInstance);
-            return true;
-        } else
-        {
-            return false;
-        }
-    }
-
-    private int getFirstEmptyStack()
-    {
-        for(int i = 0; i < size(); i++)
-        {
-            if(getStack(i) == null)
-            {
+    private int getFirstEmptyStack() {
+        for(int i = 0; i < size(); i++) {
+            if(getStack(i) == null) {
                 return i;
             }
         }
-
         return -1;
     }
 
-    private int storePartialItemInstance(ItemStack ItemInstance)
-    {
+    private int storePartialItemInstance(ItemStack ItemInstance) {
         int i = ItemInstance.itemId;
         int j = ItemInstance.count;
         int k = storeItemInstance(ItemInstance);
-        if(k < 0)
-        {
+        if(k < 0) {
             k = getFirstEmptyStack();
         }
-        if(k < 0)
-        {
+        if(k < 0) {
             return j;
         }
-        if(getStack(k) == null)
-        {
+        if(getStack(k) == null) {
             setStack(k, new ItemStack(i, 0, ItemInstance.getDamage()));
         }
         int l = j;
         ItemStack tempStack = getStack(k);
-        if(l > tempStack.getMaxCount() - tempStack.count)
-        {
+        if(l > tempStack.getMaxCount() - tempStack.count) {
             l = tempStack.getMaxCount() - tempStack.count;
         }
-        if(l > getMaxCountPerStack() - tempStack.count)
-        {
+        if(l > getMaxCountPerStack() - tempStack.count) {
             l = getMaxCountPerStack() - tempStack.count;
         }
-        if(l == 0)
-        {
+        if(l == 0) {
             return j;
-        } else
-        {
+        } else {
             j -= l;
             tempStack.count += l;
             setStack(k, tempStack);
@@ -272,45 +208,34 @@ public class ReinforcedMillStoneBlockEntity extends BlockEntity
         }
     }
 
-    private int storeItemInstance(ItemStack ItemInstance)
-    {
-        for(int i = 0; i < size(); i++)
-        {
+    private int storeItemInstance(ItemStack ItemInstance) {
+        for(int i = 0; i < size(); i++) {
             ItemStack tempStack = getStack(i);
-            if(tempStack != null && tempStack.itemId == ItemInstance.itemId && tempStack.isStackable() && tempStack.count < tempStack.getMaxCount() && tempStack.count < getMaxCountPerStack() && (!tempStack.hasSubtypes() || tempStack.getDamage() == ItemInstance.getDamage()))
-            {
+            if(tempStack != null && tempStack.itemId == ItemInstance.itemId && tempStack.isStackable() && tempStack.count < tempStack.getMaxCount() && tempStack.count < getMaxCountPerStack() && (!tempStack.hasSubtypes() || tempStack.getDamage() == ItemInstance.getDamage())) {
                 return i;
             }
         }
-
         return -1;
     }
 
-    public boolean IsWholeCompanionCubeInInventory()
-    {
-        for(int tempIndex = 0; tempIndex < 3; tempIndex++)
-        {
-            if(millStoneContents[tempIndex] == null)
-            {
+    public boolean IsWholeCompanionCubeInInventory() {
+        for(int tempIndex = 0; tempIndex < 3; tempIndex++) {
+            if(millStoneContents[tempIndex] == null) {
                 continue;
             }
             Item tempItem = millStoneContents[tempIndex].getItem();
-            if(tempItem != null && tempItem.id == BlockListener.companionCube.id && millStoneContents[tempIndex].getDamage() == 0)
-            {
+            if(tempItem != null && tempItem.id == BlockListener.companionCube.id && millStoneContents[tempIndex].getDamage() == 0) {
                 return true;
             }
         }
-
         return false;
     }
 
-    public void markDirty()
-    {
+    public void markDirty() {
         if (world == null) {
             return;
         }
-        if(IsWholeCompanionCubeInInventory())
-        {
+        if(IsWholeCompanionCubeInInventory()) {
             world.playSound((float)x + 0.5F, (float)y + 0.5F, (float)z + 0.5F, "mob.wolf.whine", 0.5F, 2.6F + (world.random.nextFloat() - world.random.nextFloat()) * 0.8F);
         }
     }

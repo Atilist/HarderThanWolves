@@ -4,7 +4,6 @@ import net.atilist.harderthanwolves.events.init.TextureListener;
 import net.atilist.harderthanwolves.recipe.ReinforcedSawRecipeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.EnvironmentInterface;
-import net.kozibrodka.wolves.block.AxleBlock;
 import net.kozibrodka.wolves.block.OmniSlabBlock;
 import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.events.ItemListener;
@@ -30,11 +29,7 @@ import java.util.Random;
 @EnvironmentInterface(value= EnvType.CLIENT, itf=BlockWithWorldRenderer.class)
 @EnvironmentInterface(value=EnvType.CLIENT, itf=BlockWithInventoryRenderer.class)
 public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalDevice, RotatableBlock, BlockWithWorldRenderer, BlockWithInventoryRenderer {
-    private static int iSawTickRate = 10;
-    public static final float fSawBaseHeight = 0.75F;
-    private final int iSawTopTextureIndex = 56;
-    private final int iSawSideTextureIndex = 57;
-    private final int iSawBladeTextureIndex = 58;
+    private static final int SAW_TICK_RATE = 10;
 
     public ReinforcedSawBlock(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
         super(identifier, material, hardness, blockSounds);
@@ -43,7 +38,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
     }
 
     public int getTextureId(BlockView blockAccess, int i, int j, int k, int iSide) {
-        int iFacing = this.GetFacing(blockAccess, i, j, k);
+        int iFacing = this.getFacing(blockAccess, i, j, k);
         return iSide != iFacing ? TextureListener.reinforcedSawSide : TextureListener.reinforcedSawFace;
     }
 
@@ -52,16 +47,16 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
     }
 
     public int getTickRate() {
-        return iSawTickRate;
+        return SAW_TICK_RATE;
     }
 
     public void onPlaced(World world, int i, int j, int k, int iFacing) {
-        this.SetFacing(world, i, j, k, UnsortedUtils.getOppositeFacing(iFacing));
+        this.setFacing(world, i, j, k, UnsortedUtils.getOppositeFacing(iFacing));
     }
 
     public void onPlaced(World world, int i, int j, int k, LivingEntity entityLiving) {
         int iFacing = UnsortedUtils.ConvertPlacingEntityOrientationToBlockFacing(entityLiving);
-        this.SetFacing(world, i, j, k, iFacing);
+        this.setFacing(world, i, j, k, iFacing);
     }
 
     public void onPlaced(World world, int i, int j, int k) {
@@ -78,7 +73,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
     }
 
     public Box getCollisionShape(World world, int i, int j, int k) {
-        int iFacing = this.GetFacing(world, i, j, k);
+        int iFacing = this.getFacing(world, i, j, k);
         return switch (iFacing) {
             case 0 ->
                     Box.createCached((double) ((float) i), (double) ((float) j + 1.0F - 0.75F), (double) ((float) k), (double) ((float) i + 1.0F), (double) ((float) j + 1.0F), (double) ((float) k + 1.0F));
@@ -96,7 +91,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
     }
 
     public void updateBoundingBox(BlockView iblockaccess, int i, int j, int k) {
-        int iFacing = this.GetFacing(iblockaccess, i, j, k);
+        int iFacing = this.getFacing(iblockaccess, i, j, k);
         switch (iFacing) {
             case 0 -> this.setBoundingBox(0.0F, 0.25F, 0.0F, 1.0F, 1.0F, 1.0F);
             case 1 -> this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
@@ -112,47 +107,34 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         this.setBoundingBox(0.0F, 0.0F, 0.0F, 1.0F, 0.75F, 1.0F);
     }
 
-    public void neighborUpdate(World world, int i, int j, int k, int iid) {
-        if (iid != BlockListener.axleBlock.id && iid != BlockListener.handCrank.id) {
+    public void neighborUpdate(World world, int i, int j, int k, int id) {
+        if (id != BlockListener.axleBlock.id && id != BlockListener.handCrank.id) {
             world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate() + world.random.nextInt(6));
-        } else {
-            world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate());
         }
-
     }
 
-    public void onTick(World world, int i, int j, int k, Random random) {
-        boolean bReceivingPower = this.IsInputtingMechanicalPower(world, i, j, k);
-        boolean bOn = this.IsBlockOn(world, i, j, k);
-        if (bOn != bReceivingPower) {
-            world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-
-            this.EmitSawParticles(world, i, j, k, random);
-            this.SetBlockOn(world, i, j, k, bReceivingPower);
-            if (bReceivingPower) {
-                world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate() + random.nextInt(6));
-            }
-        } else if (bOn) {
-            int iFacing = this.GetFacing(world, i, j, k);
-            BlockPosition targetPos = new BlockPosition(i, j, k);
-            targetPos.AddFacingAsOffset(iFacing);
-            if (!this.AttemptToSawBlock(world, targetPos.i, targetPos.j, targetPos.k, random)) {
-                this.BreakSaw(world, i, j, k);
+    public void onTick(World world, int x, int y, int z, Random random) {
+        if (this.isBlockOn(world, x, y, z)) {
+            int iFacing = this.getFacing(world, x, y, z);
+            BlockPosition targetPos = new BlockPosition(x, y, z);
+            targetPos.addFacingAsOffset(iFacing);
+            if (!this.attemptToSawBlock(world, targetPos.x, targetPos.y, targetPos.z, random)) {
+                this.breakSaw(world, x, y, z);
             }
         }
 
     }
 
     public void randomDisplayTick(World world, int i, int j, int k, Random random) {
-        if (this.IsBlockOn(world, i, j, k)) {
-            this.EmitSawParticles(world, i, j, k, random);
+        if (this.isBlockOn(world, i, j, k)) {
+            this.emitSawParticles(world, i, j, k, random);
         }
 
     }
 
     public void onEntityCollision(World world, int i, int j, int k, Entity entity) {
-        if (this.IsBlockOn(world, i, j, k) && entity instanceof LivingEntity) {
-            int iFacing = this.GetFacing(world, i, j, k);
+        if (this.isBlockOn(world, i, j, k) && entity instanceof LivingEntity) {
+            int iFacing = this.getFacing(world, i, j, k);
             float fHalfLength = 0.3125F;
             float fHalfWidth = 0.0078125F;
             float fBlockHeight = 0.25F;
@@ -175,7 +157,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
                     if (tempTargetEntity.damage((Entity)null, 4)) {
                         world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
 
-                        this.EmitBloodParticles(world, i, j, k, world.random);
+                        this.emitBloodParticles(world, i, j, k, world.random);
                     }
                 }
             }
@@ -183,31 +165,36 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
 
     }
 
-    public int GetFacing(BlockView iBlockAccess, int i, int j, int k) {
+    @Override
+    public int getFacing(BlockView iBlockAccess, int i, int j, int k) {
         return iBlockAccess.getBlockMeta(i, j, k) & 7;
     }
 
-    public void SetFacing(World world, int i, int j, int k, int iFacing) {
+    @Override
+    public void setFacing(World world, int i, int j, int k, int iFacing) {
         int iMetaData = world.getBlockMeta(i, j, k) & -8;
         iMetaData |= iFacing;
         world.setBlockMeta(i, j, k, iMetaData);
     }
 
-    public boolean CanRotate(BlockView iBlockAccess, int i, int j, int k) {
-        int iFacing = this.GetFacing(iBlockAccess, i, j, k);
+    @Override
+    public boolean canRotate(BlockView iBlockAccess, int i, int j, int k) {
+        int iFacing = this.getFacing(iBlockAccess, i, j, k);
         return iFacing != 0;
     }
 
-    public boolean CanTransmitRotation(BlockView iBlockAccess, int i, int j, int k) {
-        int iFacing = this.GetFacing(iBlockAccess, i, j, k);
+    @Override
+    public boolean canTransmitRotation(BlockView iBlockAccess, int i, int j, int k) {
+        int iFacing = this.getFacing(iBlockAccess, i, j, k);
         return iFacing != 0 && iFacing != 1;
     }
 
-    public void Rotate(World world, int i, int j, int k, boolean bReverse) {
-        int iFacing = this.GetFacing(world, i, j, k);
+    @Override
+    public void rotate(World world, int i, int j, int k, boolean bReverse) {
+        int iFacing = this.getFacing(world, i, j, k);
         int iNewFacing = UnsortedUtils.RotateFacingAroundJ(iFacing, bReverse);
         if (iNewFacing != iFacing) {
-            this.SetFacing(world, i, j, k, iNewFacing);
+            this.setFacing(world, i, j, k, iNewFacing);
             world.setBlocksDirty(i, j, k, i, j, k);
             world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate());
             world.blockUpdate(i, j, k, this.id);
@@ -216,25 +203,25 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         UnsortedUtils.DestroyHorizontallyAttachedAxles(world, i, j, k);
     }
 
-    public boolean IsBlockOn(BlockView iBlockAccess, int i, int j, int k) {
-        return (iBlockAccess.getBlockMeta(i, j, k) & 8) > 0;
+    public boolean isBlockOn(BlockView blockView, int x, int y, int z) {
+        return (blockView.getBlockMeta(x, y, z) & 8) > 0;
     }
 
-    public void SetBlockOn(World world, int i, int j, int k, boolean bOn) {
-        int iMetaData = world.getBlockMeta(i, j, k) & 7;
-        if (bOn) {
+    public void toggleBlockActivity(World world, int x, int y, int z, boolean on) {
+        int iMetaData = world.getBlockMeta(x, y, z) & 7;
+        if (on) {
             iMetaData |= 8;
         }
 
-        world.setBlockMeta(i, j, k, iMetaData);
-        world.blockUpdateEvent(i, j, k);
+        world.setBlockMeta(x, y, z, iMetaData);
+        world.blockUpdateEvent(x, y, z);
     }
 
-    void EmitSawParticles(World world, int i, int j, int k, Random random) {
-        int iFacing = this.GetFacing(world, i, j, k);
-        float fBladeXPos = (float)i;
-        float fBladeYPos = (float)j;
-        float fBladeZPos = (float)k;
+    void emitSawParticles(World world, int x, int y, int z, Random random) {
+        int iFacing = this.getFacing(world, x, y, z);
+        float fBladeXPos = (float)x;
+        float fBladeYPos = (float)y;
+        float fBladeZPos = (float)z;
         float fBladeXExtent = 0.0F;
         float fBladeZExtent = 0.0F;
         switch (iFacing) {
@@ -281,28 +268,28 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
 
     }
 
-    void EmitBloodParticles(World world, int i, int j, int k, Random random) {
-        int iFacing = this.GetFacing(world, i, j, k);
-        BlockPosition iTargetPos = new BlockPosition(i, j, k);
-        iTargetPos.AddFacingAsOffset(iFacing);
+    void emitBloodParticles(World world, int x, int y, int z, Random random) {
+        int iFacing = this.getFacing(world, x, y, z);
+        BlockPosition targetPos = new BlockPosition(x, y, z);
+        targetPos.addFacingAsOffset(iFacing);
 
         for(int counter = 0; counter < 10; ++counter) {
-            float smokeX = (float)iTargetPos.i + random.nextFloat();
-            float smokeY = (float)iTargetPos.j + random.nextFloat();
-            float smokeZ = (float)iTargetPos.k + random.nextFloat();
+            float smokeX = (float)targetPos.x + random.nextFloat();
+            float smokeY = (float)targetPos.y + random.nextFloat();
+            float smokeZ = (float)targetPos.z + random.nextFloat();
             world.addParticle("reddust", (double)smokeX, (double)smokeY, (double)smokeZ, 0.0, 0.0, 0.0);
         }
 
     }
 
-    boolean AttemptToSawBlock(World world, int i, int j, int k, Random random) {
-        if (!world.isAir(i, j, k)) {
-            int iTargetid = world.getBlockId(i, j, k);
-            ItemStack targetItem = new ItemStack(iTargetid, 1, world.getBlockMeta(i, j, k));
+    boolean attemptToSawBlock(World world, int x, int y, int z, Random random) {
+        if (!world.isAir(x, y, z)) {
+            int iTargetid = world.getBlockId(x, y, z);
+            ItemStack targetItem = new ItemStack(iTargetid, 1, world.getBlockMeta(x, y, z));
             boolean bSawedBlock = false;
             Block targetBlock = Block.BLOCKS[iTargetid];
             boolean bRemoveOriginalBlockIfSawed = true;
-            if (iTargetid == BlockListener.omniSlab.id && !((OmniSlabBlock)BlockListener.omniSlab).IsSlabWood(world, i, j, k)) {
+            if (iTargetid == BlockListener.omniSlab.id && !((OmniSlabBlock)BlockListener.omniSlab).IsSlabWood(world, x, y, z)) {
                 return false;
             }
 
@@ -313,7 +300,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
                 }
 
                 for(int iTempCount = 0; iTempCount < output.count; ++iTempCount) {
-                    UnsortedUtils.EjectSingleItemWithRandomOffset(world, i, j, k, output.itemId, output.getDamage());
+                    UnsortedUtils.EjectSingleItemWithRandomOffset(world, x, y, z, output.itemId, output.getDamage());
                 }
 
                 bSawedBlock = true;
@@ -325,21 +312,21 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
                             return false;
                         }
                     } else {
-                        targetBlock.dropStacks(world, i, j, k, world.getBlockMeta(i, j, k));
+                        targetBlock.dropStacks(world, x, y, z, world.getBlockMeta(x, y, z));
                         bSawedBlock = true;
                     }
                 }
             } else {
-                targetBlock.dropStacks(world, i, j, k, world.getBlockMeta(i, j, k));
+                targetBlock.dropStacks(world, x, y, z, world.getBlockMeta(x, y, z));
                 bSawedBlock = true;
             }
 
             if (bSawedBlock) {
-                world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
+                world.playSound((double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.explode", 0.2F, 1.25F);
 
-                this.EmitSawParticles(world, i, j, k, random);
+                this.emitSawParticles(world, x, y, z, random);
                 if (bRemoveOriginalBlockIfSawed) {
-                    world.setBlock(i, j, k, 0);
+                    world.setBlock(x, y, z, 0);
                 }
             }
         }
@@ -347,7 +334,7 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         return true;
     }
 
-    public void BreakSaw(World world, int i, int j, int k) {
+    public void breakSaw(World world, int i, int j, int k) {
         int iTemp;
         for(iTemp = 0; iTemp < 2; ++iTemp) {
             UnsortedUtils.EjectSingleItemWithRandomOffset(world, i, j, k, ItemListener.gear.id, 0);
@@ -370,43 +357,11 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         world.setBlock(i, j, k, 0);
     }
 
-    public boolean CanOutputMechanicalPower() {
-        return false;
-    }
-
-    public boolean CanInputMechanicalPower() {
-        return true;
-    }
-
-    public boolean IsInputtingMechanicalPower(World world, int i, int j, int k) {
-        int iSawFacing = this.GetFacing(world, i, j, k);
-
-        for(int iFacing = 0; iFacing <= 5; ++iFacing) {
-            if (iFacing != iSawFacing) {
-                BlockPosition targetPos = new BlockPosition(i, j, k);
-                targetPos.AddFacingAsOffset(iFacing);
-                int iTargetid = world.getBlockId(targetPos.i, targetPos.j, targetPos.k);
-                if (iTargetid == BlockListener.axleBlock.id) {
-                    AxleBlock axleBlock = (AxleBlock)BlockListener.axleBlock;
-                    if (axleBlock.IsAxleOrientedTowardsFacing(world, targetPos.i, targetPos.j, targetPos.k, iFacing) && axleBlock.GetPowerLevel(world, targetPos.i, targetPos.j, targetPos.k) > 0) {
-                        return true;
-                    }
-                }
-            }
-        }
-
-        return false;
-    }
-
-    public boolean IsOutputtingMechanicalPower(World world, int i, int j, int l) {
-        return false;
-    }
-
     public boolean renderWorld(BlockRenderManager tileRenderer, BlockView tileView, int x, int y, int z) {
         float f = 0.5F;
         float f1 = 0.5F;
         float f2 = 0.75F;
-        int l = this.GetFacing(tileView, x, y, z);
+        int l = this.getFacing(tileView, x, y, z);
         switch (l) {
             case 0 -> this.setBoundingBox(0.5F - f1, 1.0F - f2, 0.5F - f, 0.5F + f1, 1.0F, 0.5F + f);
             case 1 -> this.setBoundingBox(0.5F - f1, 0.0F, 0.5F - f, 0.5F + f1, f2, 0.5F + f);
@@ -440,5 +395,35 @@ public class ReinforcedSawBlock extends LazyBlockTemplate implements MechanicalD
         float f1 = 0.0078125F;
         this.setBoundingBox(0.5F - f, 0.001F, 0.5F - f1, 0.5F + f, 1.0F, 0.5F + f1);
         CustomBlockRendering.RenderInvBlockWithTexture(tileRenderer, this, -0.5F, -0.5F, -0.5F, TextureListener.reinforcedSawSaw);
+    }
+
+    @Override
+    public boolean canOutputMechanicalPower() {
+        return false;
+    }
+
+    @Override
+    public boolean canInputMechanicalPower() {
+        return true;
+    }
+
+    @Override
+    public boolean canInputMechanicalPower(World world, int x, int y, int z, int side) {
+        return side != getFacing(world, x, y, z);
+    }
+
+    @Override
+    public void powerMachine(World world, int x, int y, int z, int side) {
+        toggleBlockActivity(world, x, y, z, true);
+    }
+
+    @Override
+    public void unpowerMachine(World world, int x, int y, int z, int side) {
+        toggleBlockActivity(world, x, y, z, false);
+    }
+
+    @Override
+    public boolean isMachinePowered(World world, int x, int y, int z) {
+        return isBlockOn(world, x, y, z);
     }
 }

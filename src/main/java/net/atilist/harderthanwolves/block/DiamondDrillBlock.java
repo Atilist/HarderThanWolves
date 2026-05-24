@@ -3,8 +3,6 @@ package net.atilist.harderthanwolves.block;
 import net.atilist.harderthanwolves.recipe.DiamondDrillRecipeRegistry;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.kozibrodka.wolves.block.AxleBlock;
-import net.kozibrodka.wolves.events.BlockListener;
 import net.kozibrodka.wolves.utils.BlockPosition;
 import net.kozibrodka.wolves.utils.MechanicalDevice;
 import net.kozibrodka.wolves.utils.UnsortedUtils;
@@ -53,32 +51,20 @@ public class DiamondDrillBlock extends LazyBlockTemplate implements MechanicalDe
 
     @Override
     public void onTick(World world, int i, int j, int k, Random random) {
-        boolean receivingPower = this.IsInputtingMechanicalPower(world, i, j, k);
-        boolean on = this.isBlockOn(world, i, j, k);
-        if (on != receivingPower) {
-            world.playSound((double)i + 0.5, (double)j + 0.5, (double)k + 0.5, "random.explode", 0.2F, 1.25F);
-            if (receivingPower) {
-                world.scheduleBlockUpdate(i, j, k, this.id, this.getTickRate() + random.nextInt(6));
-                this.setBlockOn(world, i, j, k);
-            } else {
-                this.setBlockOff(world, i, j, k);
-            }
-        } else if (on) {
+        if (this.isBlockOn(world, i, j, k)) {
             BlockPosition targetPos = new BlockPosition(i, j, k);
-            targetPos.AddFacingAsOffset(1);
-            drillBlock(world, targetPos.i, targetPos.j, targetPos.k);
+            targetPos.addFacingAsOffset(1);
+            drillBlock(world, targetPos.x, targetPos.y, targetPos.z);
         }
 
     }
 
     public void setBlockOn(World world, int x, int y, int z) {
         world.setBlockMeta(x, y, z, 1);
-        world.blockUpdateEvent(x, y, z);
     }
 
     public void setBlockOff(World world, int x, int y, int z) {
         world.setBlockMeta(x, y, z, 0);
-        world.blockUpdateEvent(x, y, z);
     }
 
     @Override
@@ -128,28 +114,34 @@ public class DiamondDrillBlock extends LazyBlockTemplate implements MechanicalDe
     }
 
     @Override
-    public boolean CanOutputMechanicalPower() {
+    public boolean canOutputMechanicalPower() {
         return false;
     }
 
     @Override
-    public boolean CanInputMechanicalPower() {
-        return false;
-    }
-
-    public boolean IsInputtingMechanicalPower(World world, int i, int j, int k) {
-        BlockPosition targetPos = new BlockPosition(i, j, k);
-        targetPos.AddFacingAsOffset(0);
-        int iTargetid = world.getBlockId(targetPos.i, targetPos.j, targetPos.k);
-        if(iTargetid != BlockListener.axleBlock.id) {
-            return false;
-        }
-        AxleBlock axleBlock = (AxleBlock)BlockListener.axleBlock;
-        return axleBlock.IsAxleOrientedTowardsFacing(world, targetPos.i, targetPos.j, targetPos.k, 0) && axleBlock.GetPowerLevel(world, targetPos.i, targetPos.j, targetPos.k) > 0;
+    public boolean canInputMechanicalPower() {
+        return true;
     }
 
     @Override
-    public boolean IsOutputtingMechanicalPower(World world, int i, int i1, int i2) {
-        return false;
+    public boolean canInputMechanicalPower(World world, int x, int y, int z, int side) {
+        return side == 0;
+    }
+
+    @Override
+    public void powerMachine(World world, int x, int y, int z, int side) {
+        world.playSound((double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.explode", 0.2F, 1.25F);
+        setBlockOn(world, x, y, z);
+    }
+
+    @Override
+    public void unpowerMachine(World world, int x, int y, int z, int side) {
+        world.playSound((double)x + 0.5, (double)y + 0.5, (double)z + 0.5, "random.explode", 0.2F, 1.25F);
+        setBlockOff(world, x, y, z);
+    }
+
+    @Override
+    public boolean isMachinePowered(World world, int i, int i1, int i2) {
+        return isBlockOn(world, i, i1, i2);
     }
 }

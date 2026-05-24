@@ -8,6 +8,7 @@ import net.fabricmc.loader.FabricLoader;
 import net.kozibrodka.wolves.block.entity.BlockDispenserBlockEntity;
 import net.kozibrodka.wolves.container.BlockDispenserScreenHandler;
 import net.kozibrodka.wolves.entity.BroadheadArrowEntity;
+import net.kozibrodka.wolves.events.BlockEntityListener;
 import net.kozibrodka.wolves.events.ItemListener;
 import net.kozibrodka.wolves.events.ScreenHandlerListener;
 import net.kozibrodka.wolves.network.ParticlePacket;
@@ -47,18 +48,13 @@ import java.util.List;
 import java.util.Random;
 
 public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implements RotatableBlock {
-    public final int blockDispenserTextureIDFront = 7;
-    public final int blockDispenserTextureIDSide = 8;
-    public final int blockDispenserTextureIDTop = 6;
-    public final int blockDispenserTextureIDBottom = 9;
-    private final int iBlockDispenserTickRate = 4;
 
     public MysticalDevourerBlock(Identifier identifier, Material material, float hardness, BlockSoundGroup blockSounds) {
         super(identifier, material, hardness, blockSounds);
     }
 
     public int getTextureId(BlockView iblockaccess, int i, int j, int k, int iSide) {
-        int iFacing = this.GetFacing(iblockaccess, i, j, k);
+        int iFacing = this.getFacing(iblockaccess, i, j, k);
         if (iSide == iFacing) {
             return TextureListener.mysticalDevourerFront;
         } else if (iSide == 1) {
@@ -87,31 +83,23 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
     }
 
     public void onPlaced(World world, int i, int j, int k, int iFacing) {
-        this.SetFacing(world, i, j, k, UnsortedUtils.getOppositeFacing(iFacing));
+        this.setFacing(world, i, j, k, UnsortedUtils.getOppositeFacing(iFacing));
         world.scheduleBlockUpdate(i, j, k, net.atilist.harderthanwolves.events.init.BlockListener.mysticalDevourer.id, this.getTickRate());
     }
 
     public void onPlaced(World world, int i, int j, int k, LivingEntity entityLiving) {
         int iFacing = UnsortedUtils.ConvertPlacingEntityOrientationToBlockFacing(entityLiving);
-        this.SetFacing(world, i, j, k, iFacing);
+        this.setFacing(world, i, j, k, iFacing);
         world.scheduleBlockUpdate(i, j, k, net.atilist.harderthanwolves.events.init.BlockListener.mysticalDevourer.id, this.getTickRate());
     }
 
-    public boolean onUse(World world, int i, int j, int k, PlayerEntity entityplayer) {
+    public boolean onUse(World world, int i, int j, int k, PlayerEntity playerEntity) {
         if (world == null) {
             return true;
-        } else {
-            BlockDispenserBlockEntity tileEntityBlockDispenser = (BlockDispenserBlockEntity)world.getBlockEntity(i, j, k);
-            ScreenHandlerListener.TempGuiX = i;
-            ScreenHandlerListener.TempGuiY = j;
-            ScreenHandlerListener.TempGuiZ = k;
-            if (world.isRemote) {
-                PacketHelper.send(new ScreenPacket("dispenser", 0, i, j, k));
-            }
-
-            GuiHelper.openGUI(entityplayer, Identifier.of("wolves:openBlockDispenser"), tileEntityBlockDispenser, new BlockDispenserScreenHandler(entityplayer.inventory, tileEntityBlockDispenser));
-            return true;
         }
+        BlockDispenserBlockEntity blockDispenserBlockEntity = (BlockDispenserBlockEntity) world.getBlockEntity(i, j, k);
+        GuiHelper.openGUI(playerEntity, Identifier.of(BlockEntityListener.NAMESPACE, "openBlockDispenser"), blockDispenserBlockEntity, new BlockDispenserScreenHandler(playerEntity.inventory, blockDispenserBlockEntity));
+        return true;
     }
 
     protected BlockEntity createBlockEntity() {
@@ -140,29 +128,34 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
 
     }
 
-    public int GetFacing(BlockView iBlockAccess, int i, int j, int k) {
+    @Override
+    public int getFacing(BlockView iBlockAccess, int i, int j, int k) {
         return iBlockAccess.getBlockMeta(i, j, k) & -9;
     }
 
-    public void SetFacing(World world, int i, int j, int k, int iFacing) {
+    @Override
+    public void setFacing(World world, int i, int j, int k, int iFacing) {
         int iMetaData = world.getBlockMeta(i, j, k) & 8;
         iMetaData |= iFacing;
         world.setBlockMeta(i, j, k, iMetaData);
     }
 
-    public boolean CanRotate(BlockView iBlockAccess, int i, int j, int l) {
+    @Override
+    public boolean canRotate(BlockView iBlockAccess, int i, int j, int l) {
         return true;
     }
 
-    public boolean CanTransmitRotation(BlockView iBlockAccess, int i, int j, int l) {
+    @Override
+    public boolean canTransmitRotation(BlockView iBlockAccess, int i, int j, int l) {
         return true;
     }
 
-    public void Rotate(World world, int i, int j, int k, boolean bReverse) {
-        int iFacing = this.GetFacing(world, i, j, k);
+    @Override
+    public void rotate(World world, int i, int j, int k, boolean bReverse) {
+        int iFacing = this.getFacing(world, i, j, k);
         int iNewFacing = UnsortedUtils.RotateFacingAroundJ(iFacing, bReverse);
         if (iNewFacing != iFacing) {
-            this.SetFacing(world, i, j, k, iNewFacing);
+            this.setFacing(world, i, j, k, iNewFacing);
             world.setBlocksDirty(i, j, k, i, j, k);
         }
 
@@ -213,13 +206,13 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
     }
 
     private void ConsumeFacingBlock(World world, int i, int j, int k) {
-        int iFacingDirection = this.GetFacing(world, i, j, k);
+        int iFacingDirection = this.getFacing(world, i, j, k);
         BlockPosition targetPos = new BlockPosition(i, j, k);
-        targetPos.AddFacingAsOffset(iFacingDirection);
-        if (this.ConsumeEntityAtTargetLoc(world, i, j, k, targetPos.i, targetPos.j, targetPos.k) && !world.isAir(targetPos.i, targetPos.j, targetPos.k)) {
+        targetPos.addFacingAsOffset(iFacingDirection);
+        if (this.ConsumeEntityAtTargetLoc(world, i, j, k, targetPos.x, targetPos.y, targetPos.z) && !world.isAir(targetPos.x, targetPos.y, targetPos.z)) {
             return;
         }
-        int targetId = world.getBlockId(targetPos.i, targetPos.j, targetPos.k);
+        int targetId = world.getBlockId(targetPos.x, targetPos.y, targetPos.z);
         Block targetBlock = Block.BLOCKS[targetId];
         ItemStack input = new ItemStack(targetId, 1, 0);
         ItemStack result = MysticalDevourerRecipeRegistry.getInstance().getResult(input);
@@ -227,16 +220,16 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
             return;
         }
         result = result.copy();
-        int iTargetMetaData = world.getBlockMeta(targetPos.i, targetPos.j, targetPos.k);
+        int iTargetMetaData = world.getBlockMeta(targetPos.x, targetPos.y, targetPos.z);
         BlockDispenserBlockEntity blockDispenserBlockEntity = (BlockDispenserBlockEntity)world.getBlockEntity(i, j, k);
         InventoryHandler.addItemInstanceToInventory(blockDispenserBlockEntity, result);
         if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
-            this.renderPacket(world, targetPos.i, targetPos.j, targetPos.k, targetId, iTargetMetaData);
+            this.renderPacket(world, targetPos.x, targetPos.y, targetPos.z, targetId, iTargetMetaData);
         } else {
-            ((Minecraft)Minecraft.class.cast(net.fabricmc.loader.api.FabricLoader.getInstance().getGameInstance())).particleManager.addBlockBreakParticles(targetPos.i, targetPos.j, targetPos.k, targetId, iTargetMetaData);
-            world.playSound((double)((float)targetPos.i + 0.5F), (double)((float)targetPos.j + 0.5F), (double)((float)targetPos.k + 0.5F), targetBlock.soundGroup.getSound(), (targetBlock.soundGroup.getVolume() + 1.0F) / 2.0F, targetBlock.soundGroup.getPitch() * 0.8F);
+            ((Minecraft)Minecraft.class.cast(net.fabricmc.loader.api.FabricLoader.getInstance().getGameInstance())).particleManager.addBlockBreakParticles(targetPos.x, targetPos.y, targetPos.z, targetId, iTargetMetaData);
+            world.playSound((double)((float)targetPos.x + 0.5F), (double)((float)targetPos.y + 0.5F), (double)((float)targetPos.z + 0.5F), targetBlock.soundGroup.getSound(), (targetBlock.soundGroup.getVolume() + 1.0F) / 2.0F, targetBlock.soundGroup.getPitch() * 0.8F);
         }
-        world.setBlock(targetPos.i, targetPos.j, targetPos.k, 0);
+        world.setBlock(targetPos.x, targetPos.y, targetPos.z, 0);
     }
 
     @Environment(EnvType.SERVER)
@@ -252,7 +245,7 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
     }
 
     private void SpitOutItem(World world, int i, int j, int k, ItemStack ItemInstance, Random random) {
-        int facing = this.GetFacing(world, i, j, k);
+        int facing = this.getFacing(world, i, j, k);
         float deltaj = 0.0F;
         float f = 0.0F;
         float f1 = 0.0F;
@@ -285,16 +278,16 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
 
     private void DispenseBlockOrItem(World world, int i, int j, int k, Random random) {
         this.ValidateBlockDispenser(world, i, j, k);
-        int iFacing = this.GetFacing(world, i, j, k);
+        int iFacing = this.getFacing(world, i, j, k);
         BlockPosition targetPos = new BlockPosition(i, j, k);
-        targetPos.AddFacingAsOffset(iFacing);
-        int iTargetid = world.getBlockId(targetPos.i, targetPos.j, targetPos.k);
+        targetPos.addFacingAsOffset(iFacing);
+        int iTargetid = world.getBlockId(targetPos.x, targetPos.y, targetPos.z);
         Block targetBlock = Block.BLOCKS[iTargetid];
         boolean shouldDispense = false;
         boolean bSuccessfullyDispensed = false;
         if (targetBlock == null) {
             shouldDispense = true;
-        } else if (ReplaceableBlockChecker.IsReplaceableBlock(world, targetPos.i, targetPos.j, targetPos.k) || !targetBlock.material.isSolid()) {
+        } else if (ReplaceableBlockChecker.IsReplaceableBlock(world, targetPos.x, targetPos.y, targetPos.z) || !targetBlock.material.isSolid()) {
             shouldDispense = true;
         }
 
@@ -318,9 +311,9 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
 
             BlockDispenserBlockEntity tileEntityBlockDispenser = (BlockDispenserBlockEntity)world.getBlockEntity(i, j, k);
             ItemStack iteminstance = tileEntityBlockDispenser.GetNextStackFromInventory();
-            double d = (double)targetPos.i + (double)f * 0.5 + 0.5;
-            double d1 = (double)targetPos.j + (double)deltaj + 0.5;
-            double d2 = (double)targetPos.k + (double)f1 * 0.5 + 0.5;
+            double d = (double)targetPos.x + (double)f * 0.5 + 0.5;
+            double d1 = (double)targetPos.y + (double)deltaj + 0.5;
+            double d2 = (double)targetPos.z + (double)f1 * 0.5 + 0.5;
             if (iteminstance != null) {
                 if (deltaj < 0.1F && deltaj > -0.1F) {
                     deltaj = 0.1F;
@@ -411,7 +404,7 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
                         Block newBlock;
                         if (iteminstance.getItem() instanceof SeedsItem) {
                             ++iteminstance.count;
-                            if (!iteminstance.getItem().useOnBlock(iteminstance, (PlayerEntity)null, world, targetPos.i, targetPos.j - 1, targetPos.k, 1)) {
+                            if (!iteminstance.getItem().useOnBlock(iteminstance, (PlayerEntity)null, world, targetPos.x, targetPos.y - 1, targetPos.z, 1)) {
                                 InventoryHandler.addSingleItemToInventory(tileEntityBlockDispenser, iteminstance.itemId, 0);
                             } else {
                                 newBlock = Block.WHEAT;
@@ -439,14 +432,14 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
                             if (newBlock != null) {
                                 int iNewid = newBlock.id;
                                 int iTargetDirection = UnsortedUtils.getOppositeFacing(iFacing);
-                                if (!world.canPlace(iNewid, targetPos.i, targetPos.j, targetPos.k, true, iTargetDirection)) {
+                                if (!world.canPlace(iNewid, targetPos.x, targetPos.y, targetPos.z, true, iTargetDirection)) {
                                     InventoryHandler.addSingleItemToInventory(tileEntityBlockDispenser, iteminstance.itemId, iteminstance.getDamage());
                                 } else {
                                     if (iNewid != Block.PISTON.id && iNewid != Block.STICKY_PISTON.id) {
-                                        world.setBlock(targetPos.i, targetPos.j, targetPos.k, iNewid, iteminstance.getItem().getPlacementMetadata(iteminstance.getDamage()));
-                                        newBlock.onPlaced(world, targetPos.i, targetPos.j, targetPos.k, iTargetDirection);
+                                        world.setBlock(targetPos.x, targetPos.y, targetPos.z, iNewid, iteminstance.getItem().getPlacementMetadata(iteminstance.getDamage()));
+                                        newBlock.onPlaced(world, targetPos.x, targetPos.y, targetPos.z, iTargetDirection);
                                     } else {
-                                        world.setBlock(targetPos.i, targetPos.j, targetPos.k, iNewid, iFacing);
+                                        world.setBlock(targetPos.x, targetPos.y, targetPos.z, iNewid, iFacing);
                                     }
 
                                     world.playSound((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), newBlock.soundGroup.getSound(), (newBlock.soundGroup.getVolume() + 1.0F) / 2.0F, newBlock.soundGroup.getPitch() * 0.8F);
@@ -456,7 +449,7 @@ public class MysticalDevourerBlock extends LazyBlockWithEntityTemplate implement
 
                                     bSuccessfullyDispensed = true;
                                 }
-                            } else if (world.isAir(targetPos.i, targetPos.j, targetPos.k)) {
+                            } else if (world.isAir(targetPos.x, targetPos.y, targetPos.z)) {
                                 this.SpitOutItem(world, i, j, k, iteminstance, random);
                                 world.playSound((double)i, (double)j, (double)k, "random.click", 1.0F, 1.0F);
                                 if (FabricLoader.INSTANCE.getEnvironmentType() == EnvType.SERVER) {
